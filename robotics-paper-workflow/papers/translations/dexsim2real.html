@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DexSim2Real 论文翻译导读</title>
+  <style>
+    :root { --bg:#f4f3ee; --page:#fffdf8; --text:#30363a; --muted:#747b82; --line:#dfe3e7; --accent:#111827; --steel:#7b8580; --blue:#245bdb; --warm:#fff8ec; --grid:rgba(123,133,128,.045); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),radial-gradient(circle at 12% 0%,rgba(255,250,242,.85),transparent 30%),var(--bg); background-size:30px 30px,30px 30px,auto,auto; color:var(--text); font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.86; }
+    main { width:min(900px,calc(100% - 36px)); margin:34px auto; padding:46px 58px 62px; background:linear-gradient(180deg,#fff 0%,var(--warm) 100%); border:1px solid #cfd5dc; border-top:5px solid var(--steel); border-radius:10px; box-shadow:0 18px 42px rgba(31,35,41,.075); }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    h3 { margin:24px 0 8px; font-size:19px; color:#5b6470; }
+    p { margin:8px 0 16px; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(36,91,219,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 13px; border-radius:6px; background:var(--accent); color:white; border:1px solid var(--accent); font-weight:700; text-decoration:none; }
+    .btn.secondary { background:white; color:var(--text); border-color:var(--line); }
+    .callout { margin:20px 0; padding:15px 16px; background:#fffaf2; border-left:4px solid #a4aaa6; border-radius:6px; }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:14px 0; }
+    .term { padding:11px 12px; background:#fff; border:1px solid var(--line); border-radius:8px; }
+    strong { color:#111827; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } h1 { font-size:27px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文翻译导读 · 2026-06-15</p>
+    <h1><span class="en">DexSim2Real</span>：基础模型引导的通用灵巧操作仿真到真实迁移</h1>
+    <p class="note">这不是逐字全文翻译，而是面向快速阅读的中文译文式导读：保留论文核心概念、方法逻辑、贡献与局限，方便你先建立理解框架。</p>
+    <div class="actions">
+      <a class="btn" href="../DexSim2Real%20-%20Foundation%20Model-Guided%20Sim-to-Real%20Transfer%20for%20Generalizable%20Dexterous%20Manipulation%20-%202026-06-15.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="../../index.html">返回分析页</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2605.05241">原文地址</a>
+    </div>
+    <div class="callout"><strong>一句话翻译：</strong>这篇论文研究如何让仿真中训练出的灵巧手操作策略，更稳定地迁移到真实机器人上，并用基础模型帮助判断仿真环境是否足够接近真实世界。</div>
+    <h2>术语对照</h2>
+    <div class="terms">
+      <div class="term"><span class="en">sim-to-real transfer</span><br />仿真到真实迁移</div><div class="term"><span class="en">dexterous manipulation</span><br />灵巧操作</div><div class="term"><span class="en">foundation model-guided domain randomization</span><br />基础模型引导的域随机化</div><div class="term"><span class="en">tactile-visual fusion</span><br />触觉-视觉融合</div><div class="term"><span class="en">cross-attention policy</span><br />交叉注意力策略</div><div class="term"><span class="en">progressive skill curriculum</span><br />渐进式技能课程</div>
+    </div>
+    <h2>核心译文导读</h2>
+    <p>论文的出发点是：灵巧手在仿真中可以被大量训练，但真实世界里的摩擦、接触、光照、物体材质和传感噪声都会让策略失效。因此，单纯扩大随机化范围并不总是有效，因为随机化太弱会过拟合仿真，太强又会让策略学不到稳定动作。</p>
+    <p><strong>DexSim2Real 的关键想法</strong>是把基础视觉语言模型放进训练闭环，用它来评估仿真图像和真实场景的相似程度，从而更有方向地调整域随机化。换句话说，它不是盲目制造随机环境，而是让模型帮助回答：“这个仿真世界看起来是否足够像真实世界？”</p>
+    <p>在控制策略上，论文强调触觉和视觉的融合。灵巧操作高度依赖接触状态，单靠视觉很难判断物体是否滑动、是否受力合适；单靠触觉又缺少全局场景信息。因此，论文通过触觉-视觉交叉注意力，让策略在不同阶段选择更有用的感知线索。</p>
+    <p>论文还使用渐进式技能课程。它把复杂灵巧操作拆成更容易学习的阶段，使策略先掌握基本接触和抓取，再进入更难的操作组合。这种课程设计降低了训练难度，也让迁移过程更稳定。</p>
+    <h2>阅读重点</h2>
+    <p><strong>最值得关注的创新点</strong>是基础模型不只是作为感知前端，而是参与仿真到真实迁移的校准环节。这让机器人训练从“调控制器”扩展为“同时调环境、调感知、调策略”的闭环系统。</p>
+    <p><strong>适合重点阅读的人群：</strong>做灵巧手、触觉传感、机器人动力学、真实机器人部署、强化学习 sim-to-real 的读者。</p>
+    <p><strong>需要保留的疑问：</strong>它在开放环境、长程任务、跨硬件平台上的泛化还需要进一步验证。尤其是基础模型判断“像不像真实世界”的标准，是否总能对应真实操作成功率，仍然值得继续追问。</p>
+  </main>
+</body>
+</html>

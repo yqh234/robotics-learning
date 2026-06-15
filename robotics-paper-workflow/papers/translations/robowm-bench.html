@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RoboWM-Bench 论文翻译导读</title>
+  <style>
+    :root { --bg:#f4f3ee; --page:#fffdf8; --text:#30363a; --muted:#747b82; --line:#dfe3e7; --accent:#111827; --steel:#7b8580; --blue:#245bdb; --warm:#fff8ec; --grid:rgba(123,133,128,.045); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),radial-gradient(circle at 12% 0%,rgba(255,250,242,.85),transparent 30%),var(--bg); background-size:30px 30px,30px 30px,auto,auto; color:var(--text); font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.86; }
+    main { width:min(900px,calc(100% - 36px)); margin:34px auto; padding:46px 58px 62px; background:linear-gradient(180deg,#fff 0%,var(--warm) 100%); border:1px solid #cfd5dc; border-top:5px solid var(--steel); border-radius:10px; box-shadow:0 18px 42px rgba(31,35,41,.075); }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    h3 { margin:24px 0 8px; font-size:19px; color:#5b6470; }
+    p { margin:8px 0 16px; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(36,91,219,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 13px; border-radius:6px; background:var(--accent); color:white; border:1px solid var(--accent); font-weight:700; text-decoration:none; }
+    .btn.secondary { background:white; color:var(--text); border-color:var(--line); }
+    .callout { margin:20px 0; padding:15px 16px; background:#fffaf2; border-left:4px solid #a4aaa6; border-radius:6px; }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:14px 0; }
+    .term { padding:11px 12px; background:#fff; border:1px solid var(--line); border-radius:8px; }
+    strong { color:#111827; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } h1 { font-size:27px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文翻译导读 · 2026-06-15</p>
+    <h1><span class="en">RoboWM-Bench</span>：用于评估机器人操作世界模型的基准</h1>
+    <p class="note">这不是逐字全文翻译，而是面向快速阅读的中文译文式导读：突出论文问题、方法、评测逻辑和对机器人研究的启发。</p>
+    <div class="actions">
+      <a class="btn" href="../RoboWM-Bench%20-%20A%20Benchmark%20for%20Evaluating%20World%20Models%20in%20Robotic%20Manipulation%20-%202026-06-15.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="../../index.html">返回分析页</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2604.19092">原文地址</a>
+    </div>
+    <div class="callout"><strong>一句话翻译：</strong>这篇论文提出一个评测框架，用来判断机器人世界模型生成的操作过程，不只是“看起来合理”，而是真的能被机器人在物理环境中执行。</div>
+    <h2>术语对照</h2>
+    <div class="terms">
+      <div class="term"><span class="en">world model</span><br />世界模型</div><div class="term"><span class="en">robotic manipulation</span><br />机器人操作</div><div class="term"><span class="en">embodied executability</span><br />具身可执行性</div><div class="term"><span class="en">manipulation video</span><br />操作视频</div><div class="term"><span class="en">action sequence</span><br />动作序列</div><div class="term"><span class="en">physics simulation</span><br />物理仿真</div>
+    </div>
+    <h2>核心译文导读</h2>
+    <p>论文关注一个很容易被忽略的问题：世界模型生成的视频可能非常像真实操作，但视觉合理并不等于机器人可执行。一个杯子被“生成”到了目标位置，不代表真实机器人能通过可行的动作、接触和动力学过程把它放过去。</p>
+    <p><strong>RoboWM-Bench 的核心贡献</strong>是把评测标准从“画面像不像”推进到“动作能不能完成任务”。它尝试把生成的操作过程转化为具身动作序列，再放进物理仿真中检验任务是否真的完成。</p>
+    <p>这种评测方式对机器人世界模型非常重要。因为机器人智能最终要落在物理世界里：抓取会受到摩擦约束，推拉会受到接触动力学影响，轨迹也必须符合机器人的运动范围和控制能力。仅用视频相似度评价世界模型，会漏掉这些关键问题。</p>
+    <p>因此，论文实际上在建立一把更接近机器人真实能力的尺子。它让研究者看到：一个模型也许会生成漂亮的视频，但如果动作不可执行、物体运动不守物理规律、任务无法在仿真中完成，那么它离可用的机器人世界模型仍然有距离。</p>
+    <h2>阅读重点</h2>
+    <p><strong>最值得关注的创新点</strong>是把视觉生成、动作还原和物理验证接起来。它没有停留在生成质量本身，而是进一步追问生成内容能否成为机器人行动的依据。</p>
+    <p><strong>适合重点阅读的人群：</strong>做机器人世界模型、VLA、具身智能评测、操作规划、机器人动力学、仿真评测平台的读者。</p>
+    <p><strong>需要保留的疑问：</strong>基准主要提供评测框架，并不直接产出可部署控制策略。未来更关键的问题是：世界模型如何从这种可执行性反馈中反向改进，而不只是被动接受评分。</p>
+  </main>
+</body>
+</html>
