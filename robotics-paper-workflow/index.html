@@ -72,18 +72,37 @@
     .side-deco {
       position: fixed;
       top: 160px;
-      width: 112px;
+      width: 120px;
       height: 420px;
-      color: rgba(95, 104, 114, 0.22);
-      font-family: "Times New Roman", Times, serif;
-      font-size: 18px;
-      line-height: 1.55;
-      white-space: pre;
       pointer-events: none;
       user-select: none;
     }
     .side-left { left: max(20px, calc((100vw - 1180px) / 2)); text-align: left; }
     .side-right { right: max(20px, calc((100vw - 1180px) / 2)); text-align: right; }
+    .side-deco::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 8%, rgba(95,104,114,0.28) 0 7px, transparent 8px),
+        radial-gradient(circle at 50% 32%, rgba(95,104,114,0.22) 0 10px, transparent 11px),
+        radial-gradient(circle at 50% 58%, rgba(95,104,114,0.20) 0 8px, transparent 9px),
+        linear-gradient(rgba(95,104,114,0.18), rgba(95,104,114,0.18)) 50% 14% / 2px 78px no-repeat,
+        linear-gradient(35deg, transparent 47%, rgba(95,104,114,0.20) 48% 52%, transparent 53%) 34px 118px / 74px 74px no-repeat,
+        linear-gradient(rgba(95,104,114,0.18), rgba(95,104,114,0.18)) 50% 62% / 2px 86px no-repeat,
+        linear-gradient(90deg, rgba(95,104,114,0.18), rgba(95,104,114,0.18)) 38px 316px / 44px 2px no-repeat;
+    }
+    .side-deco::after {
+      content: "";
+      position: absolute;
+      left: 40px;
+      top: 302px;
+      width: 40px;
+      height: 40px;
+      border: 2px solid rgba(95,104,114,0.22);
+      transform: rotate(45deg);
+    }
+    .side-right { transform: scaleX(-1); }
     @media (max-width: 1120px) { .side-deco { display: none; } }
     .meta { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
     .subtitle { margin: 0 0 14px; color: #4b5563; font-size: 17px; font-weight: 600; line-height: 1.65; }
@@ -108,21 +127,8 @@
   </style>
 </head>
 <body>
-  <div class="side-deco side-left">SENSOR
-○
-│
-○── IMU
-│
-◇
-│
-FORCE</div>
-  <div class="side-deco side-right">ARM
-□──○
-   │
-   ○──◇
-   │
-  GRIP
-  ○</div>
+  <div class="side-deco side-left"></div>
+  <div class="side-deco side-right"></div>
   <main class="page">
     <h1>每日机器人论文对比</h1>
     <p class="subtitle">我认为未来的创新点：机器人研究会从“单点模型能力”转向“可验证的具身闭环”，也就是让世界模型、真实感知、物理仿真和机器人控制共同迭代。</p>

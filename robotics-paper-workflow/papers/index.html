@@ -66,16 +66,36 @@
     .side-deco {
       position: fixed;
       top: 150px;
-      color: rgba(95, 104, 114, 0.20);
-      font-family: "Times New Roman", Times, serif;
-      font-size: 17px;
-      line-height: 1.55;
-      white-space: pre;
+      width: 110px;
+      height: 360px;
       pointer-events: none;
       user-select: none;
     }
     .side-left { left: max(18px, calc((100vw - 1220px) / 2)); }
     .side-right { right: max(18px, calc((100vw - 1220px) / 2)); text-align: right; }
+    .side-deco::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(95,104,114,0.24) 0 8px, transparent 9px),
+        radial-gradient(circle at 50% 42%, rgba(95,104,114,0.20) 0 9px, transparent 10px),
+        radial-gradient(circle at 50% 72%, rgba(95,104,114,0.20) 0 7px, transparent 8px),
+        linear-gradient(rgba(95,104,114,0.18), rgba(95,104,114,0.18)) 50% 18% / 2px 80px no-repeat,
+        linear-gradient(90deg, rgba(95,104,114,0.18), rgba(95,104,114,0.18)) 28px 154px / 54px 2px no-repeat,
+        linear-gradient(rgba(95,104,114,0.16), rgba(95,104,114,0.16)) 50% 48% / 2px 82px no-repeat;
+    }
+    .side-deco::after {
+      content: "";
+      position: absolute;
+      left: 37px;
+      top: 242px;
+      width: 34px;
+      height: 34px;
+      border: 2px solid rgba(95,104,114,0.20);
+      transform: rotate(45deg);
+    }
+    .side-right { transform: scaleX(-1); }
     @media (max-width: 1120px) { .side-deco { display: none; } }
 
     h1 {
@@ -230,17 +250,8 @@
   </style>
 </head>
 <body>
-  <div class="side-deco side-left">LIBRARY
-○── TAG
-│
-○
-│
-PDF</div>
-  <div class="side-deco side-right">DYNAMICS
-□──○
-   │
-  CTRL
-   ○</div>
+  <div class="side-deco side-left"></div>
+  <div class="side-deco side-right"></div>
   <main>
     <section class="hero">
       <h1>机器人论文 PDFs</h1>
