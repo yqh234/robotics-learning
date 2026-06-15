@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>每日机器人论文对比</title>
+  <style>
+    :root {
+      --text: #1f2329;
+      --muted: #646a73;
+      --line: #dee0e3;
+      --bg: #f7f8fa;
+      --page: #ffffff;
+      --red: #d83931;
+      --blue: #245bdb;
+      --soft-red: #fff1f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+      line-height: 1.72;
+    }
+    .page {
+      max-width: 920px;
+      margin: 32px auto;
+      padding: 56px 72px 72px;
+      background: var(--page);
+      border: 1px solid #edf0f5;
+      box-shadow: 0 8px 28px rgba(31, 35, 41, 0.06);
+    }
+    .meta { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+    h1 { margin: 0 0 12px; font-size: 34px; line-height: 1.25; }
+    h2 { margin: 42px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line); font-size: 24px; }
+    h3 { margin: 26px 0 8px; color: var(--red); font-size: 18px; }
+    p { margin: 8px 0 14px; }
+    ul { margin: 8px 0 16px 22px; padding: 0; }
+    li { margin: 4px 0; }
+    a { color: var(--blue); text-decoration: none; border-bottom: 1px solid rgba(36, 91, 219, 0.28); }
+    a:hover { border-bottom-color: var(--blue); }
+    .callout { margin: 22px 0; padding: 14px 16px; background: var(--soft-red); border-left: 4px solid var(--red); border-radius: 6px; }
+    .paper-title { font-size: 20px; font-weight: 700; }
+    .en { font-family: "Times New Roman", Times, serif; }
+    .tag { display: inline-block; margin-right: 8px; padding: 2px 8px; border-radius: 999px; background: #f2f3f5; color: var(--muted); font-size: 13px; }
+    .local { overflow-wrap: anywhere; color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>每日机器人论文对比</h1>
+    <div class="meta">更新时间：2026-06-15 即时预览</div>
+    <p class="local">Paper 存放地址：<a href="./papers/index.html">./papers/index.html</a></p>
+
+    <div class="callout">
+      今日主题：两篇论文都在追问机器人学习中的“物理可信性”。模型输出不只要看起来合理，还要能被机器人执行，并且能在真实或近真实环境中站得住。
+    </div>
+
+    <h2 id="dexsim2real">论文 1</h2>
+    <p class="paper-title en">DexSim2Real: Foundation Model-Guided Sim-to-Real Transfer for Generalizable Dexterous Manipulation（2026-06-15）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/2605.05241">https://arxiv.org/abs/2605.05241</a></p>
+    <p>
+      <span class="tag">真实机器人部署</span>
+      <span class="tag">灵巧手</span>
+      <span class="tag en">sim-to-real</span>
+      <span class="tag">触觉视觉融合</span>
+    </p>
+
+    <h3>为什么推荐</h3>
+    <p>关注真实机器人灵巧操作落地。它把视觉语言基础模型放进 <span class="en">sim-to-real</span> 训练闭环，用 <span class="en">VLM</span> 指导域随机化，再结合触觉-视觉 <span class="en">cross-attention</span> 策略和渐进式技能课程。</p>
+
+    <h3>核心方法</h3>
+    <ul>
+      <li><span class="en">foundation model-guided domain randomization</span></li>
+      <li>触觉与视觉融合策略</li>
+      <li>面向接触丰富任务的渐进式技能课程</li>
+    </ul>
+
+    <h3>主要局限</h3>
+    <p>任务仍集中在有限数量的灵巧操作场景。开放环境、长程任务和跨平台泛化还需要更多验证。</p>
+
+    <h2 id="robowm-bench">论文 2</h2>
+    <p class="paper-title en">RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation（2026-06-15）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/2604.19092">https://arxiv.org/abs/2604.19092</a></p>
+    <p>
+      <span class="tag">机器人世界模型</span>
+      <span class="tag">具身智能评测</span>
+      <span class="tag">操作规划</span>
+      <span class="tag">视频模型到机器人控制</span>
+    </p>
+
+    <h3>为什么推荐</h3>
+    <p>它提出一个很重要的评测视角：生成视频看起来合理，不等于机器人真的能执行。<span class="en">RoboWM-Bench</span> 关注世界模型生成的操控过程是否具备物理可执行性。</p>
+
+    <h3>核心方法</h3>
+    <ul>
+      <li>将人手或机器人操控视频转成具身动作序列</li>
+      <li>在物理仿真中验证任务是否完成</li>
+      <li>区分视觉合理性与具身可执行性</li>
+    </ul>
+
+    <h3>主要局限</h3>
+    <p>它主要提供 <span class="en">benchmark</span> 和诊断框架，本身不直接产出可部署控制策略。</p>
+
+    <h2>对比结论</h2>
+    <p><strong>DexSim2Real 是“做系统”：</strong>目标是把策略迁移到真实灵巧机器人。</p>
+    <p><strong>RoboWM-Bench 是“做尺子”：</strong>目标是判断世界模型生成行为是否真的可执行。</p>
+
+    <h3>关键差异</h3>
+    <ul>
+      <li><strong>DexSim2Real</strong> 更偏工程落地，强调真实机器人成功率与 <span class="en">sim-to-real gap</span>。</li>
+      <li><strong>RoboWM-Bench</strong> 更偏研究基础设施，强调如何评价世界模型的可执行性。</li>
+    </ul>
+
+    <h3>阅读顺序</h3>
+    <p>先读 <span class="en">RoboWM-Bench</span>，建立“可执行世界模型”的评测视角；再读 <span class="en">DexSim2Real</span>，看一个真实机器人系统如何把基础模型接入训练和迁移闭环。</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+# 每日机器人论文对比
+
+更新时间：2026-06-15 即时预览
+
+Paper 存放地址：./papers/index.html
+
+> 今日主题：两篇论文都在追问机器人学习中的“物理可信性”。模型输出不只要看起来合理，还要能被机器人执行，并且能在真实或近真实环境中站得住。
+
+## 论文 1
+
+**DexSim2Real: Foundation Model-Guided Sim-to-Real Transfer for Generalizable Dexterous Manipulation（2026-06-15）**
+
+论文链接：https://arxiv.org/abs/2605.05241
+
+标签：真实机器人部署、灵巧手、sim-to-real、触觉视觉融合
+
+### 为什么推荐
+
+关注真实机器人灵巧操作落地。它把视觉语言基础模型放进 sim-to-real 训练闭环，用 VLM 指导域随机化，再结合触觉-视觉 cross-attention 策略和渐进式技能课程。
+
+### 核心方法
+
+- foundation model-guided domain randomization
+- 触觉与视觉融合策略
+- 面向接触丰富任务的渐进式技能课程
+
+### 主要局限
+
+任务仍集中在有限数量的灵巧操作场景。开放环境、长程任务和跨平台泛化还需要更多验证。
+
+## 论文 2
+
+**RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation（2026-06-15）**
+
+论文链接：https://arxiv.org/abs/2604.19092
+
+标签：机器人世界模型、具身智能评测、操作规划、视频模型到机器人控制
+
+### 为什么推荐
+
+它提出一个很重要的评测视角：生成视频看起来合理，不等于机器人真的能执行。RoboWM-Bench 关注世界模型生成的操控过程是否具备物理可执行性。
+
+### 核心方法
+
+- 将人手或机器人操控视频转成具身动作序列
+- 在物理仿真中验证任务是否完成
+- 区分视觉合理性与具身可执行性
+
+### 主要局限
+
+它主要提供 benchmark 和诊断框架，本身不直接产出可部署控制策略。
+
+## 对比结论
+
+**DexSim2Real 是“做系统”：** 目标是把策略迁移到真实灵巧机器人。
+
+**RoboWM-Bench 是“做尺子”：** 目标是判断世界模型生成行为是否真的可执行。
+
+### 关键差异
+
+- DexSim2Real 更偏工程落地，强调真实机器人成功率与 sim-to-real gap。
+- RoboWM-Bench 更偏研究基础设施，强调如何评价世界模型的可执行性。
+
+### 阅读顺序
+
+先读 RoboWM-Bench，建立“可执行世界模型”的评测视角；再读 DexSim2Real，看一个真实机器人系统如何把基础模型接入训练和迁移闭环。
