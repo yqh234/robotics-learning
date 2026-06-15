@@ -6,16 +6,16 @@
   <title>机器人论文 PDFs</title>
   <style>
     :root {
-      --bg: #f3f4f2;
+      --bg: #f4f3ee;
       --card: #ffffff;
-      --text: #1f2329;
-      --muted: #6b7280;
+      --text: #30363a;
+      --muted: #747b82;
       --line: #e5e7eb;
       --accent: #111827;
       --soft: #f3f4f6;
       --blue: #245bdb;
       --steel: #7b8580;
-      --grid: rgba(123, 133, 128, 0.09);
+      --grid: rgba(123, 133, 128, 0.045);
     }
 
     * { box-sizing: border-box; }
@@ -32,7 +32,7 @@
       background-size: 28px 28px, 28px 28px, auto, auto, auto;
       color: var(--text);
       font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif;
-      line-height: 1.65;
+      line-height: 1.76;
     }
 
     main {
@@ -41,6 +41,7 @@
     }
 
     .hero {
+      position: relative;
       margin-bottom: 24px;
       padding: 34px 36px;
       background: rgba(255, 252, 247, 0.92);
@@ -49,6 +50,18 @@
       border-radius: 10px;
       box-shadow: 0 18px 48px rgba(31, 35, 41, 0.07);
       backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "ROBOT ARM  |  CONTROL  |  DYNAMICS";
+      position: absolute;
+      right: 26px;
+      bottom: 18px;
+      color: rgba(95, 104, 114, 0.13);
+      font-family: "Times New Roman", Times, serif;
+      font-size: 14px;
+      letter-spacing: 1px;
+      pointer-events: none;
     }
 
     h1 {
@@ -60,7 +73,7 @@
 
     .subtitle {
       margin: 0;
-      color: var(--muted);
+      color: #686f76;
       font-size: 15px;
     }
 
@@ -70,7 +83,7 @@
       gap: 16px;
       align-items: center;
       margin: 18px 0 0;
-      color: var(--muted);
+      color: #686f76;
       font-size: 14px;
     }
 
@@ -143,7 +156,7 @@
       background: #fffaf2;
       border: 1px solid #edf0f5;
       border-radius: 6px;
-      color: #374151;
+      color: #3f474d;
       font-size: 14px;
     }
 
