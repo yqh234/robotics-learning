@@ -42,6 +42,9 @@
     a { color: var(--blue); text-decoration: none; border-bottom: 1px solid rgba(36, 91, 219, 0.28); }
     a:hover { border-bottom-color: var(--blue); }
     .callout { margin: 22px 0; padding: 14px 16px; background: var(--soft-red); border-left: 4px solid var(--red); border-radius: 6px; }
+    .source-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 18px 0 22px; }
+    .source-card { padding: 13px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fbfcff; }
+    .source-card strong { display: block; margin-bottom: 4px; }
     .paper-title { font-size: 20px; font-weight: 700; }
     .en { font-family: "Times New Roman", Times, serif; }
     .tag { display: inline-block; margin-right: 8px; padding: 2px 8px; border-radius: 999px; background: #f2f3f5; color: var(--muted); font-size: 13px; }
@@ -61,6 +64,14 @@
 
     <div class="callout">
       今日主题：两篇论文都在追问机器人学习中的“物理可信性”。模型输出不只要看起来合理，还要能被机器人执行，并且能在真实或近真实环境中站得住。
+    </div>
+
+    <h2>筛选来源与标签</h2>
+    <div class="source-grid">
+      <div class="source-card"><strong>优先来源</strong>IEEE RA-L、ICRA、IROS、RSS、CoRL、arXiv Robotics。</div>
+      <div class="source-card"><strong>筛选偏好</strong>真实机器人实验、有代码或数据、有清晰 benchmark、近 7 天更新优先。</div>
+      <div class="source-card"><strong>主题标签</strong>manipulation、world-model、sim-to-real、VLA、humanoid、multi-robot。</div>
+      <div class="source-card"><strong>阅读目标</strong>每天两篇：一篇偏系统落地，一篇偏评测或方法基础设施。</div>
     </div>
 
     <h2 id="dexsim2real">论文 1</h2>

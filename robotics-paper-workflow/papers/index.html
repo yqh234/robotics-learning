@@ -80,6 +80,22 @@
       gap: 18px;
     }
 
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .filter {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: #4b5563;
+      font-size: 13px;
+    }
+
     .paper {
       display: flex;
       flex-direction: column;
@@ -189,6 +205,15 @@
         <span>当前日期：2026-06-15 · 共 2 篇</span>
         <a class="open-folder" href="../index.html">返回分析页</a>
       </div>
+    </section>
+
+    <section class="filters" aria-label="论文标签">
+      <span class="filter">manipulation</span>
+      <span class="filter">sim-to-real</span>
+      <span class="filter">world-model</span>
+      <span class="filter">benchmark</span>
+      <span class="filter">embodied-ai</span>
+      <span class="filter">robot-learning</span>
     </section>
 
     <section class="grid">

@@ -2,6 +2,9 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
 $pagePath = "C:\Users\86136\Documents\Codex\2026-06-15\codex-codex\outputs\robotics-paper-feishu-page.html"
+$utf8 = [System.Text.Encoding]::UTF8
+$libraryPath = (Join-Path ($utf8.GetString([Convert]::FromBase64String("QzpcVXNlcnNcODYxMzZcRGVza3RvcFzmnLrlmajkurrorrrmlocgUERGcw=="))) "index.html")
+$refreshScript = "C:\Users\86136\Documents\Codex\2026-06-15\codex-codex\work\refresh-daily-robotics-papers.ps1"
 
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
@@ -45,6 +48,26 @@ function Get-NextRefreshText {
 $form.Add_Click({
     Start-Process -FilePath $pagePath
 })
+
+$menu = New-Object System.Windows.Forms.ContextMenuStrip
+$openBriefing = New-Object System.Windows.Forms.ToolStripMenuItem("Open briefing")
+$openLibrary = New-Object System.Windows.Forms.ToolStripMenuItem("Open paper library")
+$refreshNow = New-Object System.Windows.Forms.ToolStripMenuItem("Refresh now")
+$exitItem = New-Object System.Windows.Forms.ToolStripMenuItem("Exit")
+$openBriefing.Add_Click({ Start-Process -FilePath $pagePath })
+$openLibrary.Add_Click({ Start-Process -FilePath $libraryPath })
+$refreshNow.Add_Click({
+    if (Test-Path $refreshScript) {
+        Start-Process -FilePath powershell.exe -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $refreshScript) -WindowStyle Hidden
+    }
+})
+$exitItem.Add_Click({ $form.Close() })
+[void]$menu.Items.Add($openBriefing)
+[void]$menu.Items.Add($openLibrary)
+[void]$menu.Items.Add($refreshNow)
+[void]$menu.Items.Add((New-Object System.Windows.Forms.ToolStripSeparator))
+[void]$menu.Items.Add($exitItem)
+$form.ContextMenuStrip = $menu
 
 $form.Add_MouseEnter({
     $state.Hover = $true
