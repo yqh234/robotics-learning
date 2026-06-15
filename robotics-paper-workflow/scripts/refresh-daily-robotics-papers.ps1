@@ -12,6 +12,11 @@ if (Test-Path $libraryIndex) {
     Copy-Item -LiteralPath $libraryIndex -Destination (Join-Path $desktopLibrary "index.html") -Force
 }
 
+$libraryIndexEn = Join-Path $outputs "paper-folder-index-en.html"
+if (Test-Path $libraryIndexEn) {
+    Copy-Item -LiteralPath $libraryIndexEn -Destination (Join-Path $desktopLibrary "index-en.html") -Force
+}
+
 $briefing = Join-Path $outputs "robotics-paper-feishu-page.html"
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 Add-Content -LiteralPath $logPath -Value "$timestamp refresh triggered"

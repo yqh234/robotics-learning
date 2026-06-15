@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robotics Paper Library</title>
+  <style>
+    :root { --bg:#f4f3ee; --card:#fff; --text:#30363a; --muted:#747b82; --line:#e5e7eb; --accent:#111827; --soft:#f3f4f6; --blue:#245bdb; --steel:#7b8580; --grid:rgba(123,133,128,.045); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),radial-gradient(circle at 12% 8%,rgba(255,250,242,.9),transparent 30%),var(--bg); background-size:28px 28px,28px 28px,auto,auto; color:var(--text); font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.76; }
+    main { width:min(980px,calc(100% - 40px)); margin:42px auto; }
+    .hero,.paper { background:linear-gradient(180deg,#fff 0%,#fffaf2 100%); border:1px solid #cfd5dc; border-radius:10px; box-shadow:0 12px 30px rgba(31,35,41,.055); }
+    .hero { margin-bottom:24px; padding:34px 36px; border-top:5px solid var(--steel); }
+    h1 { margin:0 0 8px; font-size:34px; line-height:1.25; }
+    .subtitle,.toolbar,.desc { color:#686f76; font-size:15px; }
+    .toolbar { display:flex; justify-content:space-between; gap:16px; align-items:center; margin-top:18px; }
+    .open-folder,a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(36,91,219,.25); }
+    .filters { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+    .filter,.badge,.pill { border-radius:6px; background:#fff; border:1px solid var(--line); color:#4b5563; font-size:13px; padding:5px 10px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .paper { display:flex; flex-direction:column; min-height:260px; padding:22px; }
+    .badge { width:fit-content; margin-bottom:14px; background:var(--soft); }
+    .title { margin:0 0 12px; font-family:"Times New Roman",Times,serif; font-size:21px; font-weight:700; line-height:1.25; }
+    .brief { margin:0 0 16px; padding:14px; background:#fffaf2; border:1px solid #edf0f5; border-radius:6px; color:#3f474d; font-size:14px; }
+    .meta,.actions,.top-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+    .meta { margin:auto 0 18px; gap:8px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 13px; border-radius:6px; background:var(--accent); color:white; text-decoration:none; font-size:14px; font-weight:700; border:0; }
+    .btn.secondary { background:white; color:var(--text); border:1px solid var(--line); }
+    .top-actions { margin-top:16px; }
+    @media (max-width:760px) { main { width:min(100% - 24px,980px); margin:20px auto; } .grid { grid-template-columns:1fr; } .toolbar { flex-direction:column; align-items:flex-start; } }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>Robotics Paper Library</h1>
+      <p class="subtitle">A daily 17:00 robotics reading folder. PDF filenames preserve the paper title and date.</p>
+      <div class="toolbar"><span>Date: 2026-06-15 · 2 papers</span><a class="open-folder" href="../index.html">Back to Analysis</a></div>
+      <div class="top-actions"><a class="btn secondary" href="index.html">返回中文</a></div>
+    </section>
+    <section class="filters" aria-label="paper tags">
+      <span class="filter">manipulation</span><span class="filter">sim-to-real</span><span class="filter">robot dynamics</span><span class="filter">control</span><span class="filter">motion planning</span><span class="filter">world-model</span><span class="filter">benchmark</span><span class="filter">embodied-ai</span><span class="filter">robot-learning</span><span class="filter">humanoid</span><span class="filter">locomotion</span><span class="filter">tactile sensing</span><span class="filter">multi-robot</span><span class="filter">VLA</span>
+    </section>
+    <section class="grid">
+      <article class="paper">
+        <span class="badge">Paper 1 · 2026-06-15</span>
+        <h2 class="title">DexSim2Real: Foundation Model-Guided Sim-to-Real Transfer for Generalizable Dexterous Manipulation</h2>
+        <p class="desc">A sim-to-real system for real-world dexterous manipulation, focusing on how foundation models can assist domain randomization and tactile-visual fusion.</p>
+        <div class="brief"><strong>Summary:</strong> This paper addresses how a dexterous-hand policy learned in simulation can transfer more reliably to a real robot. It uses a vision-language model to assess whether simulated visuals are close to real scenes and adjusts domain randomization accordingly. It is most useful for readers interested in real robot deployment, dexterous control, sim-to-real gaps, and multimodal perception fusion.</div>
+        <div class="meta"><span class="pill">0.51 MB</span><span class="pill">dexterous hand</span><span class="pill">sim-to-real</span></div>
+        <div class="actions"><a class="btn" href="DexSim2Real%20-%20Foundation%20Model-Guided%20Sim-to-Real%20Transfer%20for%20Generalizable%20Dexterous%20Manipulation%20-%202026-06-15.pdf">Open PDF</a><a class="btn secondary" href="../index-en.html#dexsim2real">View Analysis</a><a class="btn secondary" href="https://arxiv.org/abs/2605.05241">arXiv</a></div>
+      </article>
+      <article class="paper">
+        <span class="badge">Paper 2 · 2026-06-15</span>
+        <h2 class="title">RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation</h2>
+        <p class="desc">A benchmark for robotic world models, emphasizing whether generated videos carry physically executable meaning for robots.</p>
+        <div class="brief"><strong>Summary:</strong> This paper is less about a new controller and more about a new evaluation ruler. A manipulation video generated by a world model may look plausible, but that does not mean a robot can execute it. RoboWM-Bench converts generated manipulation processes into embodied action sequences and checks physical task completion in simulation.</div>
+        <div class="meta"><span class="pill">17.56 MB</span><span class="pill">world model</span><span class="pill">embodied evaluation</span></div>
+        <div class="actions"><a class="btn" href="RoboWM-Bench%20-%20A%20Benchmark%20for%20Evaluating%20World%20Models%20in%20Robotic%20Manipulation%20-%202026-06-15.pdf">Open PDF</a><a class="btn secondary" href="../index-en.html#robowm-bench">View Analysis</a><a class="btn secondary" href="https://arxiv.org/abs/2604.19092">arXiv</a></div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
