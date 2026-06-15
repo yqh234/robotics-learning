@@ -9,13 +9,14 @@
       --text: #1f2329;
       --muted: #646a73;
       --line: #dee0e3;
-      --bg: #eef1f3;
+      --bg: #f3f4f2;
       --page: #ffffff;
       --red: #d83931;
       --blue: #245bdb;
       --soft-red: #fff1f0;
-      --steel: #5f6872;
-      --grid: rgba(95, 104, 114, 0.12);
+      --steel: #7b8580;
+      --grid: rgba(123, 133, 128, 0.09);
+      --warm: #fffaf2;
     }
     * { box-sizing: border-box; }
     body {
@@ -23,9 +24,10 @@
       background:
         linear-gradient(90deg, var(--grid) 1px, transparent 1px),
         linear-gradient(0deg, var(--grid) 1px, transparent 1px),
-        radial-gradient(circle at 12% 0%, rgba(95, 104, 114, 0.12), transparent 28%),
+        radial-gradient(circle at 12% 0%, rgba(255, 250, 242, 0.8), transparent 30%),
+        radial-gradient(circle at 88% 10%, rgba(123, 133, 128, 0.10), transparent 26%),
         var(--bg);
-      background-size: 28px 28px, 28px 28px, auto, auto;
+      background-size: 30px 30px, 30px 30px, auto, auto, auto;
       color: var(--text);
       font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif;
       line-height: 1.72;
@@ -34,23 +36,23 @@
       max-width: 920px;
       margin: 32px auto;
       padding: 56px 72px 72px;
-      background: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+      background: linear-gradient(180deg, #ffffff 0%, var(--warm) 100%);
       border: 1px solid #cfd5dc;
       border-top: 5px solid var(--steel);
-      box-shadow: 0 14px 34px rgba(31, 35, 41, 0.10);
+      box-shadow: 0 18px 42px rgba(31, 35, 41, 0.08);
     }
     .meta { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
-    .subtitle { margin: 0 0 14px; color: #374151; font-size: 17px; font-weight: 600; line-height: 1.65; }
+    .subtitle { margin: 0 0 14px; color: #4b5563; font-size: 17px; font-weight: 600; line-height: 1.65; }
     h1 { margin: 0 0 12px; font-size: 34px; line-height: 1.25; }
     h2 { margin: 42px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line); font-size: 24px; }
     h2::before { content: ""; display: inline-block; width: 8px; height: 22px; margin-right: 10px; vertical-align: -4px; background: var(--steel); border-radius: 2px; }
-    h3 { margin: 26px 0 8px; color: var(--red); font-size: 18px; }
+    h3 { margin: 26px 0 8px; color: #8f5f52; font-size: 18px; }
     p { margin: 8px 0 14px; }
     ul { margin: 8px 0 16px 22px; padding: 0; }
     li { margin: 4px 0; }
     a { color: var(--blue); text-decoration: none; border-bottom: 1px solid rgba(36, 91, 219, 0.28); }
     a:hover { border-bottom-color: var(--blue); }
-    .callout { margin: 22px 0; padding: 14px 16px; background: #f4f6f8; border-left: 4px solid var(--steel); border-radius: 4px; }
+    .callout { margin: 22px 0; padding: 14px 16px; background: #fff7eb; border-left: 4px solid #a4aaa6; border-radius: 6px; }
     .paper-title { font-size: 20px; font-weight: 700; }
     .en { font-family: "Times New Roman", Times, serif; }
     .tag { display: inline-block; margin-right: 8px; padding: 2px 8px; border-radius: 6px; background: #eef1f4; border: 1px solid #d7dde4; color: #4b5563; font-size: 13px; }
