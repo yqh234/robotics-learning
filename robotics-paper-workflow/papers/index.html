@@ -63,6 +63,20 @@
       letter-spacing: 1px;
       pointer-events: none;
     }
+    .side-deco {
+      position: fixed;
+      top: 150px;
+      color: rgba(95, 104, 114, 0.20);
+      font-family: "Times New Roman", Times, serif;
+      font-size: 17px;
+      line-height: 1.55;
+      white-space: pre;
+      pointer-events: none;
+      user-select: none;
+    }
+    .side-left { left: max(18px, calc((100vw - 1220px) / 2)); }
+    .side-right { right: max(18px, calc((100vw - 1220px) / 2)); text-align: right; }
+    @media (max-width: 1120px) { .side-deco { display: none; } }
 
     h1 {
       margin: 0 0 8px;
@@ -216,6 +230,17 @@
   </style>
 </head>
 <body>
+  <div class="side-deco side-left">LIBRARY
+○── TAG
+│
+○
+│
+PDF</div>
+  <div class="side-deco side-right">DYNAMICS
+□──○
+   │
+  CTRL
+   ○</div>
   <main>
     <section class="hero">
       <h1>机器人论文 PDFs</h1>

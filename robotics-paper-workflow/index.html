@@ -69,6 +69,22 @@
       box-shadow: inset 0 0 0 28px rgba(95, 104, 114, 0.06), 0 0 0 18px rgba(95, 104, 114, 0.05);
       pointer-events: none;
     }
+    .side-deco {
+      position: fixed;
+      top: 160px;
+      width: 112px;
+      height: 420px;
+      color: rgba(95, 104, 114, 0.22);
+      font-family: "Times New Roman", Times, serif;
+      font-size: 18px;
+      line-height: 1.55;
+      white-space: pre;
+      pointer-events: none;
+      user-select: none;
+    }
+    .side-left { left: max(20px, calc((100vw - 1180px) / 2)); text-align: left; }
+    .side-right { right: max(20px, calc((100vw - 1180px) / 2)); text-align: right; }
+    @media (max-width: 1120px) { .side-deco { display: none; } }
     .meta { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
     .subtitle { margin: 0 0 14px; color: #4b5563; font-size: 17px; font-weight: 600; line-height: 1.65; }
     h1 { margin: 0 0 12px; font-size: 34px; line-height: 1.25; }
@@ -92,6 +108,21 @@
   </style>
 </head>
 <body>
+  <div class="side-deco side-left">SENSOR
+○
+│
+○── IMU
+│
+◇
+│
+FORCE</div>
+  <div class="side-deco side-right">ARM
+□──○
+   │
+   ○──◇
+   │
+  GRIP
+  ○</div>
   <main class="page">
     <h1>每日机器人论文对比</h1>
     <p class="subtitle">我认为未来的创新点：机器人研究会从“单点模型能力”转向“可验证的具身闭环”，也就是让世界模型、真实感知、物理仿真和机器人控制共同迭代。</p>
