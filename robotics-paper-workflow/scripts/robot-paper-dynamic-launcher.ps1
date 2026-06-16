@@ -3,7 +3,10 @@ Add-Type -AssemblyName System.Drawing
 
 $pagePath = "C:\Users\86136\Documents\Codex\2026-06-15\codex-codex\outputs\robotics-paper-feishu-page.html"
 $utf8 = [System.Text.Encoding]::UTF8
-$libraryPath = (Join-Path ($utf8.GetString([Convert]::FromBase64String("QzpcVXNlcnNcODYxMzZcRGVza3RvcFzmnLrlmajkurrorrrmlocgUERGcw=="))) "index.html")
+$libraryRoot = $utf8.GetString([Convert]::FromBase64String("QzpcVXNlcnNcODYxMzZcRGVza3RvcFzmnLrlmajkurrorrrmlocgUERGcw=="))
+$libraryPath = Join-Path $libraryRoot "index.html"
+$dexTranslationPath = Join-Path $libraryRoot "translations\dexsim2real.html"
+$roboTranslationPath = Join-Path $libraryRoot "translations\robowm-bench.html"
 $refreshScript = "C:\Users\86136\Documents\Codex\2026-06-15\codex-codex\work\refresh-daily-robotics-papers.ps1"
 
 [System.Windows.Forms.Application]::EnableVisualStyles()
@@ -52,10 +55,16 @@ $form.Add_Click({
 $menu = New-Object System.Windows.Forms.ContextMenuStrip
 $openBriefing = New-Object System.Windows.Forms.ToolStripMenuItem("Open briefing")
 $openLibrary = New-Object System.Windows.Forms.ToolStripMenuItem("Open paper library")
+$openFolder = New-Object System.Windows.Forms.ToolStripMenuItem("Open PDF folder")
+$openDexTranslation = New-Object System.Windows.Forms.ToolStripMenuItem("Open DexSim2Real translation")
+$openRoboTranslation = New-Object System.Windows.Forms.ToolStripMenuItem("Open RoboWM-Bench translation")
 $refreshNow = New-Object System.Windows.Forms.ToolStripMenuItem("Refresh now")
 $exitItem = New-Object System.Windows.Forms.ToolStripMenuItem("Exit")
 $openBriefing.Add_Click({ Start-Process -FilePath $pagePath })
 $openLibrary.Add_Click({ Start-Process -FilePath $libraryPath })
+$openFolder.Add_Click({ Start-Process -FilePath $libraryRoot })
+$openDexTranslation.Add_Click({ if (Test-Path $dexTranslationPath) { Start-Process -FilePath $dexTranslationPath } })
+$openRoboTranslation.Add_Click({ if (Test-Path $roboTranslationPath) { Start-Process -FilePath $roboTranslationPath } })
 $refreshNow.Add_Click({
     if (Test-Path $refreshScript) {
         Start-Process -FilePath powershell.exe -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $refreshScript) -WindowStyle Hidden
@@ -64,6 +73,10 @@ $refreshNow.Add_Click({
 $exitItem.Add_Click({ $form.Close() })
 [void]$menu.Items.Add($openBriefing)
 [void]$menu.Items.Add($openLibrary)
+[void]$menu.Items.Add($openFolder)
+[void]$menu.Items.Add((New-Object System.Windows.Forms.ToolStripSeparator))
+[void]$menu.Items.Add($openDexTranslation)
+[void]$menu.Items.Add($openRoboTranslation)
 [void]$menu.Items.Add($refreshNow)
 [void]$menu.Items.Add((New-Object System.Windows.Forms.ToolStripSeparator))
 [void]$menu.Items.Add($exitItem)

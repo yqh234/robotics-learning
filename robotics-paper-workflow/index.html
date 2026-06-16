@@ -116,6 +116,9 @@
     a { color: var(--blue); text-decoration: none; border-bottom: 1px solid rgba(36, 91, 219, 0.28); }
     a:hover { border-bottom-color: var(--blue); }
     .callout { margin: 22px 0; padding: 14px 16px; background: #fff7eb; border-left: 4px solid #a4aaa6; border-radius: 6px; }
+    .today-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 20px 0 28px; }
+    .today-card { padding: 13px 14px; background: #fff; border: 1px solid var(--line); border-radius: 8px; color: #47515a; font-size: 14px; }
+    .today-card strong { display: block; color: var(--text); margin-bottom: 4px; }
     .paper-title { font-size: 20px; font-weight: 700; }
     .en { font-family: "Times New Roman", Times, serif; }
     .tag { display: inline-block; margin-right: 8px; padding: 2px 8px; border-radius: 6px; background: #eef1f4; border: 1px solid #d7dde4; color: #4b5563; font-size: 13px; }
@@ -142,6 +145,11 @@
     <div class="callout">
       今日主题：两篇论文都在追问机器人学习中的“物理可信性”。模型输出不只要看起来合理，还要能被机器人执行，并且能在真实或近真实环境中站得住。
     </div>
+    <section class="today-grid" aria-label="今日重点总览">
+      <div class="today-card"><strong>先读顺序</strong>先读 RoboWM-Bench 建立评测视角，再读 DexSim2Real 看真实系统落地。</div>
+      <div class="today-card"><strong>关键词</strong>robot dynamics、sim-to-real、world model、embodied executability。</div>
+      <div class="today-card"><strong>今日追问</strong>生成的机器人行为，是否真的满足接触、动力学和控制约束？</div>
+    </section>
 
     <h2 id="dexsim2real">论文 1</h2>
     <p class="paper-title en">DexSim2Real: Foundation Model-Guided Sim-to-Real Transfer for Generalizable Dexterous Manipulation（2026-06-15）</p>

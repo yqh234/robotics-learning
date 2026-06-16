@@ -22,6 +22,14 @@ if (Test-Path $translationSource) {
     Copy-Item -LiteralPath $translationSource -Destination $desktopLibrary -Recurse -Force
 }
 
+$launcherMarker = "robot-paper-dynamic-launcher.ps1"
+$launcher = Join-Path $root "work\robot-paper-dynamic-launcher.ps1"
+$launcherRunning = Get-CimInstance Win32_Process -Filter "Name = 'powershell.exe'" |
+    Where-Object { $_.CommandLine -like "*$launcherMarker*" }
+if (-not $launcherRunning -and (Test-Path $launcher)) {
+    Start-Process powershell.exe -WindowStyle Hidden -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $launcher)
+}
+
 $briefing = Join-Path $outputs "robotics-paper-feishu-page.html"
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 Add-Content -LiteralPath $logPath -Value "$timestamp refresh triggered"
