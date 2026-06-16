@@ -8,7 +8,7 @@
     :root {
       --bg:#f3f1eb; --paper:#fffdf8; --paper-2:#fbf7ef; --ink:#2f373b; --muted:#6f787e;
       --line:#dce2e4; --line-strong:#c4ccd0; --accent:#1f2933; --blue:#2f5f9f;
-      --steel:#7a8583; --shadow:0 18px 50px rgba(34,42,46,.08); --soft-shadow:0 10px 28px rgba(34,42,46,.055);
+      --steel:#7a8583; --shadow:0 14px 34px rgba(34,42,46,.07); --soft-shadow:0 8px 18px rgba(34,42,46,.045);
       --radius:10px; --grid:rgba(94,104,106,.052); --wash:rgba(255,255,255,.72);
     }
     * { box-sizing:border-box; }
@@ -18,11 +18,11 @@
       background-size:auto,auto,30px 30px,30px 30px,auto;
       font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.78;
     }
-    body::before,body::after { content:""; position:fixed; top:132px; width:120px; height:430px; opacity:.22; pointer-events:none; }
+    body::before,body::after { content:""; position:absolute; top:132px; width:120px; height:430px; opacity:.16; pointer-events:none; }
     body::before { left:max(18px,calc((100vw - 1320px)/2)); background:radial-gradient(circle at 50% 10%,#5d6769 0 6px,transparent 7px),radial-gradient(circle at 50% 34%,#5d6769 0 9px,transparent 10px),linear-gradient(#5d6769,#5d6769) 50% 13%/2px 94px no-repeat,linear-gradient(42deg,transparent 47%,#5d6769 48% 52%,transparent 53%) 30px 120px/72px 72px no-repeat; }
     body::after { right:max(18px,calc((100vw - 1320px)/2)); transform:scaleX(-1); background:radial-gradient(circle at 50% 12%,#5d6769 0 7px,transparent 8px),radial-gradient(circle at 50% 48%,#5d6769 0 8px,transparent 9px),linear-gradient(#5d6769,#5d6769) 50% 16%/2px 142px no-repeat,linear-gradient(90deg,#5d6769,#5d6769) 34px 262px/50px 2px no-repeat; }
     main { width:min(1060px,calc(100% - 40px)); margin:44px auto 56px; }
-    .hero,.panel,.paper { position:relative; background:linear-gradient(180deg,rgba(255,253,248,.96),rgba(250,247,239,.92)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); backdrop-filter:blur(14px); }
+    .hero,.panel,.paper { position:relative; background:linear-gradient(180deg,rgba(255,253,248,.96),rgba(250,247,239,.92)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); }
     .hero { padding:38px 40px 34px; border-top:5px solid var(--steel); overflow:hidden; }
     .hero::before { content:""; position:absolute; inset:14px; border:1px solid rgba(122,133,131,.14); border-radius:8px; pointer-events:none; }
     .hero::after { content:""; position:absolute; right:30px; bottom:22px; width:186px; height:68px; opacity:.24; background:radial-gradient(circle at 16px 16px,#5f6872 0 5px,transparent 6px),radial-gradient(circle at 88px 32px,#5f6872 0 7px,transparent 8px),radial-gradient(circle at 150px 47px,#5f6872 0 5px,transparent 6px),linear-gradient(#5f6872,#5f6872) 20px 16px/64px 2px no-repeat,linear-gradient(#5f6872,#5f6872) 92px 32px/54px 2px no-repeat; pointer-events:none; }
@@ -32,9 +32,9 @@
     .toolbar,.top-actions,.actions,.meta,.controls,.pagination { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
     .toolbar { justify-content:space-between; margin-top:18px; }
     .top-actions { margin-top:16px; }
-    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.24); transition:color .18s ease,border-color .18s ease,transform .18s ease; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.24); transition:color .14s ease,border-color .14s ease; }
     a:hover { border-bottom-color:rgba(47,95,159,.65); }
-    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px; border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:#fff; text-decoration:none; border:1px solid #151b22; box-shadow:0 8px 18px rgba(21,27,34,.12); font-size:14px; font-weight:700; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px; border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:#fff; text-decoration:none; border:1px solid #151b22; box-shadow:0 6px 12px rgba(21,27,34,.10); font-size:14px; font-weight:700; }
     .btn:hover { transform:translateY(-1px); border-bottom-color:#151b22; }
     .btn.secondary { background:rgba(255,255,255,.76); color:var(--ink); border-color:var(--line); box-shadow:none; }
     .panel { margin:20px 0; padding:22px; }
@@ -46,9 +46,9 @@
     input:focus,select:focus { border-color:#9fb2c7; box-shadow:0 0 0 3px rgba(47,95,159,.10); }
     input { flex:1 1 280px; }
     .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
-    .paper { display:flex; flex-direction:column; min-height:350px; padding:24px; overflow:hidden; transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
+    .paper { display:flex; flex-direction:column; min-height:350px; padding:24px; overflow:hidden; transition:transform .14s ease,border-color .14s ease; contain:layout paint; }
     .paper::before { content:""; position:absolute; inset:0 0 auto; height:4px; background:linear-gradient(90deg,#59666a,#b3bbb8 48%,transparent); opacity:.55; }
-    .paper:hover { transform:translateY(-2px); border-color:var(--line-strong); box-shadow:0 22px 58px rgba(34,42,46,.10); }
+    .paper:hover { transform:translateY(-1px); border-color:var(--line-strong); }
     .badge { width:fit-content; margin-bottom:14px; padding:4px 10px; border-radius:999px; background:#eef1f1; color:var(--muted); font-size:13px; border:1px solid rgba(124,135,137,.18); }
     .title { margin:0 0 12px; font-family:"Times New Roman",Times,serif; font-size:22px; font-weight:700; line-height:1.24; color:#1f2933; }
     .desc,.brief { color:#46505a; font-size:14px; }
@@ -118,12 +118,13 @@
     <p class="empty" id="emptyState">没有匹配的论文，换个关键词试试。</p>
   </main>
   <script>
-    const searchBox=document.getElementById("searchBox"),statusFilter=document.getElementById("statusFilter"),topicFilter=document.getElementById("topicFilter"),pageSize=document.getElementById("pageSize"),prevPage=document.getElementById("prevPage"),nextPage=document.getElementById("nextPage"),pageButtons=document.getElementById("pageButtons"),pageJump=document.getElementById("pageJump"),jumpPage=document.getElementById("jumpPage"),pageInfo=document.getElementById("pageInfo"),libraryCount=document.getElementById("libraryCount"),papers=[...document.querySelectorAll(".paper")],emptyState=document.getElementById("emptyState");
+    const searchBox=document.getElementById("searchBox"),statusFilter=document.getElementById("statusFilter"),topicFilter=document.getElementById("topicFilter"),pageSize=document.getElementById("pageSize"),prevPage=document.getElementById("prevPage"),nextPage=document.getElementById("nextPage"),pageButtons=document.getElementById("pageButtons"),pageJump=document.getElementById("pageJump"),jumpPage=document.getElementById("jumpPage"),pageInfo=document.getElementById("pageInfo"),libraryCount=document.getElementById("libraryCount"),papers=[...document.querySelectorAll(".paper")],emptyState=document.getElementById("emptyState"),paperIndex=papers.map(p=>({paper:p,status:p.dataset.status,topic:p.dataset.topic.toLowerCase(),text:`${p.dataset.search} ${p.textContent}`.toLowerCase()}));
     let currentPage=1;
-    function filteredPapers(){const q=searchBox.value.trim().toLowerCase(),s=statusFilter.value,t=topicFilter.value;return papers.filter(p=>{const text=`${p.dataset.search} ${p.textContent}`.toLowerCase();return(s==="all"||p.dataset.status===s)&&(t==="all"||p.dataset.topic.toLowerCase().includes(t))&&(!q||text.includes(q))})}
+    function filteredPapers(){const q=searchBox.value.trim().toLowerCase(),s=statusFilter.value,t=topicFilter.value;return paperIndex.filter(item=>(s==="all"||item.status===s)&&(t==="all"||item.topic.includes(t))&&(!q||item.text.includes(q))).map(item=>item.paper)}
     function renderPagination(totalPages){pageButtons.innerHTML="";const start=Math.max(1,currentPage-2),end=Math.min(totalPages,currentPage+2);for(let page=start;page<=end;page+=1){const button=document.createElement("button");button.type="button";button.className=`page-btn${page===currentPage?" active":""}`;button.textContent=page;button.addEventListener("click",()=>{currentPage=page;applyFilters(false)});pageButtons.appendChild(button)}}
     function applyFilters(resetPage=true){if(resetPage)currentPage=1;const visible=filteredPapers(),perPage=Number(pageSize.value),totalPages=Math.max(1,Math.ceil(visible.length/perPage));currentPage=Math.min(Math.max(currentPage,1),totalPages);const start=(currentPage-1)*perPage,pageSet=new Set(visible.slice(start,start+perPage));papers.forEach(p=>{p.style.display=pageSet.has(p)?"":"none"});renderPagination(totalPages);prevPage.disabled=currentPage<=1;nextPage.disabled=currentPage>=totalPages;pageJump.max=totalPages;pageJump.value=currentPage;pageInfo.textContent=`第 ${currentPage} / ${totalPages} 页 · 匹配 ${visible.length} 篇 · 累计 ${papers.length} 篇`;libraryCount.textContent=`当前日期：2026-06-16 · 累计收录 ${papers.length} 篇`;emptyState.style.display=visible.length?"none":"block"}
-    prevPage.addEventListener("click",()=>{currentPage-=1;applyFilters(false)});nextPage.addEventListener("click",()=>{currentPage+=1;applyFilters(false)});jumpPage.addEventListener("click",()=>{currentPage=Number(pageJump.value)||1;applyFilters(false)});pageJump.addEventListener("keydown",e=>{if(e.key==="Enter"){currentPage=Number(pageJump.value)||1;applyFilters(false)}});[searchBox,statusFilter,topicFilter,pageSize].forEach(el=>el.addEventListener("input",()=>applyFilters(true)));applyFilters();
+    let filterTimer;function scheduleFilter(){window.clearTimeout(filterTimer);filterTimer=window.setTimeout(()=>applyFilters(true),80)}
+    prevPage.addEventListener("click",()=>{currentPage-=1;applyFilters(false)});nextPage.addEventListener("click",()=>{currentPage+=1;applyFilters(false)});jumpPage.addEventListener("click",()=>{currentPage=Number(pageJump.value)||1;applyFilters(false)});pageJump.addEventListener("keydown",e=>{if(e.key==="Enter"){currentPage=Number(pageJump.value)||1;applyFilters(false)}});searchBox.addEventListener("input",scheduleFilter);[statusFilter,topicFilter,pageSize].forEach(el=>el.addEventListener("input",()=>applyFilters(true)));applyFilters();
   </script>
 </body>
 </html>
