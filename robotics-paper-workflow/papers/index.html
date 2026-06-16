@@ -56,6 +56,8 @@
     .meta { gap:8px; margin:auto 0 18px; }
     .pill { padding:3px 9px; border-radius:999px; background:#f7f9f8; border:1px solid #e7ecec; color:#4b5563; font-size:12px; }
     .status { background:#1f2933; color:#fff; border-color:#1f2933; }
+    .status-control { display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border:1px solid #dfe6e7; border-radius:999px; background:#f7f9f8; color:#4b5563; font-size:12px; }
+    .status-control select { min-height:26px; padding:2px 22px 2px 8px; border:0; border-radius:999px; background:#1f2933; color:#fff; font-size:12px; font-weight:700; }
     .pagination { justify-content:center; margin:22px 0 0; padding:14px; background:rgba(255,255,255,.58); border:1px solid var(--line); border-radius:8px; }
     .page-btn { min-width:38px; min-height:36px; padding:6px 10px; border:1px solid var(--line); border-radius:7px; background:rgba(255,255,255,.78); color:var(--ink); font-weight:700; cursor:pointer; }
     .page-btn.active { background:#1f2933; color:#fff; border-color:#1f2933; }
@@ -83,26 +85,26 @@
       </div>
       <div class="controls" aria-label="搜索与筛选">
         <input id="searchBox" type="search" placeholder="搜索标题、标签、方向，例如 robot dynamics / tactile / world model" />
-        <select id="statusFilter"><option value="all">全部状态</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已导读">已导读</option></select>
+        <select id="statusFilter"><option value="all">全部状态</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已导读">已导读</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select>
         <select id="topicFilter"><option value="all">全部方向</option><option value="robot dynamics">robot dynamics</option><option value="sim-to-real">sim-to-real</option><option value="world model">world model</option><option value="benchmark">benchmark</option></select>
         <select id="pageSize"><option value="2">每页 2 篇</option><option value="4">每页 4 篇</option><option value="8">每页 8 篇</option></select>
       </div>
     </section>
     <section class="grid" id="paperGrid">
-      <article class="paper" data-status="精读中" data-topic="sim-to-real robot dynamics tactile dexterous manipulation" data-search="DexSim2Real Foundation Model Guided Sim-to-Real Transfer Generalizable Dexterous Manipulation robot dynamics tactile visual fusion">
+      <article class="paper" data-id="dexsim2real-2026-06-15" data-status="精读中" data-topic="sim-to-real robot dynamics tactile dexterous manipulation" data-search="DexSim2Real Foundation Model Guided Sim-to-Real Transfer Generalizable Dexterous Manipulation robot dynamics tactile visual fusion">
         <span class="badge">论文 1 · 2026-06-15</span>
         <h2 class="title">DexSim2Real: Foundation Model-Guided Sim-to-Real Transfer for Generalizable Dexterous Manipulation</h2>
         <p class="desc">面向真实灵巧操作落地的 sim-to-real 系统，关注基础模型如何辅助域随机化和触觉-视觉融合。</p>
         <div class="brief"><strong>内容介绍：</strong>论文把视觉语言基础模型引入训练闭环，用它判断仿真视觉是否接近真实场景，并据此调整域随机化。适合关注真实机器人部署、灵巧手控制、机器人动力学和多模态感知融合的读者。</div>
-        <div class="meta"><span class="pill status">精读中</span><span class="pill">robot dynamics</span><span class="pill">sim-to-real</span><span class="pill">tactile sensing</span><span class="pill">0.51 MB</span></div>
+        <div class="meta"><label class="status-control">状态 <select class="status-editor" aria-label="修改 DexSim2Real 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">robot dynamics</span><span class="pill">sim-to-real</span><span class="pill">tactile sensing</span><span class="pill">0.51 MB</span></div>
         <div class="actions"><a class="btn" href="DexSim2Real%20-%20Foundation%20Model-Guided%20Sim-to-Real%20Transfer%20for%20Generalizable%20Dexterous%20Manipulation%20-%202026-06-15.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#dexsim2real">查看分析结果</a><a class="btn secondary" href="translations/dexsim2real.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2605.05241">arXiv</a></div>
       </article>
-      <article class="paper" data-status="待复现" data-topic="world model benchmark robot dynamics embodied-ai manipulation planning" data-search="RoboWM-Bench Benchmark Evaluating World Models Robotic Manipulation embodied executability robot dynamics benchmark world model">
+      <article class="paper" data-id="robowm-bench-2026-06-15" data-status="待复现" data-topic="world model benchmark robot dynamics embodied-ai manipulation planning" data-search="RoboWM-Bench Benchmark Evaluating World Models Robotic Manipulation embodied executability robot dynamics benchmark world model">
         <span class="badge">论文 2 · 2026-06-15</span>
         <h2 class="title">RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation</h2>
         <p class="desc">面向机器人世界模型的评测框架，强调生成视频是否具备机器人可执行的物理含义。</p>
         <div class="brief"><strong>内容介绍：</strong>论文提出一把评测“尺子”：生成视频看起来合理，不代表机器人真的能执行。RoboWM-Bench 将生成操作过程转化为具身动作序列，并在物理仿真中检验任务完成度。</div>
-        <div class="meta"><span class="pill status">待复现</span><span class="pill">world model</span><span class="pill">benchmark</span><span class="pill">robot dynamics</span><span class="pill">17.56 MB</span></div>
+        <div class="meta"><label class="status-control">状态 <select class="status-editor" aria-label="修改 RoboWM-Bench 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">world model</span><span class="pill">benchmark</span><span class="pill">robot dynamics</span><span class="pill">17.56 MB</span></div>
         <div class="actions"><a class="btn" href="RoboWM-Bench%20-%20A%20Benchmark%20for%20Evaluating%20World%20Models%20in%20Robotic%20Manipulation%20-%202026-06-15.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#robowm-bench">查看分析结果</a><a class="btn secondary" href="translations/robowm-bench.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2604.19092">arXiv</a></div>
       </article>
     </section>
@@ -119,6 +121,10 @@
   </main>
   <script>
     const searchBox=document.getElementById("searchBox"),statusFilter=document.getElementById("statusFilter"),topicFilter=document.getElementById("topicFilter"),pageSize=document.getElementById("pageSize"),prevPage=document.getElementById("prevPage"),nextPage=document.getElementById("nextPage"),pageButtons=document.getElementById("pageButtons"),pageJump=document.getElementById("pageJump"),jumpPage=document.getElementById("jumpPage"),pageInfo=document.getElementById("pageInfo"),libraryCount=document.getElementById("libraryCount"),papers=[...document.querySelectorAll(".paper")],emptyState=document.getElementById("emptyState"),paperIndex=papers.map(p=>({paper:p,status:p.dataset.status,topic:p.dataset.topic.toLowerCase(),text:`${p.dataset.search} ${p.textContent}`.toLowerCase()}));
+    const statusStoreKey="robotics-paper-status-v1",savedStatuses=JSON.parse(localStorage.getItem(statusStoreKey)||"{}");
+    function saveStatuses(){const data={};paperIndex.forEach(item=>{data[item.paper.dataset.id]=item.status});localStorage.setItem(statusStoreKey,JSON.stringify(data))}
+    function setPaperStatus(item,status){item.status=status;item.paper.dataset.status=status;const editor=item.paper.querySelector(".status-editor");if(editor)editor.value=status}
+    paperIndex.forEach(item=>{const saved=savedStatuses[item.paper.dataset.id];setPaperStatus(item,saved||item.status);const editor=item.paper.querySelector(".status-editor");if(editor){editor.addEventListener("change",()=>{setPaperStatus(item,editor.value);saveStatuses();applyFilters(true)})}});
     let currentPage=1;
     function filteredPapers(){const q=searchBox.value.trim().toLowerCase(),s=statusFilter.value,t=topicFilter.value;return paperIndex.filter(item=>(s==="all"||item.status===s)&&(t==="all"||item.topic.includes(t))&&(!q||item.text.includes(q))).map(item=>item.paper)}
     function renderPagination(totalPages){pageButtons.innerHTML="";const start=Math.max(1,currentPage-2),end=Math.min(totalPages,currentPage+2);for(let page=start;page<=end;page+=1){const button=document.createElement("button");button.type="button";button.className=`page-btn${page===currentPage?" active":""}`;button.textContent=page;button.addEventListener("click",()=>{currentPage=page;applyFilters(false)});pageButtons.appendChild(button)}}
