@@ -8,6 +8,7 @@ $libraryPath = Join-Path $libraryRoot "index.html"
 $dexTranslationPath = Join-Path $libraryRoot "translations\dexsim2real.html"
 $roboTranslationPath = Join-Path $libraryRoot "translations\robowm-bench.html"
 $refreshScript = "C:\Users\86136\Documents\Codex\2026-06-15\codex-codex\work\refresh-daily-robotics-papers.ps1"
+$refreshLog = Join-Path $libraryRoot "refresh.log"
 
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
@@ -31,6 +32,7 @@ $form.Location = New-Object System.Drawing.Point(($area.Right - $form.Width - 28
 $state = @{
     Tick = 0
     Hover = $false
+    MissedRefreshChecked = $false
 }
 
 function Get-NextRefreshText {
@@ -50,6 +52,36 @@ function Get-NextRefreshText {
 
 $form.Add_Click({
     Start-Process -FilePath $pagePath
+})
+
+function Test-RefreshedToday {
+    if (-not (Test-Path $refreshLog)) {
+        return $false
+    }
+
+    $today = Get-Date -Format "yyyy-MM-dd"
+    return [bool](Select-String -LiteralPath $refreshLog -Pattern $today -Quiet)
+}
+
+function Start-MissedRefreshIfNeeded {
+    if ($state.MissedRefreshChecked) {
+        return
+    }
+
+    $state.MissedRefreshChecked = $true
+    $now = Get-Date
+    $todayRefresh = Get-Date -Hour 17 -Minute 0 -Second 0
+    if ($now -lt $todayRefresh) {
+        return
+    }
+
+    if ((Test-Path $refreshScript) -and -not (Test-RefreshedToday)) {
+        Start-Process -FilePath powershell.exe -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $refreshScript, "-Reason", "missed-17-check") -WindowStyle Hidden
+    }
+}
+
+$form.Add_Shown({
+    Start-MissedRefreshIfNeeded
 })
 
 $menu = New-Object System.Windows.Forms.ContextMenuStrip

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visual Verification 论文翻译导读</title>
+  <style>
+    :root { --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583; --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; color:var(--text); background:radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%); background-size:auto,30px 30px,30px 30px,auto; font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.86; }
+    main { width:min(900px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px; background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94)); border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px; box-shadow:var(--shadow); }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px; border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white; border:1px solid #151b22; font-weight:700; text-decoration:none; }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout { margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd; border-left:4px solid #a4aaa6; border-radius:8px; }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文翻译导读 · 2026-06-17</p>
+    <h1><span class="en">Visual Verification Enables Inference-time Steering and Autonomous Policy Improvement</span></h1>
+    <p class="note">导读性质：面向快速阅读，突出视觉验证如何在推理时修正机器人策略，并形成自主改进闭环。</p>
+    <div class="actions">
+      <a class="btn" href="../Visual%20Verification%20Enables%20Inference-time%20Steering%20and%20Autonomous%20Policy%20Improvement%20-%202026-06-17.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2606.18247">原文地址</a>
+    </div>
+    <div class="callout"><strong>一句话翻译：</strong>这篇论文把“视觉验证器”放到机器人策略推理过程中，让机器人在执行前判断候选动作是否真的会带来期望视觉结果，并据此调整动作。</div>
+    <h2>术语对照</h2>
+    <div class="terms">
+      <div class="term"><span class="en">visual verification</span><br />视觉验证</div>
+      <div class="term"><span class="en">inference-time steering</span><br />推理时引导</div>
+      <div class="term"><span class="en">policy improvement</span><br />策略改进</div>
+      <div class="term"><span class="en">autonomous improvement</span><br />自主改进</div>
+    </div>
+    <h2>核心译文导读</h2>
+    <p>论文关心的是机器人策略在部署时如何自我纠偏。传统策略通常把观察映射到动作，一旦动作候选不可靠，系统很难在执行前发现问题。作者引入视觉验证机制，让策略在推理阶段评估候选动作是否与期望视觉变化一致。</p>
+    <p>这使机器人多了一层“先检查再动手”的能力：它可以生成多个候选行为，利用视觉验证器判断哪一个更可能推进任务，再选择更稳的动作。更进一步，验证结果还可以作为自主策略改进的信号，让系统从自己的尝试中积累偏好。</p>
+    <h2>阅读重点</h2>
+    <p><strong>创新点：</strong>把验证从训练后评估提前到推理过程内部，使策略不只是输出动作，而是带着视觉结果预期进行选择。</p>
+    <p><strong>适合读者：</strong>关注真实部署、闭环策略改进、机器人基础模型安全性和自监督改进的读者。</p>
+    <h2>复现清单</h2>
+    <p>可以从一个抓取或导航任务开始，比较直接策略输出、候选动作采样加视觉验证、以及带历史反馈更新的策略三种方案，观察失败率和动作保守性如何变化。</p>
+  </main>
+</body>
+</html>

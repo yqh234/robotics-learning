@@ -1,3 +1,8 @@
+$Reason = "manual"
+if ($args.Count -ge 2 -and $args[0] -eq "-Reason") {
+    $Reason = $args[1]
+}
+
 $root = "C:\Users\86136\Documents\Codex\2026-06-15\codex-codex"
 $utf8 = [System.Text.Encoding]::UTF8
 $desktopLibrary = $utf8.GetString([Convert]::FromBase64String("QzpcVXNlcnNcODYxMzZcRGVza3RvcFzmnLrlmajkurrorrrmlocgUERGcw=="))
@@ -32,7 +37,7 @@ if (-not $launcherRunning -and (Test-Path $launcher)) {
 
 $briefing = Join-Path $outputs "robotics-paper-feishu-page.html"
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-Add-Content -LiteralPath $logPath -Value "$timestamp refresh triggered"
+Add-Content -LiteralPath $logPath -Value "$timestamp refresh triggered ($Reason)"
 
 if (Test-Path $briefing) {
     Start-Process -FilePath $briefing

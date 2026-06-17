@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EBench 论文翻译导读</title>
+  <style>
+    :root { --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583; --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; color:var(--text); background:radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%); background-size:auto,30px 30px,30px 30px,auto; font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.86; }
+    main { width:min(900px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px; background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94)); border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px; box-shadow:var(--shadow); }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px; border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white; border:1px solid #151b22; font-weight:700; text-decoration:none; }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout { margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd; border-left:4px solid #a4aaa6; border-radius:8px; }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文翻译导读 · 2026-06-17</p>
+    <h1><span class="en">EBench</span>：通用移动操作策略的元素级诊断</h1>
+    <p class="note">导读性质：聚焦 EBench 如何把复杂移动操作能力拆成可诊断的基础元素。</p>
+    <div class="actions">
+      <a class="btn" href="../EBench%20-%20Elemental%20Diagnosis%20of%20Generalist%20Mobile%20Manipulation%20Policies%20-%202026-06-17.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2606.18239">原文地址</a>
+    </div>
+    <div class="callout"><strong>一句话翻译：</strong>EBench 不只是看移动操作策略最后成不成功，而是把失败拆到感知、导航、抓取、放置和长程组合等基本能力上。</div>
+    <h2>术语对照</h2>
+    <div class="terms">
+      <div class="term"><span class="en">mobile manipulation</span><br />移动操作</div>
+      <div class="term"><span class="en">generalist policy</span><br />通用策略</div>
+      <div class="term"><span class="en">elemental diagnosis</span><br />元素级诊断</div>
+      <div class="term"><span class="en">benchmark</span><br />基准评测</div>
+    </div>
+    <h2>核心译文导读</h2>
+    <p>通用移动操作策略往往在综合任务上给出一个成功率，但这个数字很难解释失败来自哪里。EBench 的核心价值是把复杂任务拆成更基础的能力元素，让研究者看清模型究竟是看不准、走不好、抓不稳，还是无法把多个子任务串起来。</p>
+    <p>这种诊断式 benchmark 对机器人基础模型尤其重要。随着模型越来越通用，单一任务成功率会掩盖很多局部短板；元素级评测能帮助定位策略改进方向，也能让不同模型的比较更可解释。</p>
+    <h2>阅读重点</h2>
+    <p><strong>创新点：</strong>把移动操作评测从“终局成绩单”变成“能力体检表”，更适合诊断通用机器人策略。</p>
+    <p><strong>适合读者：</strong>关注 mobile manipulation、机器人评测、通用策略、VLA/机器人基础模型落地的读者。</p>
+    <h2>复现清单</h2>
+    <p>可以把自己的移动操作任务拆成目标识别、路径接近、末端对准、抓取、放置和错误恢复，再用 EBench 的思路记录每个元素的通过率，而不是只看最终成功率。</p>
+  </main>
+</body>
+</html>

@@ -139,98 +139,98 @@
   <div class="side-deco side-right"></div>
   <main class="page">
     <h1>每日机器人论文对比</h1>
-    <p class="subtitle">今日创新点：VLA 不应只把图像和语言直接映射到动作，而要学会“先想象下一状态，再反推动作”，并在潜空间里用世界模型反复修正计划。</p>
-    <div class="meta">更新时间：2026-06-17 · 今日论文：2026-06-16 补录</div>
+    <p class="subtitle">今日创新点：机器人策略要从“单次输出动作”走向“可诊断、可验证、可自我修正”的闭环系统。</p>
+    <div class="meta">更新时间：2026-06-17 · 今日论文：2026-06-17 补跑更新</div>
     <div class="top-actions">
       <a class="btn secondary" href="./index-en.html">English Translation</a>
     </div>
     <p class="local">论文库地址：<a href="./papers/index.html">./papers/index.html</a></p>
 
     <div class="callout">
-      今日主题：两篇论文都在把 VLA 从“直接输出动作”推向“带中间推理的操作规划”。ThinkingVLA 强调文字推理、视觉预测和逆动力学动作生成的交错链条；PearlVLA 强调在潜空间中借助世界模型反馈逐步细化动作计划。
+      今日主题：两篇论文都在解决机器人基础模型落地后的“看不见问题”。Visual Verification 让策略在执行前验证候选动作是否靠谱；EBench 则把复杂移动操作失败拆成可诊断的基础能力。
     </div>
     <section class="today-grid" aria-label="今日重点总览">
-      <div class="today-card"><strong>先读顺序</strong>先读 ThinkingVLA 建立“视觉-语言交错推理”的框架，再读 PearlVLA 看潜计划如何被未来反馈修正。</div>
-      <div class="today-card"><strong>关键词</strong>VLA、long-horizon manipulation、latent planning、world model、inverse dynamics。</div>
-      <div class="today-card"><strong>今日追问</strong>机器人在长程任务中，能否先形成可解释的中间目标，再生成更稳的动作块？</div>
+      <div class="today-card"><strong>先读顺序</strong>先读 EBench 建立诊断视角，再读 Visual Verification 看策略如何在推理时自我纠偏。</div>
+      <div class="today-card"><strong>关键词</strong>visual verification、policy improvement、mobile manipulation、benchmark、diagnosis。</div>
+      <div class="today-card"><strong>今日追问</strong>机器人失败时，我们能否知道它错在看、走、抓、放，还是错在动作选择本身？</div>
     </section>
 
-    <h2 id="thinkingvla">论文 1</h2>
-    <p class="paper-title en">ThinkingVLA: Interleaved Vision and Language Reasoning for Robotic Manipulation（2026-06-16）</p>
-    <p>论文链接：<a href="https://arxiv.org/abs/2606.17937">https://arxiv.org/abs/2606.17937</a></p>
+    <h2 id="visual-verification">论文 1</h2>
+    <p class="paper-title en">Visual Verification Enables Inference-time Steering and Autonomous Policy Improvement（2026-06-17）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/2606.18247">https://arxiv.org/abs/2606.18247</a></p>
     <div class="actions">
-      <a class="btn" href="./papers/ThinkingVLA%20-%20Interleaved%20Vision%20and%20Language%20Reasoning%20for%20Robotic%20Manipulation%20-%202026-06-16.pdf">打开 PDF</a>
+      <a class="btn" href="./papers/Visual%20Verification%20Enables%20Inference-time%20Steering%20and%20Autonomous%20Policy%20Improvement%20-%202026-06-17.pdf">打开 PDF</a>
       <a class="btn secondary" href="./papers/index.html">论文库</a>
-      <a class="btn secondary" href="./papers/translations/thinkingvla.html">论文翻译</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/2606.17937">arXiv</a>
+      <a class="btn secondary" href="./papers/translations/visual-verification.html">论文翻译</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2606.18247">arXiv</a>
     </div>
     <p>
-      <span class="tag en">VLA</span>
-      <span class="tag">长程操作</span>
-      <span class="tag">视觉预测</span>
-      <span class="tag">逆动力学推理</span>
+      <span class="tag">视觉验证</span>
+      <span class="tag">推理时引导</span>
+      <span class="tag">策略改进</span>
+      <span class="tag">闭环纠偏</span>
     </p>
 
     <h3>为什么推荐</h3>
-    <p>很多 VLA 模型会从当前观察直接跳到动作，这在短任务中够用，但长程操作需要中间目标、空间推理和可解释计划。ThinkingVLA 把操作过程拆成前向文字推理、下一视觉状态预测、逆向文字推理和动作生成，让机器人先“想清楚要到哪里”，再决定“手该怎么动”。</p>
+    <p>它关注策略部署时最常见的尴尬：模型能给动作，但不一定知道这个动作会不会真的推进任务。论文把视觉验证器放进推理过程，让机器人在执行前评估候选动作是否符合期望视觉变化，从而选择更可靠的动作。</p>
 
     <h3>核心方法</h3>
     <ul>
-      <li>用统一的 <span class="en">Mixture-of-Transformers</span> 自回归架构组织视觉、语言和动作 token。</li>
-      <li>交错生成前向 <span class="en">CoT</span>、未来视觉状态、逆向 <span class="en">CoT</span> 和机器人动作。</li>
-      <li>把长程机器人操作拆成更可检查的中间推理链，减少“黑箱式直接控制”。</li>
+      <li>为候选动作引入视觉结果验证，而不是只依赖策略一次性输出。</li>
+      <li>在推理时根据验证信号 steering 策略，提升任务推进的可靠性。</li>
+      <li>把验证结果作为自主策略改进信号，让系统从自己的尝试中积累偏好。</li>
     </ul>
 
     <h3>我认为的机器人创新点</h3>
-    <p>真正有启发的是它把“想象下一帧”变成动作生成前的一步。机器人不再只是模仿数据里的动作，而是先生成一个可视化的中间目标，再通过逆动力学式推理把目标转成动作。这种结构让 VLA 更像一个会做短期计划的操作者，而不是一个只会条件反射的策略网络。</p>
+    <p>最值得学的是“先验动作，后验视觉检查”的结构。它让机器人策略从黑箱反射变成带审稿人的输出：动作先被提出，再由视觉验证器判断是否像一个会成功的动作。这对真实机器人部署尤其重要，因为真实环境里错误动作的成本更高。</p>
 
     <h3>主要局限</h3>
-    <p>中间推理链越长，错误也可能逐步累积。未来需要验证它在真实机器人、开放物体集合和更复杂接触任务中的鲁棒性。</p>
+    <p>视觉验证器本身如果误判，策略也会被错误引导。未来关键是验证器如何跨任务、跨场景保持可靠。</p>
 
-    <h2 id="pearlvla">论文 2</h2>
-    <p class="paper-title en">PearlVLA: Progressive Embodied Action-Plan Refinement in Latent Space（2026-06-16）</p>
-    <p>论文链接：<a href="https://arxiv.org/abs/2606.17924">https://arxiv.org/abs/2606.17924</a></p>
+    <h2 id="ebench">论文 2</h2>
+    <p class="paper-title en">EBench: Elemental Diagnosis of Generalist Mobile Manipulation Policies（2026-06-17）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/2606.18239">https://arxiv.org/abs/2606.18239</a></p>
     <div class="actions">
-      <a class="btn" href="./papers/PearlVLA%20-%20Progressive%20Embodied%20Action-Plan%20Refinement%20in%20Latent%20Space%20-%202026-06-16.pdf">打开 PDF</a>
+      <a class="btn" href="./papers/EBench%20-%20Elemental%20Diagnosis%20of%20Generalist%20Mobile%20Manipulation%20Policies%20-%202026-06-17.pdf">打开 PDF</a>
       <a class="btn secondary" href="./papers/index.html">论文库</a>
-      <a class="btn secondary" href="./papers/translations/pearlvla.html">论文翻译</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/2606.17924">arXiv</a>
+      <a class="btn secondary" href="./papers/translations/ebench.html">论文翻译</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2606.18239">arXiv</a>
     </div>
     <p>
-      <span class="tag en">latent planning</span>
-      <span class="tag">世界模型反馈</span>
-      <span class="tag">动作块细化</span>
-      <span class="tag">具身计划</span>
+      <span class="tag">移动操作</span>
+      <span class="tag">通用策略</span>
+      <span class="tag">元素级诊断</span>
+      <span class="tag">基准评测</span>
     </p>
 
     <h3>为什么推荐</h3>
-    <p>PearlVLA 关注另一个长程操作痛点：动作计划往往不能一次生成到位。它让粗糙计划先进入潜空间，再通过轻量冻结世界模型获得未来观察反馈，随后由 RefineNet 逐步把粗计划修成更可执行的动作块。</p>
+    <p>EBench 解决的是“成功率不够解释问题”。通用移动操作策略失败时，单一最终分数无法告诉我们它到底错在感知、导航、抓取、放置还是长程组合。EBench 把复杂任务拆成元素级能力，使模型短板更容易定位。</p>
 
     <h3>核心方法</h3>
     <ul>
-      <li>将 VLM 查询分成视觉 grounding 分支和迭代潜计划分支。</li>
-      <li>用 plan-conditioned world query 向潜世界模型询问未来状态。</li>
-      <li>通过多轮细化，把高层语义计划压实成更细粒度、更稳定的动作块。</li>
+      <li>把移动操作任务拆解为更基础、更可定位的能力元素。</li>
+      <li>从诊断角度分析通用策略，而不只看最终任务成功率。</li>
+      <li>帮助比较不同机器人基础模型在哪些环节强、哪些环节弱。</li>
     </ul>
 
     <h3>我认为的机器人创新点</h3>
-    <p>它的关键不在“又接了一个世界模型”，而在把世界模型变成计划修正器。机器人先提出一个动作草稿，再让潜世界模型预演可能结果，最后根据反馈修正计划。这更接近人类操作中的“先试想，再调整”，对复杂装配、长程抓放和多步骤任务很有价值。</p>
+    <p>它的价值像给机器人策略做体检。不是只说“这台机器人失败了”，而是告诉你失败发生在看、走、抓、放或组合推理的哪一段。未来通用机器人要持续迭代，这类诊断型 benchmark 会比单一排行榜更有用。</p>
 
     <h3>主要局限</h3>
-    <p>性能依赖潜世界模型的预测质量。如果未来反馈本身偏差较大，细化过程可能把计划带向错误方向。</p>
+    <p>诊断维度越细，评测设计本身越难避免偏置。未来需要看 EBench 是否能覆盖足够多真实移动操作场景。</p>
 
     <h2>对比结论</h2>
-    <p><strong>ThinkingVLA 是“把推理链显式化”：</strong>它让 VLA 先生成中间视觉目标，再反推动作。</p>
-    <p><strong>PearlVLA 是“把计划迭代化”：</strong>它让动作草稿在潜空间中接收世界模型反馈并逐步细化。</p>
+    <p><strong>Visual Verification 是“执行前自检”：</strong>目标是在动作落地前判断候选动作是否靠谱。</p>
+    <p><strong>EBench 是“失败后诊断”：</strong>目标是把移动操作失败拆解到具体能力环节。</p>
 
     <h3>关键差异</h3>
     <ul>
-      <li><strong>ThinkingVLA</strong> 更关注推理结构：语言推理、视觉预测和动作生成如何串成链。</li>
-      <li><strong>PearlVLA</strong> 更关注计划优化：粗动作计划如何利用未来反馈反复变好。</li>
+      <li><strong>Visual Verification</strong> 更偏在线控制与策略改进，强调推理时如何避免错误动作。</li>
+      <li><strong>EBench</strong> 更偏评测基础设施，强调如何解释通用移动操作策略的失败来源。</li>
     </ul>
 
     <h3>阅读顺序</h3>
-    <p>先读 <span class="en">ThinkingVLA</span>，理解 VLA 如何把中间视觉目标纳入动作推理；再读 <span class="en">PearlVLA</span>，观察世界模型反馈如何把计划从“能说清”推进到“更可能能执行”。</p>
+    <p>先读 <span class="en">EBench</span>，建立“失败要可诊断”的评测视角；再读 <span class="en">Visual Verification</span>，看在线视觉验证如何把诊断思想推向动作选择和策略自我改进。</p>
   </main>
 </body>
 </html>
