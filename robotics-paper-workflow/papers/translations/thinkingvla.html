@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ThinkingVLA 论文翻译导读</title>
+  <style>
+    :root { --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583; --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; color:var(--text); background:radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%); background-size:auto,30px 30px,30px 30px,auto; font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.86; }
+    main { width:min(900px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px; background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94)); border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px; box-shadow:var(--shadow); }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px; border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white; border:1px solid #151b22; font-weight:700; text-decoration:none; }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout { margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd; border-left:4px solid #a4aaa6; border-radius:8px; }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文翻译导读 · 2026-06-16</p>
+    <h1><span class="en">ThinkingVLA</span>：面向机器人操作的交错视觉与语言推理</h1>
+    <p class="note">导读性质：不是逐字全文翻译，而是把论文问题、方法结构、贡献和复现切入点整理成中文阅读版。</p>
+    <div class="actions">
+      <a class="btn" href="../ThinkingVLA%20-%20Interleaved%20Vision%20and%20Language%20Reasoning%20for%20Robotic%20Manipulation%20-%202026-06-16.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2606.17937">原文地址</a>
+    </div>
+    <div class="callout"><strong>一句话翻译：</strong>ThinkingVLA 让 VLA 模型不再直接从观察跳到动作，而是在同一生成过程中交错进行文字推理、视觉预测和逆动力学式动作推理。</div>
+    <h2>术语对照</h2>
+    <div class="terms">
+      <div class="term"><span class="en">Vision-Language-Action</span><br />视觉-语言-动作模型</div>
+      <div class="term"><span class="en">interleaved reasoning</span><br />交错推理</div>
+      <div class="term"><span class="en">forward chain-of-thought</span><br />前向思维链</div>
+      <div class="term"><span class="en">inverse dynamics</span><br />逆动力学 / 由目标反推动作</div>
+    </div>
+    <h2>核心译文导读</h2>
+    <p>论文指出，很多 VLA 模型会把当前观察直接映射到动作，这在短任务中可行，但在长程操作中容易缺少明确的中间目标和空间推理。ThinkingVLA 把操作规划拆成两个互补过程：先预测下一步应该到达的视觉状态，再根据该目标状态反推动作。</p>
+    <p>它的结构亮点在于统一的自回归生成框架：模型先用前向 CoT 找到即时子目标并引导视觉预测；预测图像再作为目标状态，触发逆向 CoT 去推理空间关系和动作意图；最后动作在完整推理上下文中生成。</p>
+    <h2>阅读重点</h2>
+    <p><strong>创新点：</strong>把视觉预测和动作反推放在同一个交错推理链条里，让 VLA 的“想象下一步”和“执行下一步”更紧密。</p>
+    <p><strong>适合读者：</strong>关注 VLA、长程机器人操作、多模态推理、机器人操作规划的读者。</p>
+    <h2>复现清单</h2>
+    <p>先找一个长程操作任务，比较直接动作预测、文字 CoT、视觉预测加逆向动作推理三种范式；再观察失败案例是否集中在子目标预测、视觉状态不准或动作反推错误。</p>
+  </main>
+</body>
+</html>

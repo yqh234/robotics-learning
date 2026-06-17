@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PearlVLA 论文翻译导读</title>
+  <style>
+    :root { --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583; --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; color:var(--text); background:radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%); background-size:auto,30px 30px,30px 30px,auto; font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.86; }
+    main { width:min(900px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px; background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94)); border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px; box-shadow:var(--shadow); }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px; border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white; border:1px solid #151b22; font-weight:700; text-decoration:none; }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout { margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd; border-left:4px solid #a4aaa6; border-radius:8px; }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文翻译导读 · 2026-06-16</p>
+    <h1><span class="en">PearlVLA</span>：潜空间中的渐进式具身动作计划细化</h1>
+    <p class="note">导读性质：聚焦论文提出的潜计划细化机制、世界模型反馈和对长程机器人操作的意义。</p>
+    <div class="actions">
+      <a class="btn" href="../PearlVLA%20-%20Progressive%20Embodied%20Action-Plan%20Refinement%20in%20Latent%20Space%20-%202026-06-16.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2606.17924">原文地址</a>
+    </div>
+    <div class="callout"><strong>一句话翻译：</strong>PearlVLA 把粗糙语义计划放到潜空间中反复细化，并用轻量冻结世界模型提供未来反馈，从而生成更可靠的机器人动作块。</div>
+    <h2>术语对照</h2>
+    <div class="terms">
+      <div class="term"><span class="en">latent action plan</span><br />潜动作计划</div>
+      <div class="term"><span class="en">world query</span><br />世界查询</div>
+      <div class="term"><span class="en">future-guided refinement</span><br />未来引导细化</div>
+      <div class="term"><span class="en">action chunk</span><br />动作块</div>
+    </div>
+    <h2>核心译文导读</h2>
+    <p>PearlVLA 的出发点是：机器人操作的动作计划往往不能一次生成到位。粗糙语义计划需要结合未来状态想象、视觉 grounding 和动作约束逐步修正。论文将 VLM 的元查询分成视觉 grounding 分支和迭代潜计划分支，让计划在潜空间中不断接收世界模型反馈。</p>
+    <p>每一轮细化时，计划条件下的 world query 会询问冻结的轻量潜世界模型，获得一个不依赖动作标注的未来观察潜表示；这个未来反馈再进入 RefineNet，逐步把粗糙语义草稿变成细粒度动作计划，最后并行解码成动作块。</p>
+    <h2>阅读重点</h2>
+    <p><strong>创新点：</strong>不是单次生成动作，而是把“想象未来”变成潜空间中的迭代优化过程。</p>
+    <p><strong>适合读者：</strong>关注 VLA、世界模型、长程操作、低延迟动作生成和强化学习式过程奖励的读者。</p>
+    <h2>复现清单</h2>
+    <p>先在 LIBERO 或类似操作基准中复现“粗计划 → 未来潜反馈 → 细化动作块”的闭环；再比较不同细化轮数 K 对成功率、延迟和失败类型的影响。</p>
+  </main>
+</body>
+</html>

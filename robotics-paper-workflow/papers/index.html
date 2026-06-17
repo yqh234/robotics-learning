@@ -107,6 +107,22 @@
         <div class="meta"><label class="status-control">状态 <select class="status-editor" aria-label="修改 RoboWM-Bench 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">world model</span><span class="pill">benchmark</span><span class="pill">robot dynamics</span><span class="pill">17.56 MB</span></div>
         <div class="actions"><a class="btn" href="RoboWM-Bench%20-%20A%20Benchmark%20for%20Evaluating%20World%20Models%20in%20Robotic%20Manipulation%20-%202026-06-15.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#robowm-bench">查看分析结果</a><a class="btn secondary" href="translations/robowm-bench.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2604.19092">arXiv</a></div>
       </article>
+      <article class="paper" data-id="thinkingvla-2026-06-16" data-status="已导读" data-topic="vla manipulation long-horizon reasoning robot-learning embodied-ai" data-search="ThinkingVLA Interleaved Vision and Language Reasoning for Robotic Manipulation VLA long horizon manipulation chain of thought inverse dynamics">
+        <span class="badge">论文 3 · 2026-06-16</span>
+        <h2 class="title">ThinkingVLA: Interleaved Vision and Language Reasoning for Robotic Manipulation</h2>
+        <p class="desc">面向长程机器人操作的 VLA 推理框架，把视觉预测、文字推理和动作反推交错放进同一生成过程。</p>
+        <div class="brief"><strong>内容介绍：</strong>论文认为操作规划天然包含“预测下一视觉状态”和“由目标状态反推动作”两个阶段。ThinkingVLA 用统一的 Mixture-of-Transformers 自回归架构，把前向 CoT、视觉预测、逆向 CoT 和动作生成串成一个完整推理链，重点提升长程操作任务表现。</div>
+        <div class="meta"><label class="status-control">状态 <select class="status-editor" aria-label="修改 ThinkingVLA 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">VLA</span><span class="pill">long-horizon</span><span class="pill">manipulation</span><span class="pill">5.38 MB</span></div>
+        <div class="actions"><a class="btn" href="ThinkingVLA%20-%20Interleaved%20Vision%20and%20Language%20Reasoning%20for%20Robotic%20Manipulation%20-%202026-06-16.pdf">打开 PDF</a><a class="btn secondary" href="translations/thinkingvla.html">查看分析结果</a><a class="btn secondary" href="translations/thinkingvla.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2606.17937">arXiv</a></div>
+      </article>
+      <article class="paper" data-id="pearlvla-2026-06-16" data-status="已导读" data-topic="vla world model manipulation latent planning embodied-ai robot-learning" data-search="PearlVLA Progressive Embodied Action-Plan Refinement in Latent Space VLA world model future guided refinement action chunk">
+        <span class="badge">论文 4 · 2026-06-16</span>
+        <h2 class="title">PearlVLA: Progressive Embodied Action-Plan Refinement in Latent Space</h2>
+        <p class="desc">面向 VLA 的潜空间动作计划细化方法，用未来状态反馈逐步修正粗糙语义计划。</p>
+        <div class="brief"><strong>内容介绍：</strong>PearlVLA 将 VLM 查询拆成视觉 grounding 分支和迭代潜计划分支。每轮细化时，计划条件 world query 会询问轻量冻结潜世界模型，获得未来观察反馈，再由 RefineNet 把粗计划逐步改成细粒度动作块。</div>
+        <div class="meta"><label class="status-control">状态 <select class="status-editor" aria-label="修改 PearlVLA 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">VLA</span><span class="pill">world model</span><span class="pill">latent planning</span><span class="pill">1.88 MB</span></div>
+        <div class="actions"><a class="btn" href="PearlVLA%20-%20Progressive%20Embodied%20Action-Plan%20Refinement%20in%20Latent%20Space%20-%202026-06-16.pdf">打开 PDF</a><a class="btn secondary" href="translations/pearlvla.html">查看分析结果</a><a class="btn secondary" href="translations/pearlvla.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2606.17924">arXiv</a></div>
+      </article>
     </section>
     <nav class="pagination" aria-label="论文分页">
       <button class="page-btn" id="prevPage" type="button">上一页</button>
