@@ -122,11 +122,6 @@
     .today-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 20px 0 28px; }
     .today-card { padding: 14px 15px; background: rgba(255,255,255,.74); border: 1px solid var(--line); border-radius: 8px; color: #47515a; font-size: 14px; box-shadow: 0 10px 28px rgba(34,42,46,.055); }
     .today-card strong { display: block; color: var(--text); margin-bottom: 4px; }
-    .strategy-panel { margin: 20px 0 28px; padding: 18px; background: rgba(255,255,255,.72); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 12px 32px rgba(34,42,46,.06); }
-    .strategy-panel h2 { margin-top: 0; }
-    .strategy-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-    .strategy-item { padding: 13px 14px; background: rgba(247,249,248,.78); border: 1px solid #e7ecec; border-radius: 8px; font-size: 14px; color: #47515a; }
-    .strategy-item strong { display: block; margin-bottom: 4px; color: var(--text); }
     .paper-title { font-size: 20px; font-weight: 700; }
     .en { font-family: "Times New Roman", Times, serif; }
     .tag { display: inline-block; margin-right: 8px; padding: 3px 9px; border-radius: 999px; background: #f7f9f8; border: 1px solid #e7ecec; color: #4b5563; font-size: 13px; }
@@ -136,7 +131,7 @@
     .btn.secondary { background: rgba(255,255,255,.76); color: var(--text); border-color: var(--line); box-shadow: none; }
     .btn:hover { border-bottom-color: #151b22; transform: translateY(-1px); }
     .top-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 18px; }
-    @media (max-width: 720px) { .strategy-grid, .today-grid { grid-template-columns: 1fr; } .page { padding: 42px 22px 52px; } }
+    @media (max-width: 720px) { .today-grid { grid-template-columns: 1fr; } .page { padding: 42px 22px 52px; } }
   </style>
 </head>
 <body>
@@ -150,18 +145,6 @@
       <a class="btn secondary" href="./index-en.html">English Translation</a>
     </div>
     <p class="local">论文库地址：<a href="./papers/index.html">./papers/index.html</a></p>
-
-    <section class="strategy-panel" aria-label="论文推荐策略">
-      <h2>推荐策略已升级</h2>
-      <div class="strategy-grid">
-        <div class="strategy-item"><strong>选择范围</strong>只要与机器人相关即可，包括 manipulation、locomotion、humanoid、robot dynamics、control、SLAM、HRI、soft robotics、medical robotics 与 embodied AI。</div>
-        <div class="strategy-item"><strong>论文来源</strong>覆盖 arXiv、IEEE Xplore、RA-L、T-RO、ICRA、IROS、RSS、CoRL、Science Robotics、IJRR、ACM、Springer、ScienceDirect、Nature、Frontiers、Semantic Scholar 等。</div>
-        <div class="strategy-item"><strong>推荐逻辑</strong>每天追加两篇，采用“近期热点 + 高被引/高影响力经典或期刊论文”混合策略，并保留历史 PDF、翻译、分析和阅读状态。</div>
-      </div>
-      <div class="actions">
-        <a class="btn" href="./papers/index.html">打开累计论文库</a>
-      </div>
-    </section>
 
     <div class="callout">
       今日主题：两篇论文都在把 VLA 从“直接输出动作”推向“带中间推理的操作规划”。ThinkingVLA 强调文字推理、视觉预测和逆动力学动作生成的交错链条；PearlVLA 强调在潜空间中借助世界模型反馈逐步细化动作计划。
