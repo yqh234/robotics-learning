@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diffusion Policy 论文翻译导读</title>
+  <style>
+    :root { --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583; --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; color:var(--text); background:radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%); background-size:auto,30px 30px,30px 30px,auto; font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.86; }
+    main { width:min(920px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px; background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94)); border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px; box-shadow:var(--shadow); }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    ul { margin:8px 0 16px 22px; padding:0; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px; border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white; border:1px solid #151b22; font-weight:700; text-decoration:none; }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout { margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd; border-left:4px solid #a4aaa6; border-radius:8px; }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文翻译导读 · 2026-06-18 · 阅读状态：待复现</p>
+    <h1><span class="en">Diffusion Policy</span>：用动作扩散建模机器人视觉运动策略</h1>
+    <p class="note">导读性质：面向快速把握这篇论文为什么会成为后续大量机器人生成式控制工作的参考点。</p>
+    <div class="actions"><a class="btn" href="../Diffusion%20Policy%20-%20Visuomotor%20Policy%20Learning%20via%20Action%20Diffusion%20-%202026-06-18.pdf">打开原文 PDF</a><a class="btn secondary" href="../index.html">返回论文库</a><a class="btn secondary" href="https://arxiv.org/abs/2303.04137">arXiv</a><a class="btn secondary" href="https://doi.org/10.15607/RSS.2023.XIX.026">DOI</a></div>
+    <div class="callout"><strong>一句话翻译：</strong>这篇论文把机器人动作序列当成条件扩散生成问题，不再强迫策略只给一个确定动作，而是学习一个可逐步采样、可覆盖多种合理执行轨迹的动作分布。</div>
+    <h2>英文信息</h2><p><strong>标题：</strong><span class="en">Diffusion Policy: Visuomotor Policy Learning via Action Diffusion</span></p><p><strong>作者：</strong><span class="en">Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song</span></p><p><strong>发表：</strong>Robotics: Science and Systems (RSS)，2023</p><p><strong>DOI：</strong><a href="https://doi.org/10.15607/RSS.2023.XIX.026">10.15607/RSS.2023.XIX.026</a></p><p><strong>arXiv：</strong><a href="https://arxiv.org/abs/2303.04137">2303.04137</a></p><p><strong>项目 / 代码：</strong><a href="https://github.com/real-stanford/diffusion_policy">real-stanford/diffusion_policy</a></p>
+    <h2>术语对照</h2><div class="terms"><div class="term"><span class="en">action diffusion</span><br />动作扩散建模</div><div class="term"><span class="en">visuomotor policy</span><br />视觉运动策略</div><div class="term"><span class="en">receding horizon control</span><br />滚动时域控制</div><div class="term"><span class="en">multimodal action distribution</span><br />多峰动作分布</div></div>
+    <h2>中文翻译导读</h2><p>这篇论文最值得抓住的一点，是它承认机器人操作问题天然存在多个合理动作解。传统回归式策略容易把这些差异平均掉，最后学成一个“不够像任何一个成功解”的中庸动作。</p><p>Diffusion Policy 用扩散生成过程来表达动作分布，把“多个可能正确动作”当成建模对象，而不是噪声。这样它在接触丰富、长时序、示教不完全一致的操作任务里表现更稳定，也为后续 3D diffusion、world model + policy、VLA action head 等路线打开了接口。</p>
+    <h2>推荐理由</h2><p>今天选它，是因为当前论文库虽然已经有 VLA、world model 和闭环验证方向，但缺少一篇真正奠定“机器人动作生成式建模”地位的代表作。Diffusion Policy 正好是这条线的高影响力入口论文。</p>
+    <h2>引用 / 影响力说明</h2><p>截至 2026-06-18，Crossref 返回的 <span class="en">is-referenced-by-count</span> 约为 457；此前 OpenAlex 检索结果约为 409。它还具备 RSS 发表、公开代码、项目页与大量后续论文复用等影响力信号。</p>
+    <h2>复现清单</h2><ul><li>先在作者公开基准上跑通最小训练配置，确认数据预处理和动作窗口设置正确。</li><li>分别比较单步回归策略和扩散策略在多峰轨迹任务上的成功率与动作稳定性。</li><li>重点观察采样步数、控制频率和 receding horizon 长度对实时性的影响。</li><li>如果迁移到实机，优先检查相机时序、动作裁剪和安全约束的接入方式。</li></ul>
+    <h2>论文来源</h2><p>来源组合：arXiv 公开 PDF、RSS DOI 页面、官方 GitHub 项目页。</p>
+    <h2>卡片元数据</h2><p><strong>方向：</strong>manipulation / robot learning / imitation learning / generative control</p><p><strong>文件名：</strong><span class="en">Diffusion Policy - Visuomotor Policy Learning via Action Diffusion - 2026-06-18.pdf</span></p><p><strong>推荐标签：</strong>代表性方法、高影响力、生成式控制、后续扩展多</p>
+  </main>
+</body>
+</html>

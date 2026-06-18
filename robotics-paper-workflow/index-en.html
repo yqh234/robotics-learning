@@ -6,9 +6,9 @@
   <title>Daily Robotics Paper Briefing</title>
   <style>
     :root { --text:#30363a; --muted:#747b82; --line:#dee0e3; --bg:#f4f3ee; --blue:#245bdb; --steel:#7b8580; --grid:rgba(123,133,128,.045); --warm:#fff8ec; }
-    * { box-sizing: border-box; }
+    * { box-sizing:border-box; }
     body { margin:0; background:linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),radial-gradient(circle at 12% 0%,rgba(255,250,242,.8),transparent 30%),var(--bg); background-size:30px 30px,30px 30px,auto,auto; color:var(--text); font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.82; }
-    .page { max-width:880px; margin:32px auto; padding:60px 76px 76px; background:linear-gradient(180deg,#fff 0%,var(--warm) 100%); border:1px solid #cfd5dc; border-top:5px solid var(--steel); box-shadow:0 18px 42px rgba(31,35,41,.08); }
+    .page { max-width:900px; margin:32px auto; padding:58px 72px 76px; background:linear-gradient(180deg,#fff 0%,var(--warm) 100%); border:1px solid #cfd5dc; border-top:5px solid var(--steel); box-shadow:0 18px 42px rgba(31,35,41,.08); }
     h1 { margin:0 0 12px; font-size:34px; line-height:1.25; }
     h2 { margin:42px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line); font-size:24px; }
     h2::before { content:""; display:inline-block; width:8px; height:22px; margin-right:10px; vertical-align:-4px; background:var(--steel); border-radius:2px; }
@@ -19,40 +19,53 @@
     .subtitle { margin:0 0 14px; color:#4b5563; font-size:17px; font-weight:600; }
     .meta,.local { color:var(--muted); font-size:14px; overflow-wrap:anywhere; }
     .callout { margin:22px 0; padding:14px 16px; background:#fff7eb; border-left:4px solid #a4aaa6; border-radius:6px; }
+    .today-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:20px 0 28px; }
+    .today-card { padding:14px 15px; background:#fff; border:1px solid var(--line); border-radius:8px; font-size:14px; color:#4b5563; }
+    .today-card strong { display:block; color:var(--text); margin-bottom:4px; }
     .paper-title { font-family:"Times New Roman",Times,serif; font-size:20px; font-weight:700; }
     .tag { display:inline-block; margin-right:8px; padding:2px 8px; border-radius:6px; background:#eef1f4; border:1px solid #d7dde4; color:#4b5563; font-size:13px; }
     .actions,.top-actions { display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 18px; }
     .btn { display:inline-flex; align-items:center; justify-content:center; min-height:36px; padding:7px 13px; border-radius:6px; background:#1f2329; color:#fff; border:1px solid #1f2329; font-size:14px; font-weight:700; text-decoration:none; }
     .btn.secondary { background:#fff; color:var(--text); border-color:var(--line); }
+    @media (max-width:760px) { .page { padding:40px 22px 52px; } .today-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
   <main class="page">
     <h1>Daily Robotics Paper Briefing</h1>
-    <p class="subtitle">My view of the next innovation frontier: robotics research will move from isolated model capability toward verifiable embodied closed loops, where world models, real sensing, physics simulation, and robot control iterate together.</p>
-    <div class="meta">Updated: 2026-06-15 · instant preview</div>
+    <p class="subtitle">Today’s innovation point: robot capability should not be reduced to a single model score. Reliable state estimation and expressive action generation need to advance together.</p>
+    <p class="subtitle">Next innovation point: couple a geometry-first perception substrate like ORB-SLAM3 with a generative control layer like Diffusion Policy.</p>
+    <div class="meta">Updated: 2026-06-18 · appended daily refresh</div>
     <div class="top-actions"><a class="btn secondary" href="./index.html">返回中文</a></div>
     <p class="local">Paper library: <a href="./papers/index.html">./papers/index.html</a></p>
-    <div class="callout">Today's theme: both papers ask whether robotic models are physically trustworthy. A model output should not merely look plausible; it should be executable by a robot and remain valid in real or near-real physical settings.</div>
-    <h2 id="dexsim2real">Paper 1</h2>
-    <p class="paper-title">DexSim2Real: Foundation Model-Guided Sim-to-Real Transfer for Generalizable Dexterous Manipulation (2026-06-15)</p>
-    <p>Paper link: <a href="https://arxiv.org/abs/2605.05241">https://arxiv.org/abs/2605.05241</a></p>
-    <div class="actions"><a class="btn" href="./papers/DexSim2Real%20-%20Foundation%20Model-Guided%20Sim-to-Real%20Transfer%20for%20Generalizable%20Dexterous%20Manipulation%20-%202026-06-15.pdf">Open PDF</a><a class="btn secondary" href="./papers/index.html">Paper Library</a><a class="btn secondary" href="./papers/translations/dexsim2real.html">Chinese Translation</a><a class="btn secondary" href="https://arxiv.org/abs/2605.05241">arXiv</a></div>
-    <p><span class="tag">real robot deployment</span><span class="tag">dexterous hand</span><span class="tag">sim-to-real</span><span class="tag">tactile-visual fusion</span></p>
-    <h3>Why It Is Recommended</h3><p>This paper focuses on transferring dexterous manipulation policies from simulation to real robots. It places a vision-language foundation model inside the sim-to-real training loop, uses it to guide domain randomization, and combines tactile-visual cross-attention with a progressive skill curriculum.</p>
-    <h3>Core Methods</h3><ul><li>Foundation-model-guided domain randomization</li><li>Tactile and visual policy fusion</li><li>Progressive skill curriculum for contact-rich manipulation</li></ul>
-    <h3>Robotics Innovation I See</h3><p>The key value is not simply “using a foundation model for robotics.” It puts the foundation model into the calibration stage of sim-to-real transfer, allowing the model to judge whether the simulated world is close enough to the real world. This shifts robot training from tuning only the controller to jointly tuning the environment, perception, and policy.</p>
-    <h3>Main Limitation</h3><p>The experiments remain concentrated on a limited set of dexterous manipulation scenarios. More evidence is needed for open environments, long-horizon tasks, and cross-platform generalization.</p>
-    <h2 id="robowm-bench">Paper 2</h2>
-    <p class="paper-title">RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation (2026-06-15)</p>
-    <p>Paper link: <a href="https://arxiv.org/abs/2604.19092">https://arxiv.org/abs/2604.19092</a></p>
-    <div class="actions"><a class="btn" href="./papers/RoboWM-Bench%20-%20A%20Benchmark%20for%20Evaluating%20World%20Models%20in%20Robotic%20Manipulation%20-%202026-06-15.pdf">Open PDF</a><a class="btn secondary" href="./papers/index.html">Paper Library</a><a class="btn secondary" href="./papers/translations/robowm-bench.html">Chinese Translation</a><a class="btn secondary" href="https://arxiv.org/abs/2604.19092">arXiv</a></div>
-    <p><span class="tag">world model</span><span class="tag">embodied evaluation</span><span class="tag">manipulation planning</span><span class="tag">video-to-control</span></p>
-    <h3>Why It Is Recommended</h3><p>This paper proposes an important evaluation perspective: a generated manipulation video that looks reasonable is not necessarily executable by a robot. RoboWM-Bench asks whether the generated manipulation process is physically executable.</p>
-    <h3>Core Methods</h3><ul><li>Convert human or robot manipulation videos into embodied action sequences</li><li>Validate task completion in physics simulation</li><li>Separate visual plausibility from embodied executability</li></ul>
-    <h3>Robotics Innovation I See</h3><p>It moves world-model evaluation from “does the result look right?” to “can the generated process be executed by a robot?” This shift matters because robotic intelligence ultimately lives in action, contact, and physical constraints. RoboWM-Bench connects visual generation, action recovery, and physical validation into a more realistic evaluation loop for robotic foundation models.</p>
-    <h3>Main Limitation</h3><p>It mainly provides a benchmark and diagnostic framework rather than a deployable control policy.</p>
-    <h2>Comparison</h2><p><strong>DexSim2Real is a system-building paper:</strong> it aims to transfer policies to real dexterous robots.</p><p><strong>RoboWM-Bench is an evaluation paper:</strong> it asks whether generated world-model behavior is truly executable.</p>
+    <div class="callout">Today’s pairing fills a gap in the library: a classic perception infrastructure paper versus a representative generative robot policy paper.</div>
+    <section class="today-grid">
+      <div class="today-card"><strong>Read First</strong>ORB-SLAM3, then Diffusion Policy.</div>
+      <div class="today-card"><strong>Keywords</strong>SLAM, visual-inertial, diffusion policy, manipulation.</div>
+      <div class="today-card"><strong>Impact</strong>Crossref counts are about 3933 and 457.</div>
+      <div class="today-card"><strong>Complement</strong>Perception infrastructure versus action generation.</div>
+    </section>
+    <h2 id="orb-slam3">Paper 1</h2>
+    <p class="paper-title">ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM (2026-06-18)</p>
+    <p>Links: <a href="https://arxiv.org/abs/2007.11898">arXiv</a> · <a href="https://doi.org/10.1109/TRO.2021.3075644">DOI</a></p>
+    <div class="actions"><a class="btn" href="./papers/ORB-SLAM3%20-%20An%20Accurate%20Open-Source%20Library%20for%20Visual%2C%20Visual-Inertial%20and%20Multi-Map%20SLAM%20-%202026-06-18.pdf">Open PDF</a><a class="btn secondary" href="./papers/index.html">Paper Library</a><a class="btn secondary" href="./papers/translations/orb-slam3.html">Chinese Guide</a><a class="btn secondary" href="https://arxiv.org/abs/2007.11898">arXiv</a></div>
+    <p><span class="tag">SLAM</span><span class="tag">visual-inertial</span><span class="tag">multi-map</span><span class="tag">open-source</span></p>
+    <h3>Why It Was Chosen</h3><p>ORB-SLAM3 is a durable robotics infrastructure paper with unusually strong practical reuse value.</p>
+    <h3>Core Methods</h3><ul><li>Tightly coupled visual-inertial MAP estimation.</li><li>Multi-map creation and merging.</li><li>Long-horizon keyframe reuse.</li></ul>
+    <h3>Robotics Insight</h3><p>It makes robot localization more recoverable, reusable, and field-ready.</p>
+    <h3>Main Limitation</h3><p>It does not solve higher-level task semantics or control decisions.</p>
+    <h2 id="diffusion-policy">Paper 2</h2>
+    <p class="paper-title">Diffusion Policy: Visuomotor Policy Learning via Action Diffusion (2026-06-18)</p>
+    <p>Links: <a href="https://arxiv.org/abs/2303.04137">arXiv</a> · <a href="https://doi.org/10.15607/RSS.2023.XIX.026">DOI</a></p>
+    <div class="actions"><a class="btn" href="./papers/Diffusion%20Policy%20-%20Visuomotor%20Policy%20Learning%20via%20Action%20Diffusion%20-%202026-06-18.pdf">Open PDF</a><a class="btn secondary" href="./papers/index.html">Paper Library</a><a class="btn secondary" href="./papers/translations/diffusion-policy.html">Chinese Guide</a><a class="btn secondary" href="https://arxiv.org/abs/2303.04137">arXiv</a></div>
+    <p><span class="tag">diffusion policy</span><span class="tag">manipulation</span><span class="tag">imitation learning</span><span class="tag">generative control</span></p>
+    <h3>Why It Was Chosen</h3><p>Diffusion Policy is a representative paper for multimodal action generation in robotics.</p>
+    <h3>Core Methods</h3><ul><li>Conditional action diffusion.</li><li>Receding-horizon execution.</li><li>Time-series diffusion transformer.</li></ul>
+    <h3>Robotics Insight</h3><p>It gives robot policies a better model for ambiguous and multimodal manipulation trajectories.</p>
+    <h3>Main Limitation</h3><p>Inference is heavier than direct one-shot policies.</p>
+    <h2>Comparison</h2>
+    <p><strong>ORB-SLAM3</strong> is about robust state estimation.</p>
+    <p><strong>Diffusion Policy</strong> is about expressive action generation.</p>
   </main>
 </body>
 </html>

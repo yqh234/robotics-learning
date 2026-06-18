@@ -5,37 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>机器人论文 PDFs</title>
   <style>
-    :root {
-      --bg:#f3f1eb; --paper:#fffdf8; --paper-2:#fbf7ef; --ink:#2f373b; --muted:#6f787e;
-      --line:#dce2e4; --line-strong:#c4ccd0; --accent:#1f2933; --blue:#2f5f9f;
-      --steel:#7a8583; --shadow:0 14px 34px rgba(34,42,46,.07); --soft-shadow:0 8px 18px rgba(34,42,46,.045);
-      --radius:10px; --grid:rgba(94,104,106,.052); --wash:rgba(255,255,255,.72);
-    }
+    :root { --bg:#f3f1eb; --paper:#fffdf8; --paper-2:#fbf7ef; --ink:#2f373b; --muted:#6f787e; --line:#dce2e4; --line-strong:#c4ccd0; --accent:#1f2933; --blue:#2f5f9f; --steel:#7a8583; --shadow:0 14px 34px rgba(34,42,46,.07); --soft-shadow:0 8px 18px rgba(34,42,46,.045); --radius:10px; --grid:rgba(94,104,106,.052); }
     * { box-sizing:border-box; }
-    body {
-      margin:0; min-height:100vh; color:var(--ink);
-      background:radial-gradient(circle at 8% 6%, rgba(255,255,255,.9), transparent 28%),radial-gradient(circle at 88% 9%, rgba(125,135,132,.13), transparent 25%),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),linear-gradient(180deg,#f8f6f0 0%,var(--bg) 46%,#eeece6 100%);
-      background-size:auto,auto,30px 30px,30px 30px,auto;
-      font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.78;
-    }
-    body::before,body::after { content:""; position:absolute; top:132px; width:120px; height:430px; opacity:.16; pointer-events:none; }
-    body::before { left:max(18px,calc((100vw - 1320px)/2)); background:radial-gradient(circle at 50% 10%,#5d6769 0 6px,transparent 7px),radial-gradient(circle at 50% 34%,#5d6769 0 9px,transparent 10px),linear-gradient(#5d6769,#5d6769) 50% 13%/2px 94px no-repeat,linear-gradient(42deg,transparent 47%,#5d6769 48% 52%,transparent 53%) 30px 120px/72px 72px no-repeat; }
-    body::after { right:max(18px,calc((100vw - 1320px)/2)); transform:scaleX(-1); background:radial-gradient(circle at 50% 12%,#5d6769 0 7px,transparent 8px),radial-gradient(circle at 50% 48%,#5d6769 0 8px,transparent 9px),linear-gradient(#5d6769,#5d6769) 50% 16%/2px 142px no-repeat,linear-gradient(90deg,#5d6769,#5d6769) 34px 262px/50px 2px no-repeat; }
+    body { margin:0; min-height:100vh; color:var(--ink); background:radial-gradient(circle at 8% 6%, rgba(255,255,255,.9), transparent 28%),radial-gradient(circle at 88% 9%, rgba(125,135,132,.13), transparent 25%),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),linear-gradient(180deg,#f8f6f0 0%,var(--bg) 46%,#eeece6 100%); background-size:auto,auto,30px 30px,30px 30px,auto; font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.78; }
     main { width:min(1060px,calc(100% - 40px)); margin:44px auto 56px; }
     .hero,.panel,.paper { position:relative; background:linear-gradient(180deg,rgba(255,253,248,.96),rgba(250,247,239,.92)); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); }
     .hero { padding:38px 40px 34px; border-top:5px solid var(--steel); overflow:hidden; }
-    .hero::before { content:""; position:absolute; inset:14px; border:1px solid rgba(122,133,131,.14); border-radius:8px; pointer-events:none; }
-    .hero::after { content:""; position:absolute; right:30px; bottom:22px; width:186px; height:68px; opacity:.24; background:radial-gradient(circle at 16px 16px,#5f6872 0 5px,transparent 6px),radial-gradient(circle at 88px 32px,#5f6872 0 7px,transparent 8px),radial-gradient(circle at 150px 47px,#5f6872 0 5px,transparent 6px),linear-gradient(#5f6872,#5f6872) 20px 16px/64px 2px no-repeat,linear-gradient(#5f6872,#5f6872) 92px 32px/54px 2px no-repeat; pointer-events:none; }
     h1 { margin:0 0 8px; font-size:36px; line-height:1.2; letter-spacing:.01em; }
     h2 { margin:0 0 10px; font-size:22px; letter-spacing:.01em; }
     .subtitle,.muted { color:var(--muted); font-size:15px; }
     .toolbar,.top-actions,.actions,.meta,.controls,.pagination { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
     .toolbar { justify-content:space-between; margin-top:18px; }
     .top-actions { margin-top:16px; }
-    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.24); transition:color .14s ease,border-color .14s ease; }
-    a:hover { border-bottom-color:rgba(47,95,159,.65); }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.24); }
     .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px; border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:#fff; text-decoration:none; border:1px solid #151b22; box-shadow:0 6px 12px rgba(21,27,34,.10); font-size:14px; font-weight:700; }
-    .btn:hover { transform:translateY(-1px); border-bottom-color:#151b22; }
     .btn.secondary { background:rgba(255,255,255,.76); color:var(--ink); border-color:var(--line); box-shadow:none; }
     .panel { margin:20px 0; padding:22px; }
     .overview { display:grid; grid-template-columns:1.1fr .9fr; gap:16px; }
@@ -43,19 +26,15 @@
     .overview-card strong { color:#17202a; }
     .controls { margin:18px 0 0; padding:16px; background:rgba(255,255,255,.70); border:1px solid var(--line); border-radius:8px; box-shadow:inset 0 1px 0 rgba(255,255,255,.75); }
     input,select { min-height:40px; padding:8px 12px; border:1px solid var(--line); border-radius:7px; background:rgba(255,255,255,.82); color:var(--ink); font:14px "Microsoft YaHei UI","Microsoft YaHei",sans-serif; outline:none; }
-    input:focus,select:focus { border-color:#9fb2c7; box-shadow:0 0 0 3px rgba(47,95,159,.10); }
     input { flex:1 1 280px; }
     .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
-    .paper { display:flex; flex-direction:column; min-height:350px; padding:24px; overflow:hidden; transition:transform .14s ease,border-color .14s ease; contain:layout paint; }
-    .paper::before { content:""; position:absolute; inset:0 0 auto; height:4px; background:linear-gradient(90deg,#59666a,#b3bbb8 48%,transparent); opacity:.55; }
-    .paper:hover { transform:translateY(-1px); border-color:var(--line-strong); }
+    .paper { display:flex; flex-direction:column; min-height:350px; padding:24px; overflow:hidden; }
     .badge { width:fit-content; margin-bottom:14px; padding:4px 10px; border-radius:999px; background:#eef1f1; color:var(--muted); font-size:13px; border:1px solid rgba(124,135,137,.18); }
     .title { margin:0 0 12px; font-family:"Times New Roman",Times,serif; font-size:22px; font-weight:700; line-height:1.24; color:#1f2933; }
     .desc,.brief { color:#46505a; font-size:14px; }
     .brief { margin:0 0 16px; padding:15px; background:rgba(255,250,242,.78); border:1px solid #ece8dd; border-radius:8px; }
     .meta { gap:8px; margin:auto 0 18px; }
     .pill { padding:3px 9px; border-radius:999px; background:#f7f9f8; border:1px solid #e7ecec; color:#4b5563; font-size:12px; }
-    .status { background:#1f2933; color:#fff; border-color:#1f2933; }
     .status-control { display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border:1px solid #dfe6e7; border-radius:999px; background:#f7f9f8; color:#4b5563; font-size:12px; }
     .status-control select { min-height:26px; padding:2px 22px 2px 8px; border:0; border-radius:999px; background:#1f2933; color:#fff; font-size:12px; font-weight:700; }
     .pagination { justify-content:center; margin:22px 0 0; padding:14px; background:rgba(255,255,255,.58); border:1px solid var(--line); border-radius:8px; }
@@ -65,7 +44,6 @@
     .page-jump { width:88px; flex:0 0 88px; text-align:center; }
     .page-info { color:var(--muted); font-size:13px; }
     .empty { display:none; padding:22px; text-align:center; color:var(--muted); background:rgba(255,255,255,.55); border:1px dashed var(--line); border-radius:8px; }
-    @media (max-width:1120px) { body::before,body::after { display:none; } }
     @media (max-width:760px) { main { width:min(100% - 24px,1060px); margin:20px auto; } .hero { padding:26px; } .grid,.overview { grid-template-columns:1fr; } h1 { font-size:29px; } }
   </style>
 </head>
@@ -73,96 +51,69 @@
   <main>
     <section class="hero">
       <h1>机器人论文 PDFs</h1>
-      <p class="subtitle">每日 17:00 追加更新的机器人论文阅读库。新论文会继续添加到库中，旧论文、翻译、分析和 PDF 全部保留。</p>
-      <div class="toolbar"><span class="muted" id="libraryCount">当前日期：2026-06-16 · 累计收录 2 篇</span><a href="../index.html">返回分析页</a></div>
+      <p class="subtitle">每天追加更新的机器人论文阅读库。保留历史论文、历史 PDF、历史分析页与历史翻译页，只向库里追加新论文。</p>
+      <div class="toolbar"><span class="muted" id="libraryCount">当前日期：2026-06-18 · 累计收录 8 篇</span><a href="./">打开当前文件夹</a></div>
       <div class="top-actions"><a class="btn secondary" href="index-en.html">English Translation</a></div>
     </section>
     <section class="panel">
       <h2>今日重点</h2>
       <div class="overview">
-        <div class="overview-card"><strong>先读建议：</strong>先看 RoboWM-Bench 建立“可执行世界模型”的评测视角，再读 DexSim2Real 看真实机器人系统如何处理 sim-to-real。</div>
-        <div class="overview-card"><strong>研究抓手：</strong>机器人动力学、触觉-视觉融合、世界模型评测、物理可执行性，是今天最值得追踪的四个关键词。</div>
+        <div class="overview-card"><strong>先读建议：</strong>先看 ORB-SLAM3，补齐真实机器人长期定位与重定位的工程底座；再读 Diffusion Policy，看动作生成为什么要显式建模多峰解和长时序控制。</div>
+        <div class="overview-card"><strong>研究抓手：</strong>当前论文库已经覆盖 VLA、world model、benchmark 与闭环验证，今天重点补的是 SLAM / perception 与 generative control 两端。</div>
       </div>
       <div class="controls" aria-label="搜索与筛选">
-        <input id="searchBox" type="search" placeholder="搜索标题、标签、方向，例如 robot dynamics / tactile / world model" />
+        <input id="searchBox" type="search" placeholder="搜索标题、标签、方向，例如 SLAM / diffusion / benchmark / tactile" />
         <select id="statusFilter"><option value="all">全部状态</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已导读">已导读</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select>
-        <select id="topicFilter"><option value="all">全部方向</option><option value="robot dynamics">robot dynamics</option><option value="sim-to-real">sim-to-real</option><option value="world model">world model</option><option value="benchmark">benchmark</option></select>
+        <select id="topicFilter"><option value="all">全部方向</option><option value="robot dynamics">robot dynamics</option><option value="sim-to-real">sim-to-real</option><option value="world model">world model</option><option value="benchmark">benchmark</option><option value="vla">VLA</option><option value="policy improvement">policy improvement</option><option value="mobile manipulation">mobile manipulation</option><option value="slam">SLAM</option><option value="perception">perception</option><option value="diffusion policy">diffusion policy</option></select>
         <select id="pageSize"><option value="2">每页 2 篇</option><option value="4">每页 4 篇</option><option value="8">每页 8 篇</option></select>
       </div>
     </section>
     <section class="grid" id="paperGrid">
-      <article class="paper" data-id="dexsim2real-2026-06-15" data-status="精读中" data-topic="sim-to-real robot dynamics tactile dexterous manipulation" data-search="DexSim2Real Foundation Model Guided Sim-to-Real Transfer Generalizable Dexterous Manipulation robot dynamics tactile visual fusion">
-        <span class="badge">论文 1 · 2026-06-15</span>
-        <h2 class="title">DexSim2Real: Foundation Model-Guided Sim-to-Real Transfer for Generalizable Dexterous Manipulation</h2>
-        <p class="desc">面向真实灵巧操作落地的 sim-to-real 系统，关注基础模型如何辅助域随机化和触觉-视觉融合。</p>
-        <div class="brief"><strong>内容介绍：</strong>论文把视觉语言基础模型引入训练闭环，用它判断仿真视觉是否接近真实场景，并据此调整域随机化。适合关注真实机器人部署、灵巧手控制、机器人动力学和多模态感知融合的读者。</div>
-        <div class="meta"><label class="status-control">状态 <select class="status-editor" aria-label="修改 DexSim2Real 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">robot dynamics</span><span class="pill">sim-to-real</span><span class="pill">tactile sensing</span><span class="pill">0.51 MB</span></div>
-        <div class="actions"><a class="btn" href="DexSim2Real%20-%20Foundation%20Model-Guided%20Sim-to-Real%20Transfer%20for%20Generalizable%20Dexterous%20Manipulation%20-%202026-06-15.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#dexsim2real">查看分析结果</a><a class="btn secondary" href="translations/dexsim2real.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2605.05241">arXiv</a></div>
-      </article>
-      <article class="paper" data-id="robowm-bench-2026-06-15" data-status="待复现" data-topic="world model benchmark robot dynamics embodied-ai manipulation planning" data-search="RoboWM-Bench Benchmark Evaluating World Models Robotic Manipulation embodied executability robot dynamics benchmark world model">
-        <span class="badge">论文 2 · 2026-06-15</span>
-        <h2 class="title">RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation</h2>
-        <p class="desc">面向机器人世界模型的评测框架，强调生成视频是否具备机器人可执行的物理含义。</p>
-        <div class="brief"><strong>内容介绍：</strong>论文提出一把评测“尺子”：生成视频看起来合理，不代表机器人真的能执行。RoboWM-Bench 将生成操作过程转化为具身动作序列，并在物理仿真中检验任务完成度。</div>
-        <div class="meta"><label class="status-control">状态 <select class="status-editor" aria-label="修改 RoboWM-Bench 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">world model</span><span class="pill">benchmark</span><span class="pill">robot dynamics</span><span class="pill">17.56 MB</span></div>
-        <div class="actions"><a class="btn" href="RoboWM-Bench%20-%20A%20Benchmark%20for%20Evaluating%20World%20Models%20in%20Robotic%20Manipulation%20-%202026-06-15.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#robowm-bench">查看分析结果</a><a class="btn secondary" href="translations/robowm-bench.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2604.19092">arXiv</a></div>
-      </article>
-      <article class="paper" data-id="thinkingvla-2026-06-16" data-status="已导读" data-topic="vla manipulation long-horizon reasoning robot-learning embodied-ai" data-search="ThinkingVLA Interleaved Vision and Language Reasoning for Robotic Manipulation VLA long horizon manipulation chain of thought inverse dynamics">
-        <span class="badge">论文 3 · 2026-06-16</span>
-        <h2 class="title">ThinkingVLA: Interleaved Vision and Language Reasoning for Robotic Manipulation</h2>
-        <p class="desc">面向长程机器人操作的 VLA 推理框架，把视觉预测、文字推理和动作反推交错放进同一生成过程。</p>
-        <div class="brief"><strong>内容介绍：</strong>论文认为操作规划天然包含“预测下一视觉状态”和“由目标状态反推动作”两个阶段。ThinkingVLA 用统一的 Mixture-of-Transformers 自回归架构，把前向 CoT、视觉预测、逆向 CoT 和动作生成串成一个完整推理链，重点提升长程操作任务表现。</div>
-        <div class="meta"><label class="status-control">状态 <select class="status-editor" aria-label="修改 ThinkingVLA 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">VLA</span><span class="pill">long-horizon</span><span class="pill">manipulation</span><span class="pill">5.38 MB</span></div>
-        <div class="actions"><a class="btn" href="ThinkingVLA%20-%20Interleaved%20Vision%20and%20Language%20Reasoning%20for%20Robotic%20Manipulation%20-%202026-06-16.pdf">打开 PDF</a><a class="btn secondary" href="translations/thinkingvla.html">查看分析结果</a><a class="btn secondary" href="translations/thinkingvla.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2606.17937">arXiv</a></div>
-      </article>
-      <article class="paper" data-id="pearlvla-2026-06-16" data-status="已导读" data-topic="vla world model manipulation latent planning embodied-ai robot-learning" data-search="PearlVLA Progressive Embodied Action-Plan Refinement in Latent Space VLA world model future guided refinement action chunk">
-        <span class="badge">论文 4 · 2026-06-16</span>
-        <h2 class="title">PearlVLA: Progressive Embodied Action-Plan Refinement in Latent Space</h2>
-        <p class="desc">面向 VLA 的潜空间动作计划细化方法，用未来状态反馈逐步修正粗糙语义计划。</p>
-        <div class="brief"><strong>内容介绍：</strong>PearlVLA 将 VLM 查询拆成视觉 grounding 分支和迭代潜计划分支。每轮细化时，计划条件 world query 会询问轻量冻结潜世界模型，获得未来观察反馈，再由 RefineNet 把粗计划逐步改成细粒度动作块。</div>
-        <div class="meta"><label class="status-control">状态 <select class="status-editor" aria-label="修改 PearlVLA 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">VLA</span><span class="pill">world model</span><span class="pill">latent planning</span><span class="pill">1.88 MB</span></div>
-        <div class="actions"><a class="btn" href="PearlVLA%20-%20Progressive%20Embodied%20Action-Plan%20Refinement%20in%20Latent%20Space%20-%202026-06-16.pdf">打开 PDF</a><a class="btn secondary" href="translations/pearlvla.html">查看分析结果</a><a class="btn secondary" href="translations/pearlvla.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2606.17924">arXiv</a></div>
-      </article>
-      <article class="paper" data-id="visual-verification-2026-06-17" data-status="已导读" data-topic="policy-improvement visual-verification robot-learning embodied-ai closed-loop" data-search="Visual Verification Enables Inference-time Steering Autonomous Policy Improvement visual verification inference time steering robot policy improvement">
-        <span class="badge">论文 5 · 2026-06-17</span>
-        <h2 class="title">Visual Verification Enables Inference-time Steering and Autonomous Policy Improvement</h2>
-        <p class="desc">面向机器人策略部署的视觉验证方法，让策略在推理时先检查候选动作是否会产生期望视觉结果。</p>
-        <div class="brief"><strong>内容介绍：</strong>论文把视觉验证器放进机器人策略推理阶段，使系统不只输出一个动作，而是能评估候选动作是否真的推进任务。它适合关注真实部署、自监督策略改进、机器人安全性和闭环纠偏的读者。</div>
-        <div class="meta"><label class="status-control">状态 <select class="status-editor" aria-label="修改 Visual Verification 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">visual verification</span><span class="pill">policy improvement</span><span class="pill">closed-loop</span></div>
-        <div class="actions"><a class="btn" href="Visual%20Verification%20Enables%20Inference-time%20Steering%20and%20Autonomous%20Policy%20Improvement%20-%202026-06-17.pdf">打开 PDF</a><a class="btn secondary" href="translations/visual-verification.html">查看分析结果</a><a class="btn secondary" href="translations/visual-verification.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2606.18247">arXiv</a></div>
-      </article>
-      <article class="paper" data-id="ebench-2026-06-17" data-status="已导读" data-topic="mobile-manipulation benchmark diagnosis generalist-policy robot-learning" data-search="EBench Elemental Diagnosis Generalist Mobile Manipulation Policies benchmark diagnosis mobile manipulation">
-        <span class="badge">论文 6 · 2026-06-17</span>
-        <h2 class="title">EBench: Elemental Diagnosis of Generalist Mobile Manipulation Policies</h2>
-        <p class="desc">面向通用移动操作策略的元素级诊断基准，把复杂任务拆成可定位的基础能力。</p>
-        <div class="brief"><strong>内容介绍：</strong>EBench 关注通用移动操作策略为什么失败，而不只是报告最终成功率。它把感知、导航、抓取、放置和长程组合等能力拆开诊断，帮助研究者定位机器人基础模型的短板。</div>
-        <div class="meta"><label class="status-control">状态 <select class="status-editor" aria-label="修改 EBench 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">mobile manipulation</span><span class="pill">benchmark</span><span class="pill">diagnosis</span></div>
-        <div class="actions"><a class="btn" href="EBench%20-%20Elemental%20Diagnosis%20of%20Generalist%20Mobile%20Manipulation%20Policies%20-%202026-06-17.pdf">打开 PDF</a><a class="btn secondary" href="translations/ebench.html">查看分析结果</a><a class="btn secondary" href="translations/ebench.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2606.18239">arXiv</a></div>
-      </article>
+      <article class="paper" data-id="dexsim2real-2026-06-15" data-status="精读中" data-topic="sim-to-real robot dynamics tactile dexterous manipulation" data-search="DexSim2Real foundation model sim-to-real tactile visual fusion dexterous manipulation robot dynamics"><span class="badge">论文 1 · 2026-06-15</span><h2 class="title">DexSim2Real: Foundation Model-Guided Sim-to-Real Transfer for Generalizable Dexterous Manipulation</h2><p class="desc">面向真实灵巧操作落地的 sim-to-real 系统，关注基础模型如何辅助域随机化和触觉-视觉融合。</p><div class="brief"><strong>内容介绍：</strong>把视觉语言基础模型引入 sim-to-real 训练闭环，用它判断仿真视觉是否接近真实场景，并据此调整域随机化。</div><div class="meta"><label class="status-control">状态<select class="status-editor"><option value="已导读">已导读</option><option value="精读中" selected>精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">robot dynamics</span><span class="pill">sim-to-real</span><span class="pill">tactile sensing</span><span class="pill">0.51 MB</span></div><div class="actions"><a class="btn" href="DexSim2Real%20-%20Foundation%20Model-Guided%20Sim-to-Real%20Transfer%20for%20Generalizable%20Dexterous%20Manipulation%20-%202026-06-15.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#dexsim2real">查看分析结果</a><a class="btn secondary" href="translations/dexsim2real.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2605.05241">arXiv</a></div></article>
+      <article class="paper" data-id="robowm-bench-2026-06-15" data-status="待复现" data-topic="world model benchmark robot dynamics embodied-ai manipulation planning" data-search="RoboWM-Bench benchmark evaluating world models robotic manipulation embodied executability"><span class="badge">论文 2 · 2026-06-15</span><h2 class="title">RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation</h2><p class="desc">面向机器人世界模型的评测框架，强调生成视频是否具备机器人可执行的物理含义。</p><div class="brief"><strong>内容介绍：</strong>把生成操纵过程转成具身动作序列，并在物理仿真中检验任务完成度，区分“看起来对”和“机器人真能做”。</div><div class="meta"><label class="status-control">状态<select class="status-editor"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现" selected>待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">world model</span><span class="pill">benchmark</span><span class="pill">robot dynamics</span><span class="pill">17.56 MB</span></div><div class="actions"><a class="btn" href="RoboWM-Bench%20-%20A%20Benchmark%20for%20Evaluating%20World%20Models%20in%20Robotic%20Manipulation%20-%202026-06-15.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#robowm-bench">查看分析结果</a><a class="btn secondary" href="translations/robowm-bench.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2604.19092">arXiv</a></div></article>
+      <article class="paper" data-id="thinkingvla-2026-06-16" data-status="已导读" data-topic="vla manipulation long-horizon reasoning robot-learning embodied-ai" data-search="ThinkingVLA interleaved vision language reasoning robotic manipulation VLA long horizon"><span class="badge">论文 3 · 2026-06-16</span><h2 class="title">ThinkingVLA: Interleaved Vision and Language Reasoning for Robotic Manipulation</h2><p class="desc">面向长程机器人操作的 VLA 推理框架，把视觉预测、文字推理和动作反推放进同一生成过程。</p><div class="brief"><strong>内容介绍：</strong>统一前向 CoT、视觉预测、逆向 CoT 和动作生成，提升长时序操作任务表现。</div><div class="meta"><label class="status-control">状态<select class="status-editor"><option value="已导读" selected>已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">VLA</span><span class="pill">long-horizon</span><span class="pill">manipulation</span><span class="pill">5.38 MB</span></div><div class="actions"><a class="btn" href="ThinkingVLA%20-%20Interleaved%20Vision%20and%20Language%20Reasoning%20for%20Robotic%20Manipulation%20-%202026-06-16.pdf">打开 PDF</a><a class="btn secondary" href="translations/thinkingvla.html">查看分析结果</a><a class="btn secondary" href="translations/thinkingvla.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2606.17937">arXiv</a></div></article>
+      <article class="paper" data-id="pearlvla-2026-06-16" data-status="已导读" data-topic="vla world model manipulation latent planning embodied-ai robot-learning" data-search="PearlVLA progressive embodied action-plan refinement latent space VLA world model"><span class="badge">论文 4 · 2026-06-16</span><h2 class="title">PearlVLA: Progressive Embodied Action-Plan Refinement in Latent Space</h2><p class="desc">面向 VLA 的潜空间动作计划细化方法，用未来状态反馈逐步修正粗语义计划。</p><div class="brief"><strong>内容介绍：</strong>查询轻量潜世界模型获取未来观察反馈，再由 RefineNet 把粗计划逐步改成细粒度动作块。</div><div class="meta"><label class="status-control">状态<select class="status-editor"><option value="已导读" selected>已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">VLA</span><span class="pill">world model</span><span class="pill">latent planning</span><span class="pill">1.88 MB</span></div><div class="actions"><a class="btn" href="PearlVLA%20-%20Progressive%20Embodied%20Action-Plan%20Refinement%20in%20Latent%20Space%20-%202026-06-16.pdf">打开 PDF</a><a class="btn secondary" href="translations/pearlvla.html">查看分析结果</a><a class="btn secondary" href="translations/pearlvla.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2606.17924">arXiv</a></div></article>
+      <article class="paper" data-id="visual-verification-2026-06-17" data-status="已导读" data-topic="policy improvement visual-verification robot-learning embodied-ai closed-loop" data-search="Visual Verification inference-time steering autonomous policy improvement visual verification"><span class="badge">论文 5 · 2026-06-17</span><h2 class="title">Visual Verification Enables Inference-time Steering and Autonomous Policy Improvement</h2><p class="desc">面向机器人策略部署的视觉验证方法，让策略在推理时先检查候选动作是否会产生期望视觉结果。</p><div class="brief"><strong>内容介绍：</strong>在动作执行前做视觉后验检查，并把验证结果变成自主策略改进信号。</div><div class="meta"><label class="status-control">状态<select class="status-editor"><option value="已导读" selected>已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">visual verification</span><span class="pill">policy improvement</span><span class="pill">closed-loop</span><span class="pill">3.05 MB</span></div><div class="actions"><a class="btn" href="Visual%20Verification%20Enables%20Inference-time%20Steering%20and%20Autonomous%20Policy%20Improvement%20-%202026-06-17.pdf">打开 PDF</a><a class="btn secondary" href="translations/visual-verification.html">查看分析结果</a><a class="btn secondary" href="translations/visual-verification.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2606.18247">arXiv</a></div></article>
+      <article class="paper" data-id="ebench-2026-06-17" data-status="已导读" data-topic="mobile manipulation benchmark diagnosis generalist-policy robot-learning" data-search="EBench elemental diagnosis generalist mobile manipulation policies benchmark diagnosis"><span class="badge">论文 6 · 2026-06-17</span><h2 class="title">EBench: Elemental Diagnosis of Generalist Mobile Manipulation Policies</h2><p class="desc">面向通用移动操作策略的元素级诊断基准，把复杂任务拆成可定位的基础能力。</p><div class="brief"><strong>内容介绍：</strong>把感知、导航、抓取、放置和长程组合能力拆开诊断，帮助定位基础模型短板。</div><div class="meta"><label class="status-control">状态<select class="status-editor"><option value="已导读" selected>已导读</option><option value="精读中">精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">mobile manipulation</span><span class="pill">benchmark</span><span class="pill">diagnosis</span><span class="pill">3.28 MB</span></div><div class="actions"><a class="btn" href="EBench%20-%20Elemental%20Diagnosis%20of%20Generalist%20Mobile%20Manipulation%20Policies%20-%202026-06-17.pdf">打开 PDF</a><a class="btn secondary" href="translations/ebench.html">查看分析结果</a><a class="btn secondary" href="translations/ebench.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2606.18239">arXiv</a></div></article>
+      <article class="paper" data-id="orb-slam3-2026-06-18" data-status="精读中" data-topic="slam perception localization mapping visual-inertial mobile robots open-source" data-search="ORB-SLAM3 accurate open-source library visual visual-inertial multi-map SLAM perception localization mapping"><span class="badge">论文 7 · 2026-06-18</span><h2 class="title">ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM</h2><p class="desc">高影响力的开源感知与定位基础设施论文，覆盖视觉、视觉惯性和多地图 SLAM。</p><div class="brief"><strong>内容介绍：</strong>统一单目、双目、RGB-D、视觉惯性与多地图管理，是机器人感知系统和复现实验里的长期基础设施。</div><div class="meta"><label class="status-control">状态<select class="status-editor"><option value="已导读">已导读</option><option value="精读中" selected>精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">SLAM</span><span class="pill">perception</span><span class="pill">visual-inertial</span><span class="pill">4.82 MB</span></div><div class="actions"><a class="btn" href="ORB-SLAM3%20-%20An%20Accurate%20Open-Source%20Library%20for%20Visual%2C%20Visual-Inertial%20and%20Multi-Map%20SLAM%20-%202026-06-18.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#orb-slam3">查看分析结果</a><a class="btn secondary" href="translations/orb-slam3.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2007.11898">arXiv</a></div></article>
+      <article class="paper" data-id="diffusion-policy-2026-06-18" data-status="待复现" data-topic="diffusion policy imitation learning manipulation robot learning generative control" data-search="Diffusion Policy visuomotor policy learning action diffusion manipulation imitation learning generative control"><span class="badge">论文 8 · 2026-06-18</span><h2 class="title">Diffusion Policy: Visuomotor Policy Learning via Action Diffusion</h2><p class="desc">代表性的生成式机器人控制论文，把动作序列建模成条件扩散过程。</p><div class="brief"><strong>内容介绍：</strong>显式建模多峰动作分布，适合接触丰富且存在多个合理执行轨迹的操作任务。</div><div class="meta"><label class="status-control">状态<select class="status-editor"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现" selected>待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">diffusion policy</span><span class="pill">imitation learning</span><span class="pill">manipulation</span><span class="pill">5.91 MB</span></div><div class="actions"><a class="btn" href="Diffusion%20Policy%20-%20Visuomotor%20Policy%20Learning%20via%20Action%20Diffusion%20-%202026-06-18.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#diffusion-policy">查看分析结果</a><a class="btn secondary" href="translations/diffusion-policy.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2303.04137">arXiv</a></div></article>
     </section>
-    <nav class="pagination" aria-label="论文分页">
-      <button class="page-btn" id="prevPage" type="button">上一页</button>
-      <div id="pageButtons" class="pagination" style="margin:0;padding:0;border:0;background:transparent;"></div>
-      <button class="page-btn" id="nextPage" type="button">下一页</button>
-      <span class="page-info">跳转到</span>
-      <input class="page-jump" id="pageJump" type="number" min="1" value="1" />
-      <button class="page-btn" id="jumpPage" type="button">页</button>
-      <span class="page-info" id="pageInfo"></span>
-    </nav>
+    <nav class="pagination" aria-label="论文分页"><button class="page-btn" id="prevPage" type="button">上一页</button><div id="pageButtons" class="pagination" style="margin:0;padding:0;border:0;background:transparent;"></div><button class="page-btn" id="nextPage" type="button">下一页</button><span class="page-info">跳转到</span><input class="page-jump" id="pageJump" type="number" min="1" value="1" /><button class="page-btn" id="jumpPage" type="button">页</button><span class="page-info" id="pageInfo"></span></nav>
     <p class="empty" id="emptyState">没有匹配的论文，换个关键词试试。</p>
   </main>
   <script>
-    const searchBox=document.getElementById("searchBox"),statusFilter=document.getElementById("statusFilter"),topicFilter=document.getElementById("topicFilter"),pageSize=document.getElementById("pageSize"),prevPage=document.getElementById("prevPage"),nextPage=document.getElementById("nextPage"),pageButtons=document.getElementById("pageButtons"),pageJump=document.getElementById("pageJump"),jumpPage=document.getElementById("jumpPage"),pageInfo=document.getElementById("pageInfo"),libraryCount=document.getElementById("libraryCount"),papers=[...document.querySelectorAll(".paper")],emptyState=document.getElementById("emptyState"),paperIndex=papers.map(p=>({paper:p,status:p.dataset.status,topic:p.dataset.topic.toLowerCase(),text:`${p.dataset.search} ${p.textContent}`.toLowerCase()}));
-    const statusStoreKey="robotics-paper-status-v1",savedStatuses=JSON.parse(localStorage.getItem(statusStoreKey)||"{}");
-    function saveStatuses(){const data={};paperIndex.forEach(item=>{data[item.paper.dataset.id]=item.status});localStorage.setItem(statusStoreKey,JSON.stringify(data))}
-    function setPaperStatus(item,status){item.status=status;item.paper.dataset.status=status;const editor=item.paper.querySelector(".status-editor");if(editor)editor.value=status}
-    paperIndex.forEach(item=>{const saved=savedStatuses[item.paper.dataset.id];setPaperStatus(item,saved||item.status);const editor=item.paper.querySelector(".status-editor");if(editor){editor.addEventListener("change",()=>{setPaperStatus(item,editor.value);saveStatuses();applyFilters(true)})}});
-    let currentPage=1;
-    function filteredPapers(){const q=searchBox.value.trim().toLowerCase(),s=statusFilter.value,t=topicFilter.value;return paperIndex.filter(item=>(s==="all"||item.status===s)&&(t==="all"||item.topic.includes(t))&&(!q||item.text.includes(q))).map(item=>item.paper)}
-    function renderPagination(totalPages){pageButtons.innerHTML="";const start=Math.max(1,currentPage-2),end=Math.min(totalPages,currentPage+2);for(let page=start;page<=end;page+=1){const button=document.createElement("button");button.type="button";button.className=`page-btn${page===currentPage?" active":""}`;button.textContent=page;button.addEventListener("click",()=>{currentPage=page;applyFilters(false)});pageButtons.appendChild(button)}}
-    function applyFilters(resetPage=true){if(resetPage)currentPage=1;const visible=filteredPapers(),perPage=Number(pageSize.value),totalPages=Math.max(1,Math.ceil(visible.length/perPage));currentPage=Math.min(Math.max(currentPage,1),totalPages);const start=(currentPage-1)*perPage,pageSet=new Set(visible.slice(start,start+perPage));papers.forEach(p=>{p.style.display=pageSet.has(p)?"":"none"});renderPagination(totalPages);prevPage.disabled=currentPage<=1;nextPage.disabled=currentPage>=totalPages;pageJump.max=totalPages;pageJump.value=currentPage;pageInfo.textContent=`第 ${currentPage} / ${totalPages} 页 · 匹配 ${visible.length} 篇 · 累计 ${papers.length} 篇`;libraryCount.textContent=`当前日期：2026-06-16 · 累计收录 ${papers.length} 篇`;emptyState.style.display=visible.length?"none":"block"}
-    let filterTimer;function scheduleFilter(){window.clearTimeout(filterTimer);filterTimer=window.setTimeout(()=>applyFilters(true),80)}
-    prevPage.addEventListener("click",()=>{currentPage-=1;applyFilters(false)});nextPage.addEventListener("click",()=>{currentPage+=1;applyFilters(false)});jumpPage.addEventListener("click",()=>{currentPage=Number(pageJump.value)||1;applyFilters(false)});pageJump.addEventListener("keydown",e=>{if(e.key==="Enter"){currentPage=Number(pageJump.value)||1;applyFilters(false)}});searchBox.addEventListener("input",scheduleFilter);[statusFilter,topicFilter,pageSize].forEach(el=>el.addEventListener("input",()=>applyFilters(true)));applyFilters();
+    const searchBox = document.getElementById("searchBox");
+    const statusFilter = document.getElementById("statusFilter");
+    const topicFilter = document.getElementById("topicFilter");
+    const pageSize = document.getElementById("pageSize");
+    const prevPage = document.getElementById("prevPage");
+    const nextPage = document.getElementById("nextPage");
+    const pageButtons = document.getElementById("pageButtons");
+    const pageJump = document.getElementById("pageJump");
+    const jumpPage = document.getElementById("jumpPage");
+    const pageInfo = document.getElementById("pageInfo");
+    const libraryCount = document.getElementById("libraryCount");
+    const papers = [...document.querySelectorAll(".paper")];
+    const paperIndex = papers.map((paper) => ({ paper, status: paper.dataset.status, topic: paper.dataset.topic.toLowerCase(), text: `${paper.dataset.search} ${paper.textContent}`.toLowerCase() }));
+    const statusStoreKey = "robotics-paper-status-v1";
+    const savedStatuses = JSON.parse(localStorage.getItem(statusStoreKey) || "{}");
+    function saveStatuses() { const data = {}; paperIndex.forEach((item) => { data[item.paper.dataset.id] = item.status; }); localStorage.setItem(statusStoreKey, JSON.stringify(data)); }
+    function setPaperStatus(item, status) { item.status = status; item.paper.dataset.status = status; const editor = item.paper.querySelector(".status-editor"); if (editor) editor.value = status; }
+    paperIndex.forEach((item) => { const saved = savedStatuses[item.paper.dataset.id]; setPaperStatus(item, saved || item.status); const editor = item.paper.querySelector(".status-editor"); if (editor) { editor.addEventListener("change", () => { setPaperStatus(item, editor.value); saveStatuses(); applyFilters(true); }); } });
+    const emptyState = document.getElementById("emptyState");
+    let currentPage = 1;
+    function filteredPapers() { const query = searchBox.value.trim().toLowerCase(); const status = statusFilter.value; const topic = topicFilter.value; return paperIndex.filter((item) => { const statusOk = status === "all" || item.status === status; const topicOk = topic === "all" || item.topic.includes(topic); const queryOk = !query || item.text.includes(query); return statusOk && topicOk && queryOk; }).map((item) => item.paper); }
+    function renderPagination(totalPages) { pageButtons.innerHTML = ""; const start = Math.max(1, currentPage - 2); const end = Math.min(totalPages, currentPage + 2); for (let page = start; page <= end; page += 1) { const button = document.createElement("button"); button.type = "button"; button.className = `page-btn${page === currentPage ? " active" : ""}`; button.textContent = page; button.addEventListener("click", () => { currentPage = page; applyFilters(false); }); pageButtons.appendChild(button); } }
+    function applyFilters(resetPage = true) { if (resetPage) currentPage = 1; const visiblePapers = filteredPapers(); const perPage = Number(pageSize.value); const totalPages = Math.max(1, Math.ceil(visiblePapers.length / perPage)); currentPage = Math.min(Math.max(currentPage, 1), totalPages); const start = (currentPage - 1) * perPage; const pageSet = new Set(visiblePapers.slice(start, start + perPage)); papers.forEach((paper) => { paper.style.display = pageSet.has(paper) ? "" : "none"; }); renderPagination(totalPages); prevPage.disabled = currentPage <= 1; nextPage.disabled = currentPage >= totalPages; pageJump.max = totalPages; pageJump.value = currentPage; pageInfo.textContent = `第 ${currentPage} / ${totalPages} 页 · 匹配 ${visiblePapers.length} 篇 · 累计 ${papers.length} 篇`; libraryCount.textContent = `当前日期：2026-06-18 · 累计收录 ${papers.length} 篇`; emptyState.style.display = visiblePapers.length ? "none" : "block"; }
+    prevPage.addEventListener("click", () => { currentPage -= 1; applyFilters(false); });
+    nextPage.addEventListener("click", () => { currentPage += 1; applyFilters(false); });
+    jumpPage.addEventListener("click", () => { currentPage = Number(pageJump.value) || 1; applyFilters(false); });
+    pageJump.addEventListener("keydown", (event) => { if (event.key === "Enter") { currentPage = Number(pageJump.value) || 1; applyFilters(false); } });
+    let filterTimer;
+    function scheduleFilter() { window.clearTimeout(filterTimer); filterTimer = window.setTimeout(() => applyFilters(true), 80); }
+    searchBox.addEventListener("input", scheduleFilter);
+    [statusFilter, topicFilter, pageSize].forEach((el) => el.addEventListener("input", () => applyFilters(true)));
+    applyFilters();
   </script>
 </body>
 </html>

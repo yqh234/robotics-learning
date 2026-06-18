@@ -5,232 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>每日机器人论文对比</title>
   <style>
-    :root {
-      --text: #2f373b;
-      --muted: #6f787e;
-      --line: #dce2e4;
-      --bg: #f3f1eb;
-      --page: #fffdf8;
-      --red: #d83931;
-      --blue: #2f5f9f;
-      --soft-red: #fff1f0;
-      --steel: #7a8583;
-      --grid: rgba(94, 104, 106, 0.052);
-      --warm: #fbf7ef;
-      --shadow: 0 18px 50px rgba(34, 42, 46, 0.08);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background:
-        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
-        linear-gradient(0deg, var(--grid) 1px, transparent 1px),
-        radial-gradient(circle at 8% 6%, rgba(255,255,255,.9), transparent 28%),
-        radial-gradient(circle at 88% 9%, rgba(125,135,132,.13), transparent 25%),
-        linear-gradient(180deg,#f8f6f0 0%,var(--bg) 46%,#eeece6 100%);
-      background-size: 30px 30px, 30px 30px, auto, auto, auto;
-      color: var(--text);
-      font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif;
-      line-height: 1.82;
-    }
-    .page {
-      position: relative;
-      max-width: 900px;
-      margin: 34px auto 54px;
-      padding: 62px 76px 78px;
-      background: linear-gradient(180deg, rgba(255,253,248,.97) 0%, rgba(251,247,239,.94) 100%);
-      border: 1px solid var(--line);
-      border-top: 5px solid var(--steel);
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-      overflow: hidden;
-    }
-    .page::before {
-      content: "⌁ 6-DOF ARM\A○──○──□\A   ╲   ╲\A    ○──◇";
-      white-space: pre;
-      position: absolute;
-      right: 34px;
-      top: 34px;
-      color: rgba(95, 104, 114, 0.18);
-      font-family: "Times New Roman", Times, serif;
-      font-size: 24px;
-      line-height: 1.35;
-      letter-spacing: 1px;
-      text-align: right;
-      pointer-events: none;
-    }
-    .page::after {
-      content: "";
-      position: absolute;
-      left: -46px;
-      bottom: 110px;
-      width: 150px;
-      height: 150px;
-      border: 2px solid rgba(95, 104, 114, 0.14);
-      border-radius: 50%;
-      box-shadow: inset 0 0 0 28px rgba(95, 104, 114, 0.06), 0 0 0 18px rgba(95, 104, 114, 0.05);
-      pointer-events: none;
-    }
-    .side-deco {
-      position: fixed;
-      top: 160px;
-      width: 120px;
-      height: 420px;
-      pointer-events: none;
-      user-select: none;
-    }
-    .side-left { left: max(20px, calc((100vw - 1180px) / 2)); text-align: left; }
-    .side-right { right: max(20px, calc((100vw - 1180px) / 2)); text-align: right; }
-    .side-deco::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 8%, rgba(95,104,114,0.28) 0 7px, transparent 8px),
-        radial-gradient(circle at 50% 32%, rgba(95,104,114,0.22) 0 10px, transparent 11px),
-        radial-gradient(circle at 50% 58%, rgba(95,104,114,0.20) 0 8px, transparent 9px),
-        linear-gradient(rgba(95,104,114,0.18), rgba(95,104,114,0.18)) 50% 14% / 2px 78px no-repeat,
-        linear-gradient(35deg, transparent 47%, rgba(95,104,114,0.20) 48% 52%, transparent 53%) 34px 118px / 74px 74px no-repeat,
-        linear-gradient(rgba(95,104,114,0.18), rgba(95,104,114,0.18)) 50% 62% / 2px 86px no-repeat,
-        linear-gradient(90deg, rgba(95,104,114,0.18), rgba(95,104,114,0.18)) 38px 316px / 44px 2px no-repeat;
-    }
-    .side-deco::after {
-      content: "";
-      position: absolute;
-      left: 40px;
-      top: 302px;
-      width: 40px;
-      height: 40px;
-      border: 2px solid rgba(95,104,114,0.22);
-      transform: rotate(45deg);
-    }
-    .side-right { transform: scaleX(-1); }
-    @media (max-width: 1120px) { .side-deco { display: none; } }
-    .meta { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
-    .subtitle { margin: 0 0 14px; color: #4b5563; font-size: 17px; font-weight: 600; line-height: 1.65; }
-    h1 { margin: 0 0 12px; font-size: 36px; line-height: 1.22; letter-spacing: .01em; }
-    h2 { margin: 42px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line); font-size: 24px; }
-    h2::before { content: ""; display: inline-block; width: 8px; height: 22px; margin-right: 10px; vertical-align: -4px; background: var(--steel); border-radius: 2px; }
-    h3 { margin: 26px 0 8px; color: #5f6872; font-size: 18px; }
-    p { margin: 8px 0 16px; }
-    ul { margin: 8px 0 16px 22px; padding: 0; }
-    li { margin: 4px 0; }
-    a { color: var(--blue); text-decoration: none; border-bottom: 1px solid rgba(36, 91, 219, 0.28); }
-    a:hover { border-bottom-color: var(--blue); }
-    .callout { margin: 22px 0; padding: 16px 17px; background: rgba(255,250,242,.82); border: 1px solid #ece8dd; border-left: 4px solid #a4aaa6; border-radius: 8px; box-shadow: inset 0 1px 0 rgba(255,255,255,.75); }
-    .today-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 20px 0 28px; }
-    .today-card { padding: 14px 15px; background: rgba(255,255,255,.74); border: 1px solid var(--line); border-radius: 8px; color: #47515a; font-size: 14px; box-shadow: 0 10px 28px rgba(34,42,46,.055); }
-    .today-card strong { display: block; color: var(--text); margin-bottom: 4px; }
-    .paper-title { font-size: 20px; font-weight: 700; }
-    .en { font-family: "Times New Roman", Times, serif; }
-    .tag { display: inline-block; margin-right: 8px; padding: 3px 9px; border-radius: 999px; background: #f7f9f8; border: 1px solid #e7ecec; color: #4b5563; font-size: 13px; }
-    .local { overflow-wrap: anywhere; color: var(--muted); font-size: 13px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 18px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 38px; padding: 8px 14px; border-radius: 7px; background: linear-gradient(180deg,#202a33,#151b22); color: #fff; border: 1px solid #151b22; box-shadow: 0 8px 18px rgba(21,27,34,.12); font-size: 14px; font-weight: 700; text-decoration: none; transition: transform .18s ease, border-color .18s ease; }
-    .btn.secondary { background: rgba(255,255,255,.76); color: var(--text); border-color: var(--line); box-shadow: none; }
-    .btn:hover { border-bottom-color: #151b22; transform: translateY(-1px); }
-    .top-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 18px; }
-    @media (max-width: 720px) { .today-grid { grid-template-columns: 1fr; } .page { padding: 42px 22px 52px; } }
+    :root { --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --bg:#f3f1eb; --blue:#2f5f9f; --steel:#7a8583; --grid:rgba(94,104,106,.052); --warm:#fbf7ef; --shadow:0 18px 50px rgba(34,42,46,.08); }
+    * { box-sizing:border-box; }
+    body { margin:0; background:linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),radial-gradient(circle at 88% 9%,rgba(125,135,132,.13),transparent 25%),linear-gradient(180deg,#f8f6f0 0%,var(--bg) 46%,#eeece6 100%); background-size:30px 30px,30px 30px,auto,auto,auto; color:var(--text); font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.82; }
+    .page { max-width:940px; margin:34px auto 54px; padding:58px 72px 78px; background:linear-gradient(180deg,rgba(255,253,248,.97) 0%,rgba(251,247,239,.94) 100%); border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px; box-shadow:var(--shadow); }
+    h1 { margin:0 0 12px; font-size:36px; line-height:1.22; }
+    h2 { margin:42px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line); font-size:24px; }
+    h2::before { content:""; display:inline-block; width:8px; height:22px; margin-right:10px; vertical-align:-4px; background:var(--steel); border-radius:2px; }
+    h3 { margin:24px 0 8px; color:#5f6872; font-size:18px; }
+    p { margin:8px 0 16px; }
+    ul { margin:8px 0 16px 22px; padding:0; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.24); }
+    .subtitle { margin:0 0 12px; color:#4b5563; font-size:17px; font-weight:600; line-height:1.7; }
+    .meta,.local { color:var(--muted); font-size:14px; overflow-wrap:anywhere; }
+    .top-actions,.actions { display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 18px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px; border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:#fff; border:1px solid #151b22; box-shadow:0 8px 18px rgba(21,27,34,.12); font-size:14px; font-weight:700; text-decoration:none; }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); box-shadow:none; }
+    .callout { margin:22px 0; padding:16px 18px; background:rgba(255,250,242,.82); border:1px solid #ece8dd; border-left:4px solid #a4aaa6; border-radius:8px; }
+    .today-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; margin:20px 0 28px; }
+    .today-card { padding:14px 15px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; color:#47515a; font-size:14px; box-shadow:0 10px 28px rgba(34,42,46,.055); }
+    .today-card strong { display:block; color:var(--text); margin-bottom:4px; }
+    .paper-title { font-size:20px; font-weight:700; }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .tag { display:inline-block; margin-right:8px; padding:3px 9px; border-radius:999px; background:#f7f9f8; border:1px solid #e7ecec; color:#4b5563; font-size:13px; }
+    @media (max-width:900px) { .today-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:720px) { .page { padding:40px 22px 52px; } .today-grid { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
-  <div class="side-deco side-left"></div>
-  <div class="side-deco side-right"></div>
   <main class="page">
     <h1>每日机器人论文对比</h1>
-    <p class="subtitle">今日创新点：机器人策略要从“单次输出动作”走向“可诊断、可验证、可自我修正”的闭环系统。</p>
-    <div class="meta">更新时间：2026-06-17 · 今日论文：2026-06-17 补跑更新</div>
-    <div class="top-actions">
-      <a class="btn secondary" href="./index-en.html">English Translation</a>
-    </div>
+    <p class="subtitle">今日创新点：机器人能力栈不能只追单点大模型表现，必须把“可靠状态估计”和“可泛化动作生成”一起补齐，才能形成真正可部署的闭环。</p>
+    <p class="subtitle">未来创新点：下一阶段最值得做的是把 ORB-SLAM3 这类强几何感知底座，与 Diffusion Policy 这类强生成控制器耦合成可回滚、可重规划、可自检的真实机器人系统。</p>
+    <div class="meta">更新时间：2026-06-18 · 今日论文：2026-06-18 追加刷新</div>
+    <div class="top-actions"><a class="btn secondary" href="./index-en.html">English Translation</a></div>
     <p class="local">论文库地址：<a href="./papers/index.html">./papers/index.html</a></p>
-
-    <div class="callout">
-      今日主题：两篇论文都在解决机器人基础模型落地后的“看不见问题”。Visual Verification 让策略在执行前验证候选动作是否靠谱；EBench 则把复杂移动操作失败拆成可诊断的基础能力。
-    </div>
-    <section class="today-grid" aria-label="今日重点总览">
-      <div class="today-card"><strong>先读顺序</strong>先读 EBench 建立诊断视角，再读 Visual Verification 看策略如何在推理时自我纠偏。</div>
-      <div class="today-card"><strong>关键词</strong>visual verification、policy improvement、mobile manipulation、benchmark、diagnosis。</div>
-      <div class="today-card"><strong>今日追问</strong>机器人失败时，我们能否知道它错在看、走、抓、放，还是错在动作选择本身？</div>
+    <div class="callout">今日主题：用一篇高影响力 SLAM 基础设施论文，对照一篇高代表性的生成式操作策略论文，补足当前论文库偏 VLA / benchmark / 闭环验证、但相对缺少“几何感知底座”和“扩散式动作生成”两端的结构缺口。</div>
+    <section class="today-grid">
+      <div class="today-card"><strong>先读顺序</strong>先读 ORB-SLAM3，再读 Diffusion Policy。</div>
+      <div class="today-card"><strong>关键词</strong>SLAM、visual-inertial、open-source、diffusion policy、imitation learning、manipulation</div>
+      <div class="today-card"><strong>今日追问</strong>如果定位漂移和动作分布多峰同时存在，机器人该先修感知，还是先修策略采样？</div>
+      <div class="today-card"><strong>影响力依据</strong>ORB-SLAM3 的 Crossref 引用约 3933；Diffusion Policy 的 Crossref 引用约 457。</div>
+      <div class="today-card"><strong>互补性</strong>经典几何感知底座，对照现代生成式控制范式。</div>
     </section>
 
-    <h2 id="visual-verification">论文 1</h2>
-    <p class="paper-title en">Visual Verification Enables Inference-time Steering and Autonomous Policy Improvement（2026-06-17）</p>
-    <p>论文链接：<a href="https://arxiv.org/abs/2606.18247">https://arxiv.org/abs/2606.18247</a></p>
-    <div class="actions">
-      <a class="btn" href="./papers/Visual%20Verification%20Enables%20Inference-time%20Steering%20and%20Autonomous%20Policy%20Improvement%20-%202026-06-17.pdf">打开 PDF</a>
-      <a class="btn secondary" href="./papers/index.html">论文库</a>
-      <a class="btn secondary" href="./papers/translations/visual-verification.html">论文翻译</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/2606.18247">arXiv</a>
-    </div>
-    <p>
-      <span class="tag">视觉验证</span>
-      <span class="tag">推理时引导</span>
-      <span class="tag">策略改进</span>
-      <span class="tag">闭环纠偏</span>
-    </p>
+    <h2 id="orb-slam3">论文 1</h2>
+    <p class="paper-title en">ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM（2026-06-18）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/2007.11898">https://arxiv.org/abs/2007.11898</a> · DOI：<a href="https://doi.org/10.1109/TRO.2021.3075644">10.1109/TRO.2021.3075644</a></p>
+    <div class="actions"><a class="btn" href="./papers/ORB-SLAM3%20-%20An%20Accurate%20Open-Source%20Library%20for%20Visual%2C%20Visual-Inertial%20and%20Multi-Map%20SLAM%20-%202026-06-18.pdf">打开 PDF</a><a class="btn secondary" href="./papers/index.html">论文库</a><a class="btn secondary" href="./papers/translations/orb-slam3.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2007.11898">arXiv</a></div>
+    <p><span class="tag">SLAM</span><span class="tag">visual-inertial</span><span class="tag">multi-map</span><span class="tag">open-source</span></p>
+    <h3>两篇论文介绍</h3><p>ORB-SLAM3 是机器人感知基础设施里的代表作之一。它把单目、双目、RGB-D、视觉惯性、多地图管理和回环重定位整合到同一个开源系统里。</p>
+    <h3>核心方法</h3><ul><li>紧耦合视觉与 IMU 的 MAP 估计。</li><li>支持多地图创建、恢复与融合。</li><li>在全流程复用长期关键帧和共视信息。</li></ul>
+    <h3>我认为的机器人创新点</h3><p>它解决的是“机器人长期稳定地知道自己在哪里”，这是移动机器人、无人机和大部分具身系统落地前必须打牢的地基。</p>
+    <h3>局限</h3><p>它强在定位和建图，不直接解决任务语义理解与动作决策问题。</p>
 
-    <h3>为什么推荐</h3>
-    <p>它关注策略部署时最常见的尴尬：模型能给动作，但不一定知道这个动作会不会真的推进任务。论文把视觉验证器放进推理过程，让机器人在执行前评估候选动作是否符合期望视觉变化，从而选择更可靠的动作。</p>
-
-    <h3>核心方法</h3>
-    <ul>
-      <li>为候选动作引入视觉结果验证，而不是只依赖策略一次性输出。</li>
-      <li>在推理时根据验证信号 steering 策略，提升任务推进的可靠性。</li>
-      <li>把验证结果作为自主策略改进信号，让系统从自己的尝试中积累偏好。</li>
-    </ul>
-
-    <h3>我认为的机器人创新点</h3>
-    <p>最值得学的是“先验动作，后验视觉检查”的结构。它让机器人策略从黑箱反射变成带审稿人的输出：动作先被提出，再由视觉验证器判断是否像一个会成功的动作。这对真实机器人部署尤其重要，因为真实环境里错误动作的成本更高。</p>
-
-    <h3>主要局限</h3>
-    <p>视觉验证器本身如果误判，策略也会被错误引导。未来关键是验证器如何跨任务、跨场景保持可靠。</p>
-
-    <h2 id="ebench">论文 2</h2>
-    <p class="paper-title en">EBench: Elemental Diagnosis of Generalist Mobile Manipulation Policies（2026-06-17）</p>
-    <p>论文链接：<a href="https://arxiv.org/abs/2606.18239">https://arxiv.org/abs/2606.18239</a></p>
-    <div class="actions">
-      <a class="btn" href="./papers/EBench%20-%20Elemental%20Diagnosis%20of%20Generalist%20Mobile%20Manipulation%20Policies%20-%202026-06-17.pdf">打开 PDF</a>
-      <a class="btn secondary" href="./papers/index.html">论文库</a>
-      <a class="btn secondary" href="./papers/translations/ebench.html">论文翻译</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/2606.18239">arXiv</a>
-    </div>
-    <p>
-      <span class="tag">移动操作</span>
-      <span class="tag">通用策略</span>
-      <span class="tag">元素级诊断</span>
-      <span class="tag">基准评测</span>
-    </p>
-
-    <h3>为什么推荐</h3>
-    <p>EBench 解决的是“成功率不够解释问题”。通用移动操作策略失败时，单一最终分数无法告诉我们它到底错在感知、导航、抓取、放置还是长程组合。EBench 把复杂任务拆成元素级能力，使模型短板更容易定位。</p>
-
-    <h3>核心方法</h3>
-    <ul>
-      <li>把移动操作任务拆解为更基础、更可定位的能力元素。</li>
-      <li>从诊断角度分析通用策略，而不只看最终任务成功率。</li>
-      <li>帮助比较不同机器人基础模型在哪些环节强、哪些环节弱。</li>
-    </ul>
-
-    <h3>我认为的机器人创新点</h3>
-    <p>它的价值像给机器人策略做体检。不是只说“这台机器人失败了”，而是告诉你失败发生在看、走、抓、放或组合推理的哪一段。未来通用机器人要持续迭代，这类诊断型 benchmark 会比单一排行榜更有用。</p>
-
-    <h3>主要局限</h3>
-    <p>诊断维度越细，评测设计本身越难避免偏置。未来需要看 EBench 是否能覆盖足够多真实移动操作场景。</p>
+    <h2 id="diffusion-policy">论文 2</h2>
+    <p class="paper-title en">Diffusion Policy: Visuomotor Policy Learning via Action Diffusion（2026-06-18）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/2303.04137">https://arxiv.org/abs/2303.04137</a> · DOI：<a href="https://doi.org/10.15607/RSS.2023.XIX.026">10.15607/RSS.2023.XIX.026</a></p>
+    <div class="actions"><a class="btn" href="./papers/Diffusion%20Policy%20-%20Visuomotor%20Policy%20Learning%20via%20Action%20Diffusion%20-%202026-06-18.pdf">打开 PDF</a><a class="btn secondary" href="./papers/index.html">论文库</a><a class="btn secondary" href="./papers/translations/diffusion-policy.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2303.04137">arXiv</a></div>
+    <p><span class="tag">diffusion policy</span><span class="tag">manipulation</span><span class="tag">imitation learning</span><span class="tag">receding horizon</span></p>
+    <h3>两篇论文介绍</h3><p>Diffusion Policy 把控制策略建模成条件扩散过程，显式处理机器人操作里常见的多峰动作分布。</p>
+    <h3>核心方法</h3><ul><li>动作序列条件扩散建模。</li><li>结合 receding horizon control。</li><li>使用 time-series diffusion transformer 进行视觉条件控制。</li></ul>
+    <h3>我认为的机器人创新点</h3><p>它改变了策略表达方式：不再默认每个观察只有一个“正确动作”，而是学习一整个可采样、可重规划的动作分布。</p>
+    <h3>局限</h3><p>推理成本高于一次前向直接出动作的策略，对实时部署更敏感。</p>
 
     <h2>对比结论</h2>
-    <p><strong>Visual Verification 是“执行前自检”：</strong>目标是在动作落地前判断候选动作是否靠谱。</p>
-    <p><strong>EBench 是“失败后诊断”：</strong>目标是把移动操作失败拆解到具体能力环节。</p>
-
-    <h3>关键差异</h3>
-    <ul>
-      <li><strong>Visual Verification</strong> 更偏在线控制与策略改进，强调推理时如何避免错误动作。</li>
-      <li><strong>EBench</strong> 更偏评测基础设施，强调如何解释通用移动操作策略的失败来源。</li>
-    </ul>
-
+    <p><strong>ORB-SLAM3 是“先把世界坐标搞准”的论文：</strong>状态估计、定位与地图复用是重点。</p>
+    <p><strong>Diffusion Policy 是“再把动作分布学好”的论文：</strong>多峰动作建模与长时序控制是重点。</p>
     <h3>阅读顺序</h3>
-    <p>先读 <span class="en">EBench</span>，建立“失败要可诊断”的评测视角；再读 <span class="en">Visual Verification</span>，看在线视觉验证如何把诊断思想推向动作选择和策略自我改进。</p>
+    <p>先读 ORB-SLAM3，建立真实机器人长期运行的工程判断；再读 Diffusion Policy，理解现代操作策略为什么越来越偏向生成式建模。</p>
   </main>
 </body>
 </html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ORB-SLAM3 论文翻译导读</title>
+  <style>
+    :root { --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583; --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; color:var(--text); background:radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%); background-size:auto,30px 30px,30px 30px,auto; font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.86; }
+    main { width:min(920px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px; background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94)); border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px; box-shadow:var(--shadow); }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    ul { margin:8px 0 16px 22px; padding:0; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px; border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white; border:1px solid #151b22; font-weight:700; text-decoration:none; }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout { margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd; border-left:4px solid #a4aaa6; border-radius:8px; }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文翻译导读 · 2026-06-18 · 阅读状态：精读中</p>
+    <h1><span class="en">ORB-SLAM3</span>：高精度开源视觉 / 视觉惯性 / 多地图 SLAM 系统</h1>
+    <p class="note">导读性质：面向快速建立工程判断，重点看它为什么会成为移动机器人、无人机与复现实验里的长期基础设施。</p>
+    <div class="actions"><a class="btn" href="../ORB-SLAM3%20-%20An%20Accurate%20Open-Source%20Library%20for%20Visual%2C%20Visual-Inertial%20and%20Multi-Map%20SLAM%20-%202026-06-18.pdf">打开原文 PDF</a><a class="btn secondary" href="../index.html">返回论文库</a><a class="btn secondary" href="https://arxiv.org/abs/2007.11898">arXiv</a><a class="btn secondary" href="https://doi.org/10.1109/TRO.2021.3075644">DOI</a></div>
+    <div class="callout"><strong>一句话翻译：</strong>ORB-SLAM3 把视觉、惯性、多地图、回环重定位和地图融合整合到一个统一开源系统里，让机器人在长期运行中即使短暂丢跟踪，也能重新找回并继续工作。</div>
+    <h2>英文信息</h2><p><strong>标题：</strong><span class="en">ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM</span></p><p><strong>作者：</strong><span class="en">Carlos Campos, Richard Elvira, Juan J. Gomez Rodriguez, Jose M. M. Montiel, Juan D. Tardos</span></p><p><strong>发表：</strong>IEEE Transactions on Robotics，2021</p><p><strong>DOI：</strong><a href="https://doi.org/10.1109/TRO.2021.3075644">10.1109/TRO.2021.3075644</a></p><p><strong>arXiv：</strong><a href="https://arxiv.org/abs/2007.11898">2007.11898</a></p><p><strong>项目 / 代码：</strong><a href="https://github.com/UZ-SLAMLab/ORB_SLAM3">UZ-SLAMLab/ORB_SLAM3</a></p>
+    <h2>术语对照</h2><div class="terms"><div class="term"><span class="en">visual-inertial SLAM</span><br />视觉惯性 SLAM</div><div class="term"><span class="en">multi-map</span><br />多地图管理</div><div class="term"><span class="en">place recognition</span><br />地点识别 / 回环识别</div><div class="term"><span class="en">MAP estimation</span><br />最大后验估计</div></div>
+    <h2>中文翻译导读</h2><p>这篇论文的核心不是再做一个“更准一点”的 SLAM 指标刷新器，而是把机器人长期运行所需要的几件事系统化：稳定初始化、持续跟踪、丢失后恢复、多地图并行维护、重访后融合，以及在不同传感器组合下的统一实现。</p><p>它的重要性在于工程复用价值极高。很多机器人论文写的是策略、规划、任务学习，但真正到了实机部署阶段，机器人先得知道自己在哪。ORB-SLAM3 这样的系统提供了那个“默认可靠底座”。</p>
+    <h2>推荐理由</h2><p>今天选它，是因为当前论文库已经覆盖了大量偏学习和 foundation model 的内容，但对经典几何感知基础设施覆盖不够。没有这类论文，机器人知识结构会偏向“会想、会说、会生成”，却缺少“能稳定感知和定位”的基本盘。</p>
+    <h2>引用 / 影响力说明</h2><p>截至 2026-06-18，Crossref 返回的 <span class="en">is-referenced-by-count</span> 约为 3933。它同时具备 T-RO 正式发表、公开代码、跨平台复用和长期社区维护四个影响力信号。</p>
+    <h2>复现清单</h2><ul><li>先在公开数据集上跑通单目、双目和视觉惯性三种配置。</li><li>重点看初始化、丢跟踪恢复和回环后地图融合是否稳定。</li><li>记录不同光照、快速运动和弱纹理环境下的失败模式。</li><li>如果用于自己的机器人，优先验证时间同步、IMU 标定和相机畸变模型。</li></ul>
+    <h2>论文来源</h2><p>来源组合：arXiv 公开 PDF、IEEE T-RO DOI 页面、官方 GitHub 项目页。</p>
+    <h2>卡片元数据</h2><p><strong>方向：</strong>SLAM / perception / mobile robots / visual-inertial</p><p><strong>文件名：</strong><span class="en">ORB-SLAM3 - An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM - 2026-06-18.pdf</span></p><p><strong>推荐标签：</strong>高影响力、开源基础设施、长期价值、工程复用强</p>
+  </main>
+</body>
+</html>
