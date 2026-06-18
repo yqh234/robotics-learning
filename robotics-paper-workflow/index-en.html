@@ -33,39 +33,61 @@
 <body>
   <main class="page">
     <h1>Daily Robotics Paper Briefing</h1>
-    <p class="subtitle">Today’s innovation point: robot capability should not be reduced to a single model score. Reliable state estimation and expressive action generation need to advance together.</p>
-    <p class="subtitle">Next innovation point: couple a geometry-first perception substrate like ORB-SLAM3 with a generative control layer like Diffusion Policy.</p>
-    <div class="meta">Updated: 2026-06-18 · appended daily refresh</div>
+    <p class="subtitle">Today’s innovation point: practical robot grasping stacks still need both reliable RGB-D pose estimation and strong 6-DoF grasp proposal generation. One without the other leaves the pipeline brittle.</p>
+    <p class="subtitle">Next innovation point: combine pose-aware RGB-D perception modules with grasp-distribution generators and then attach task-conditioned filtering on top.</p>
+    <div class="meta">Updated: 2026-06-19 · appended daily refresh</div>
     <div class="top-actions"><a class="btn secondary" href="./index.html">返回中文</a></div>
     <p class="local">Paper library: <a href="./papers/index.html">./papers/index.html</a></p>
-    <div class="callout">Today’s pairing fills a gap in the library: a classic perception infrastructure paper versus a representative generative robot policy paper.</div>
+    <div class="callout">Today’s pair is a direct perception-to-action bridge: DenseFusion estimates object pose from RGB-D, while Contact-GraspNet proposes 6-DoF grasps in clutter from depth.</div>
     <section class="today-grid">
-      <div class="today-card"><strong>Read First</strong>ORB-SLAM3, then Diffusion Policy.</div>
-      <div class="today-card"><strong>Keywords</strong>SLAM, visual-inertial, diffusion policy, manipulation.</div>
-      <div class="today-card"><strong>Impact</strong>Crossref counts are about 3933 and 457.</div>
-      <div class="today-card"><strong>Complement</strong>Perception infrastructure versus action generation.</div>
+      <div class="today-card"><strong>Read First</strong>Read DenseFusion first, then Contact-GraspNet.</div>
+      <div class="today-card"><strong>Keywords</strong>6D pose estimation, RGB-D, grasping, 6-DoF grasp, clutter.</div>
+      <div class="today-card"><strong>Impact</strong>Semantic Scholar counts are about 1146 for DenseFusion and 470 for Contact-GraspNet.</div>
+      <div class="today-card"><strong>Complement</strong>Pose-aware perception versus grasp distribution generation.</div>
     </section>
-    <h2 id="orb-slam3">Paper 1</h2>
-    <p class="paper-title">ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM (2026-06-18)</p>
-    <p>Links: <a href="https://arxiv.org/abs/2007.11898">arXiv</a> · <a href="https://doi.org/10.1109/TRO.2021.3075644">DOI</a></p>
-    <div class="actions"><a class="btn" href="./papers/ORB-SLAM3%20-%20An%20Accurate%20Open-Source%20Library%20for%20Visual%2C%20Visual-Inertial%20and%20Multi-Map%20SLAM%20-%202026-06-18.pdf">Open PDF</a><a class="btn secondary" href="./papers/index.html">Paper Library</a><a class="btn secondary" href="./papers/translations/orb-slam3.html">Chinese Guide</a><a class="btn secondary" href="https://arxiv.org/abs/2007.11898">arXiv</a></div>
-    <p><span class="tag">SLAM</span><span class="tag">visual-inertial</span><span class="tag">multi-map</span><span class="tag">open-source</span></p>
-    <h3>Why It Was Chosen</h3><p>ORB-SLAM3 is a durable robotics infrastructure paper with unusually strong practical reuse value.</p>
-    <h3>Core Methods</h3><ul><li>Tightly coupled visual-inertial MAP estimation.</li><li>Multi-map creation and merging.</li><li>Long-horizon keyframe reuse.</li></ul>
-    <h3>Robotics Insight</h3><p>It makes robot localization more recoverable, reusable, and field-ready.</p>
-    <h3>Main Limitation</h3><p>It does not solve higher-level task semantics or control decisions.</p>
-    <h2 id="diffusion-policy">Paper 2</h2>
-    <p class="paper-title">Diffusion Policy: Visuomotor Policy Learning via Action Diffusion (2026-06-18)</p>
-    <p>Links: <a href="https://arxiv.org/abs/2303.04137">arXiv</a> · <a href="https://doi.org/10.15607/RSS.2023.XIX.026">DOI</a></p>
-    <div class="actions"><a class="btn" href="./papers/Diffusion%20Policy%20-%20Visuomotor%20Policy%20Learning%20via%20Action%20Diffusion%20-%202026-06-18.pdf">Open PDF</a><a class="btn secondary" href="./papers/index.html">Paper Library</a><a class="btn secondary" href="./papers/translations/diffusion-policy.html">Chinese Guide</a><a class="btn secondary" href="https://arxiv.org/abs/2303.04137">arXiv</a></div>
-    <p><span class="tag">diffusion policy</span><span class="tag">manipulation</span><span class="tag">imitation learning</span><span class="tag">generative control</span></p>
-    <h3>Why It Was Chosen</h3><p>Diffusion Policy is a representative paper for multimodal action generation in robotics.</p>
-    <h3>Core Methods</h3><ul><li>Conditional action diffusion.</li><li>Receding-horizon execution.</li><li>Time-series diffusion transformer.</li></ul>
-    <h3>Robotics Insight</h3><p>It gives robot policies a better model for ambiguous and multimodal manipulation trajectories.</p>
-    <h3>Main Limitation</h3><p>Inference is heavier than direct one-shot policies.</p>
+
+    <h2 id="densefusion">Paper 1</h2>
+    <p class="paper-title">DenseFusion: 6D Object Pose Estimation by Iterative Dense Fusion (2026-06-19)</p>
+    <p>Links: <a href="https://arxiv.org/abs/1901.04780">arXiv</a> · DOI：<a href="https://doi.org/10.1109/CVPR.2019.00346">10.1109/CVPR.2019.00346</a></p>
+    <div class="actions">
+      <a class="btn" href="./papers/DenseFusion - 6D Object Pose Estimation by Iterative Dense Fusion - 2026-06-19.pdf">Open PDF</a>
+      <a class="btn secondary" href="./papers/index.html">Paper Library</a>
+      <a class="btn secondary" href="./papers/translations/densefusion.html">Chinese Guide</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/1901.04780">arXiv</a>
+    </div>
+    <p><span class="tag">6D pose</span><span class="tag">RGB-D</span><span class="tag">perception</span><span class="tag">YCB-Video</span></p>
+    <h3>Why It Was Chosen</h3>
+    <p>Chosen because the library still lacked a durable RGB-D 6D pose-estimation anchor paper.</p>
+    <h3>Core Methods</h3>
+    <ul><li>Separate RGB and point-cloud encoders with pixel-wise dense fusion</li><li>End-to-end iterative pose refinement</li><li>Instance-level 6D pose estimation on YCB-Video and LineMOD</li></ul>
+    <h3>Robotics Insight</h3>
+    <p>Its real contribution is not just using RGB plus depth, but making them interact inside one dense, refinable inference loop that behaves like a deployable perception module.</p>
+    <h3>Main Limitation</h3>
+    <p>It assumes known object instances and usually depends on upstream detection or segmentation.</p>
+
+    <h2 id="contact-graspnet">Paper 2</h2>
+    <p class="paper-title">Contact-GraspNet: Efficient 6-DoF Grasp Generation in Cluttered Scenes (2026-06-19)</p>
+    <p>Links: <a href="https://arxiv.org/abs/2103.14127">arXiv</a> · DOI：<a href="https://doi.org/10.1109/ICRA48506.2021.9561877">10.1109/ICRA48506.2021.9561877</a></p>
+    <div class="actions">
+      <a class="btn" href="./papers/Contact-GraspNet - Efficient 6-DoF Grasp Generation in Cluttered Scenes - 2026-06-19.pdf">Open PDF</a>
+      <a class="btn secondary" href="./papers/index.html">Paper Library</a>
+      <a class="btn secondary" href="./papers/translations/contact-graspnet.html">Chinese Guide</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2103.14127">arXiv</a>
+    </div>
+    <p><span class="tag">grasping</span><span class="tag">6-DoF grasp</span><span class="tag">clutter</span><span class="tag">depth</span></p>
+    <h3>Why It Was Chosen</h3>
+    <p>Paired with DenseFusion because together they form a practical chain from pose-aware perception to grasp proposal generation.</p>
+    <h3>Core Methods</h3>
+    <ul><li>Treats scene points as potential contacts</li><li>Reduces 6-DoF grasping to a learnable contact-based parameterization</li><li>Predicts grasp distributions directly instead of a long sequential pipeline</li></ul>
+    <h3>Robotics Insight</h3>
+    <p>Its lasting effect is shifting grasping from discrete grasp search toward directly learned grasp distributions grounded in visible contact geometry.</p>
+    <h3>Main Limitation</h3>
+    <p>It depends heavily on depth quality and often needs object filtering for target-driven grasping.</p>
+
     <h2>Comparison</h2>
-    <p><strong>ORB-SLAM3</strong> is about robust state estimation.</p>
-    <p><strong>Diffusion Policy</strong> is about expressive action generation.</p>
+    <p><strong>DenseFusion</strong> is about estimating object pose reliably from RGB-D.</p>
+    <p><strong>Contact-GraspNet</strong> is about generating feasible 6-DoF grasp proposals from cluttered depth observations.</p>
+    <p>Read them in that order to connect object-centric perception with clutter-aware grasp execution.</p>
   </main>
 </body>
 </html>

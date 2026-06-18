@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact-Graspnet 论文翻译导读</title>
+  <style>
+    :root {
+      --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583;
+      --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052);
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; min-height:100vh; color:var(--text);
+      background:
+        radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),
+        linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(0deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%);
+      background-size:auto,30px 30px,30px 30px,auto;
+      font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif;
+      line-height:1.86;
+    }
+    main {
+      width:min(920px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px;
+      background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94));
+      border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px;
+      box-shadow:var(--shadow);
+    }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    ul { margin:8px 0 16px 22px; padding:0; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px;
+      border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white;
+      border:1px solid #151b22; font-weight:700; text-decoration:none;
+    }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout {
+      margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd;
+      border-left:4px solid #a4aaa6; border-radius:8px;
+    }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文翻译导读 · 2026-06-19 · 阅读状态：待复现</p>
+    <h1><span class="en">Contact Graspnet</span>：高代表性的 6-DoF 抓取生成论文，直接从单帧深度观测预测一组平行夹爪抓取分布。</h1>
+    <p class="note">建议作为今天第二篇，重点看它如何从深度输入直接给出抓取分布。</p>
+    <div class="actions">
+      <a class="btn" href="../Contact-GraspNet - Efficient 6-DoF Grasp Generation in Cluttered Scenes - 2026-06-19.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2103.14127">arXiv</a>
+      <a class="btn secondary" href="https://doi.org/10.1109/ICRA48506.2021.9561877">DOI</a>
+    </div>
+    <div class="callout"><strong>一句话导读：</strong>Contact-GraspNet 的聪明之处，是它没有把抓取问题继续做成又长又脆的流水线，而是把“抓哪、从哪个方向进、夹爪开多大”尽量收进同一个接触驱动的网络里。</div>
+
+    <h2>英文信息</h2>
+    <p><strong>标题：</strong><span class="en">Contact-GraspNet: Efficient 6-DoF Grasp Generation in Cluttered Scenes</span></p>
+    <p><strong>作者：</strong><span class="en">Martin Sundermeyer, Arsalan Mousavian, Rudolph Triebel, Dieter Fox</span></p>
+    <p><strong>发表：</strong>IEEE International Conference on Robotics and Automation (ICRA)，2021</p>
+    <p><strong>DOI：</strong><a href="https://doi.org/10.1109/ICRA48506.2021.9561877">10.1109/ICRA48506.2021.9561877</a></p>
+    <p><strong>arXiv：</strong><a href="https://arxiv.org/abs/2103.14127">2103.14127</a></p>
+    <p><strong>项目 / 代码：</strong><a href="https://github.com/NVlabs/contact_graspnet">https://github.com/NVlabs/contact_graspnet</a></p>
+
+    <h2>术语对照</h2>
+    <div class="terms"><div class="term"><span class="en">grasp contact</span><br />抓取接触点</div><div class="term"><span class="en">parallel-jaw grasp</span><br />平行夹爪抓取</div><div class="term"><span class="en">grasp distribution</span><br />抓取分布</div><div class="term"><span class="en">cluttered scenes</span><br />杂乱场景</div></div>
+
+    <h2>中文翻译导读</h2>
+    <p>Contact-GraspNet 的聪明之处，是它没有把抓取问题继续做成又长又脆的流水线，而是把“抓哪、从哪个方向进、夹爪开多大”尽量收进同一个接触驱动的网络里。</p>
+    <p>它真正影响后续工作的地方，在于把抓取生成从“离散搜索一个好姿态”改成“直接学习一整个可采样的抓取分布”，而且这个分布直接贴着可见点云和接触几何走。</p>
+
+    <h2>推荐理由</h2>
+    <p>今天把它和 DenseFusion 配对，是因为这两篇连起来就是一条很实用的机器人链路：先把目标在 RGB-D 里估准，再从杂乱深度观测里提出一组能抓的 6-DoF 候选。</p>
+
+    <h2>引用 / 影响力说明</h2>
+    <p>Semantic Scholar 显示约 470 次引用；ICRA 2021、NVLabs 代码开源，后续 6-DoF 抓取工作频繁引用。</p>
+
+    <h2>复现清单</h2>
+    <ul><li>把场景点云中的点视为潜在接触点</li><li>把 6-DoF 抓取表示降到更可学的接触参数化</li><li>直接输出抓取分布，而不是多阶段串行搜索</li></ul>
+
+    <h2>论文来源</h2>
+    <p>来源组合：arXiv 公开 PDF、ICRA DOI 页面、NVLabs 官方 GitHub、Semantic Scholar 引用页。</p>
+
+    <h2>卡片元数据</h2>
+    <p><strong>方向：</strong>grasping / grasp planning / grasp detection</p>
+    <p><strong>文件名：</strong><span class="en">Contact-GraspNet - Efficient 6-DoF Grasp Generation in Cluttered Scenes - 2026-06-19.pdf</span></p>
+    <p><strong>推荐标签：</strong>抓取生成、6-DoF 抓取、杂乱场景、真实机器人成功率</p>
+  </main>
+</body>
+</html>

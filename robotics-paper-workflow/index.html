@@ -5,25 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>每日机器人论文对比</title>
   <style>
-    :root { --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --bg:#f3f1eb; --blue:#2f5f9f; --steel:#7a8583; --grid:rgba(94,104,106,.052); --warm:#fbf7ef; --shadow:0 18px 50px rgba(34,42,46,.08); }
+    :root {
+      --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --bg:#f3f1eb; --page:#fffdf8;
+      --blue:#2f5f9f; --steel:#7a8583; --grid:rgba(94,104,106,.052); --shadow:0 18px 50px rgba(34,42,46,.08);
+    }
     * { box-sizing:border-box; }
-    body { margin:0; background:linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(0deg,var(--grid) 1px,transparent 1px),radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),radial-gradient(circle at 88% 9%,rgba(125,135,132,.13),transparent 25%),linear-gradient(180deg,#f8f6f0 0%,var(--bg) 46%,#eeece6 100%); background-size:30px 30px,30px 30px,auto,auto,auto; color:var(--text); font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif; line-height:1.82; }
-    .page { max-width:940px; margin:34px auto 54px; padding:58px 72px 78px; background:linear-gradient(180deg,rgba(255,253,248,.97) 0%,rgba(251,247,239,.94) 100%); border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px; box-shadow:var(--shadow); }
+    body {
+      margin:0;
+      background:
+        linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(0deg,var(--grid) 1px,transparent 1px),
+        radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),
+        radial-gradient(circle at 88% 9%,rgba(125,135,132,.13),transparent 25%),
+        linear-gradient(180deg,#f8f6f0 0%,var(--bg) 46%,#eeece6 100%);
+      background-size:30px 30px,30px 30px,auto,auto,auto;
+      color:var(--text);
+      font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif;
+      line-height:1.82;
+    }
+    .page {
+      position:relative; max-width:940px; margin:34px auto 54px; padding:58px 72px 78px;
+      background:linear-gradient(180deg,rgba(255,253,248,.97) 0%,rgba(251,247,239,.94) 100%);
+      border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px;
+      box-shadow:var(--shadow); overflow:hidden;
+    }
+    .page::before {
+      content:""; position:absolute; right:26px; top:24px; width:180px; height:68px; opacity:.22;
+      background:
+        radial-gradient(circle at 14px 14px,#5f6872 0 5px,transparent 6px),
+        radial-gradient(circle at 86px 28px,#5f6872 0 7px,transparent 8px),
+        radial-gradient(circle at 148px 45px,#5f6872 0 5px,transparent 6px),
+        linear-gradient(#5f6872,#5f6872) 18px 14px/62px 2px no-repeat,
+        linear-gradient(#5f6872,#5f6872) 90px 28px/52px 2px no-repeat;
+      pointer-events:none;
+    }
     h1 { margin:0 0 12px; font-size:36px; line-height:1.22; }
     h2 { margin:42px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line); font-size:24px; }
     h2::before { content:""; display:inline-block; width:8px; height:22px; margin-right:10px; vertical-align:-4px; background:var(--steel); border-radius:2px; }
     h3 { margin:24px 0 8px; color:#5f6872; font-size:18px; }
     p { margin:8px 0 16px; }
     ul { margin:8px 0 16px 22px; padding:0; }
+    li { margin:4px 0; }
     a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.24); }
     .subtitle { margin:0 0 12px; color:#4b5563; font-size:17px; font-weight:600; line-height:1.7; }
     .meta,.local { color:var(--muted); font-size:14px; overflow-wrap:anywhere; }
     .top-actions,.actions { display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 18px; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px; border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:#fff; border:1px solid #151b22; box-shadow:0 8px 18px rgba(21,27,34,.12); font-size:14px; font-weight:700; text-decoration:none; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px;
+      border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:#fff; border:1px solid #151b22;
+      box-shadow:0 8px 18px rgba(21,27,34,.12); font-size:14px; font-weight:700; text-decoration:none;
+    }
     .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); box-shadow:none; }
-    .callout { margin:22px 0; padding:16px 18px; background:rgba(255,250,242,.82); border:1px solid #ece8dd; border-left:4px solid #a4aaa6; border-radius:8px; }
+    .callout {
+      margin:22px 0; padding:16px 18px; background:rgba(255,250,242,.82); border:1px solid #ece8dd;
+      border-left:4px solid #a4aaa6; border-radius:8px;
+    }
     .today-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; margin:20px 0 28px; }
-    .today-card { padding:14px 15px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; color:#47515a; font-size:14px; box-shadow:0 10px 28px rgba(34,42,46,.055); }
+    .today-card {
+      padding:14px 15px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px;
+      color:#47515a; font-size:14px; box-shadow:0 10px 28px rgba(34,42,46,.055);
+    }
     .today-card strong { display:block; color:var(--text); margin-bottom:4px; }
     .paper-title { font-size:20px; font-weight:700; }
     .en { font-family:"Times New Roman",Times,serif; }
@@ -35,45 +76,70 @@
 <body>
   <main class="page">
     <h1>每日机器人论文对比</h1>
-    <p class="subtitle">今日创新点：机器人能力栈不能只追单点大模型表现，必须把“可靠状态估计”和“可泛化动作生成”一起补齐，才能形成真正可部署的闭环。</p>
-    <p class="subtitle">未来创新点：下一阶段最值得做的是把 ORB-SLAM3 这类强几何感知底座，与 Diffusion Policy 这类强生成控制器耦合成可回滚、可重规划、可自检的真实机器人系统。</p>
-    <div class="meta">更新时间：2026-06-18 · 今日论文：2026-06-18 追加刷新</div>
+    <p class="subtitle">今日创新点：抓取系统不能只补“大模型策略”，也不能只补“几何感知模块”。真正能落地的链路，至少要同时把 6D 位姿估计和 6-DoF 抓取生成这两段补齐。</p>
+    <p class="subtitle">未来创新点：下一步最值得做的，是把 DenseFusion 这一类 RGB-D 位姿感知模块，与 Contact-GraspNet 这一类抓取分布生成模块接成可闭环验证的抓取流水线，再往上叠加 foundation-model-assisted 目标理解与任务约束。</p>
+    <div class="meta">更新时间：2026-06-19 · 今日论文：2026-06-19 追加刷新</div>
     <div class="top-actions"><a class="btn secondary" href="./index-en.html">English Translation</a></div>
     <p class="local">论文库地址：<a href="./papers/index.html">./papers/index.html</a></p>
-    <div class="callout">今日主题：用一篇高影响力 SLAM 基础设施论文，对照一篇高代表性的生成式操作策略论文，补足当前论文库偏 VLA / benchmark / 闭环验证、但相对缺少“几何感知底座”和“扩散式动作生成”两端的结构缺口。</div>
-    <section class="today-grid">
-      <div class="today-card"><strong>先读顺序</strong>先读 ORB-SLAM3，再读 Diffusion Policy。</div>
-      <div class="today-card"><strong>关键词</strong>SLAM、visual-inertial、open-source、diffusion policy、imitation learning、manipulation</div>
-      <div class="today-card"><strong>今日追问</strong>如果定位漂移和动作分布多峰同时存在，机器人该先修感知，还是先修策略采样？</div>
-      <div class="today-card"><strong>影响力依据</strong>ORB-SLAM3 的 Crossref 引用约 3933；Diffusion Policy 的 Crossref 引用约 457。</div>
-      <div class="today-card"><strong>互补性</strong>经典几何感知底座，对照现代生成式控制范式。</div>
+
+    <div class="callout">
+      今日主题：用一篇高影响力 RGB-D 6D 位姿估计代表作，对照一篇高代表性的 6-DoF 抓取生成论文，补足当前论文库在“抓取 / 位姿估计 / 深度感知到操作链路”上的结构空位。
+    </div>
+
+    <section class="today-grid" aria-label="今日重点总览">
+      <div class="today-card"><strong>先读顺序</strong>先读 DenseFusion，把“目标姿态怎么估准”吃透；再读 Contact-GraspNet，看“抓取候选怎么直接从深度里生成”。</div>
+      <div class="today-card"><strong>关键词</strong>6D pose estimation、RGB-D、YCB-Video、grasping、6-DoF grasp、clutter</div>
+      <div class="today-card"><strong>今日追问</strong>如果位姿估计和抓取生成都来自单帧 RGB-D，系统瓶颈更容易卡在姿态误差，还是卡在抓取候选覆盖率？</div>
+      <div class="today-card"><strong>影响力依据</strong>DenseFusion 在 Semantic Scholar 约 1146 引用；Contact-GraspNet 约 470 引用；两篇都带公开代码与长期复用信号。</div>
+      <div class="today-card"><strong>互补性</strong>一篇负责“看准物体”，一篇负责“从杂乱场景里抓准物体”，形成从感知到底层抓取的连续链路。</div>
     </section>
 
-    <h2 id="orb-slam3">论文 1</h2>
-    <p class="paper-title en">ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM（2026-06-18）</p>
-    <p>论文链接：<a href="https://arxiv.org/abs/2007.11898">https://arxiv.org/abs/2007.11898</a> · DOI：<a href="https://doi.org/10.1109/TRO.2021.3075644">10.1109/TRO.2021.3075644</a></p>
-    <div class="actions"><a class="btn" href="./papers/ORB-SLAM3%20-%20An%20Accurate%20Open-Source%20Library%20for%20Visual%2C%20Visual-Inertial%20and%20Multi-Map%20SLAM%20-%202026-06-18.pdf">打开 PDF</a><a class="btn secondary" href="./papers/index.html">论文库</a><a class="btn secondary" href="./papers/translations/orb-slam3.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2007.11898">arXiv</a></div>
-    <p><span class="tag">SLAM</span><span class="tag">visual-inertial</span><span class="tag">multi-map</span><span class="tag">open-source</span></p>
-    <h3>两篇论文介绍</h3><p>ORB-SLAM3 是机器人感知基础设施里的代表作之一。它把单目、双目、RGB-D、视觉惯性、多地图管理和回环重定位整合到同一个开源系统里。</p>
-    <h3>核心方法</h3><ul><li>紧耦合视觉与 IMU 的 MAP 估计。</li><li>支持多地图创建、恢复与融合。</li><li>在全流程复用长期关键帧和共视信息。</li></ul>
-    <h3>我认为的机器人创新点</h3><p>它解决的是“机器人长期稳定地知道自己在哪里”，这是移动机器人、无人机和大部分具身系统落地前必须打牢的地基。</p>
-    <h3>局限</h3><p>它强在定位和建图，不直接解决任务语义理解与动作决策问题。</p>
+    <h2 id="densefusion">论文 1</h2>
+    <p class="paper-title en">DenseFusion: 6D Object Pose Estimation by Iterative Dense Fusion（2026-06-19）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/1901.04780">https://arxiv.org/abs/1901.04780</a> · DOI：<a href="https://doi.org/10.1109/CVPR.2019.00346">10.1109/CVPR.2019.00346</a></p>
+    <div class="actions">
+      <a class="btn" href="./papers/DenseFusion - 6D Object Pose Estimation by Iterative Dense Fusion - 2026-06-19.pdf">打开 PDF</a>
+      <a class="btn secondary" href="./papers/index.html">论文库</a>
+      <a class="btn secondary" href="./papers/translations/densefusion.html">论文翻译</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/1901.04780">arXiv</a>
+    </div>
+    <p><span class="tag">6D pose estimation</span><span class="tag">RGB-D</span><span class="tag">YCB-Video</span><span class="tag">perception</span></p>
+    <h3>两篇论文介绍</h3>
+    <p>经典 RGB-D 6D 位姿估计论文，把像素级颜色特征与点云特征做致密融合，并加入迭代位姿细化。</p>
+    <h3>核心方法</h3>
+    <ul><li>RGB 分支与点云分支分别编码，再做像素级致密融合</li><li>端到端迭代位姿细化</li><li>在 YCB-Video 与 LineMOD 上做已知物体实例级 6D 位姿估计</li></ul>
+    <h3>我认为的机器人创新点</h3>
+    <p>它的关键不是“RGB 加 depth”这件事本身，而是把两种模态放到同一个致密、可迭代的推理框架里，让位姿估计在遮挡、杂乱和实时要求下都更像一个能部署的机器人感知模块。</p>
+    <h3>局限</h3>
+    <p>它假设是已知物体实例级估计，需要前置分割或检测；面对未知物体、类别级位姿和更强开放世界设置时，不是最终答案。</p>
 
-    <h2 id="diffusion-policy">论文 2</h2>
-    <p class="paper-title en">Diffusion Policy: Visuomotor Policy Learning via Action Diffusion（2026-06-18）</p>
-    <p>论文链接：<a href="https://arxiv.org/abs/2303.04137">https://arxiv.org/abs/2303.04137</a> · DOI：<a href="https://doi.org/10.15607/RSS.2023.XIX.026">10.15607/RSS.2023.XIX.026</a></p>
-    <div class="actions"><a class="btn" href="./papers/Diffusion%20Policy%20-%20Visuomotor%20Policy%20Learning%20via%20Action%20Diffusion%20-%202026-06-18.pdf">打开 PDF</a><a class="btn secondary" href="./papers/index.html">论文库</a><a class="btn secondary" href="./papers/translations/diffusion-policy.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2303.04137">arXiv</a></div>
-    <p><span class="tag">diffusion policy</span><span class="tag">manipulation</span><span class="tag">imitation learning</span><span class="tag">receding horizon</span></p>
-    <h3>两篇论文介绍</h3><p>Diffusion Policy 把控制策略建模成条件扩散过程，显式处理机器人操作里常见的多峰动作分布。</p>
-    <h3>核心方法</h3><ul><li>动作序列条件扩散建模。</li><li>结合 receding horizon control。</li><li>使用 time-series diffusion transformer 进行视觉条件控制。</li></ul>
-    <h3>我认为的机器人创新点</h3><p>它改变了策略表达方式：不再默认每个观察只有一个“正确动作”，而是学习一整个可采样、可重规划的动作分布。</p>
-    <h3>局限</h3><p>推理成本高于一次前向直接出动作的策略，对实时部署更敏感。</p>
+    <h2 id="contact-graspnet">论文 2</h2>
+    <p class="paper-title en">Contact-GraspNet: Efficient 6-DoF Grasp Generation in Cluttered Scenes（2026-06-19）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/2103.14127">https://arxiv.org/abs/2103.14127</a> · DOI：<a href="https://doi.org/10.1109/ICRA48506.2021.9561877">10.1109/ICRA48506.2021.9561877</a></p>
+    <div class="actions">
+      <a class="btn" href="./papers/Contact-GraspNet - Efficient 6-DoF Grasp Generation in Cluttered Scenes - 2026-06-19.pdf">打开 PDF</a>
+      <a class="btn secondary" href="./papers/index.html">论文库</a>
+      <a class="btn secondary" href="./papers/translations/contact-graspnet.html">论文翻译</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2103.14127">arXiv</a>
+    </div>
+    <p><span class="tag">grasping</span><span class="tag">6-DoF grasp</span><span class="tag">clutter</span><span class="tag">depth</span></p>
+    <h3>两篇论文介绍</h3>
+    <p>高代表性的 6-DoF 抓取生成论文，直接从单帧深度观测预测一组平行夹爪抓取分布。</p>
+    <h3>核心方法</h3>
+    <ul><li>把场景点云中的点视为潜在接触点</li><li>把 6-DoF 抓取表示降到更可学的接触参数化</li><li>直接输出抓取分布，而不是多阶段串行搜索</li></ul>
+    <h3>我认为的机器人创新点</h3>
+    <p>它真正影响后续工作的地方，在于把抓取生成从“离散搜索一个好姿态”改成“直接学习一整个可采样的抓取分布”，而且这个分布直接贴着可见点云和接触几何走。</p>
+    <h3>局限</h3>
+    <p>主要依赖深度与点云质量；若要做目标指定抓取，通常还需要前置分割或物体筛选。它也主要面向平行夹爪，不涵盖多指手的全部复杂度。</p>
 
     <h2>对比结论</h2>
-    <p><strong>ORB-SLAM3 是“先把世界坐标搞准”的论文：</strong>状态估计、定位与地图复用是重点。</p>
-    <p><strong>Diffusion Policy 是“再把动作分布学好”的论文：</strong>多峰动作建模与长时序控制是重点。</p>
+    <p><strong>DenseFusion</strong> 更偏“先把目标姿态估准”，它决定后续抓取与操作有没有可靠的几何坐标。</p>
+    <p><strong>Contact-GraspNet</strong> 更偏“再从杂乱场景里给出一批可抓候选”，它决定机器人是否能在复杂遮挡里抓得上去。</p>
+    <p>一起看，正好补出当前论文库里缺的“6D 位姿估计 + 6-DoF 抓取生成”这条感知到操作链路。</p>
+
     <h3>阅读顺序</h3>
-    <p>先读 ORB-SLAM3，建立真实机器人长期运行的工程判断；再读 Diffusion Policy，理解现代操作策略为什么越来越偏向生成式建模。</p>
+    <p>先读 <span class="en">DenseFusion</span>，再读 <span class="en">Contact-GraspNet</span>。</p>
+
   </main>
 </body>
 </html>
