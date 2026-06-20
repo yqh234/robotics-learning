@@ -77,7 +77,7 @@
       <h1>机器人论文 PDFs</h1>
       <p class="subtitle">每日追加更新的机器人论文阅读库。保留历史论文、历史 PDF、历史分析页与历史翻译页，只向库里追加新论文。</p>
       <div class="toolbar">
-        <span class="muted" id="libraryCount">当前日期：2026-06-19 · 累计收录 10 篇</span>
+        <span class="muted" id="libraryCount">当前日期：2026-06-20 · 累计收录 12 篇</span>
         <a href="./">打开系统文件夹</a>
       </div>
       <div class="top-actions"><a class="btn secondary" href="index-en.html">English Translation</a></div>
@@ -86,8 +86,8 @@
     <section class="panel">
       <h2>今日重点</h2>
       <div class="overview">
-        <div class="overview-card"><strong>先读建议：</strong>先看 DenseFusion，补齐“RGB-D 里物体姿态怎么估准”；再读 Contact-GraspNet，看“杂乱深度里抓取候选怎么直接生成”。</div>
-        <div class="overview-card"><strong>研究抓手：</strong>今天重点补的是抓取与 6D 位姿估计这一段。它正好把当前论文库从 VLA / world model / benchmark，往更底层的感知与执行接口上拉回去。</div>
+        <div class="overview-card"><strong>先读建议：</strong>先看 FoundationPose，补齐“新物体姿态怎么估准并跟稳”；再读 Dex-Net 2.0，看“抓取质量怎么从深度里快速评估”。</div>
+        <div class="overview-card"><strong>研究抓手：</strong>今天重点补的是“新物体 6D 位姿估计 + 经典抓取规划底座”这一段。它把当前论文库从 VLA / world model / benchmark，往更底层、更耐用的感知与抓取接口上拉回去。</div>
       </div>
       <div class="controls" aria-label="搜索与筛选">
         <input id="searchBox" type="search" placeholder="搜索标题、标签、方向，例如 grasp / pose / RGB-D / YCB / clutter" />
@@ -113,9 +113,11 @@
           <option value="diffusion policy">diffusion policy</option>
           <option value="6d pose estimation">6d pose estimation</option>
           <option value="rgb-d pose">rgb-d pose</option>
+          <option value="foundation-model-assisted pose">foundation-model-assisted pose</option>
           <option value="grasping">grasping</option>
           <option value="grasp planning">grasp planning</option>
           <option value="grasp detection">grasp detection</option>
+          <option value="grasp quality prediction">grasp quality prediction</option>
         </select>
         <select id="pageSize">
           <option value="2">每页 2 篇</option>
@@ -197,7 +199,7 @@
         <p class="desc">经典 RGB-D 6D 位姿估计论文，把像素级颜色特征与点云特征做致密融合，并加入迭代位姿细化。</p>
         <div class="brief"><strong>内容介绍：</strong>它在 YCB-Video 与 LineMOD 上把 RGB 和 depth 真正揉到一个实时框架里，后续很多 RGB-D 位姿估计工作都在和它对齐或超越它。</div>
         <div class="meta"><label class="status-control">状态<select class="status-editor" aria-label="修改 densefusion 阅读状态"><option value="已导读">已导读</option><option value="精读中" selected>精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">6d pose estimation</span><span class="pill">perception</span><span class="pill">rgb-d pose</span><span class="pill">4.68 MB</span></div>
-        <div class="actions"><a class="btn" href="DenseFusion - 6D Object Pose Estimation by Iterative Dense Fusion - 2026-06-19.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#densefusion">查看分析结果</a><a class="btn secondary" href="translations/densefusion.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/1901.04780">arXiv</a></div>
+        <div class="actions"><a class="btn" href="DenseFusion - 6D Object Pose Estimation by Iterative Dense Fusion - 2026-06-19.pdf">打开 PDF</a><a class="btn secondary" href="translations/densefusion.html">查看分析结果</a><a class="btn secondary" href="translations/densefusion.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/1901.04780">arXiv</a></div>
       </article>
       <article class="paper" data-id="contact-graspnet-2026-06-19" data-status="待复现" data-topic="grasping grasp planning grasp detection 6-dof grasp manipulation" data-search="Contact-GraspNet efficient 6-DoF grasp generation cluttered scenes grasping grasp planning grasp detection point cloud">
         <span class="badge">论文 10 · 2026-06-19</span>
@@ -205,7 +207,23 @@
         <p class="desc">高代表性的 6-DoF 抓取生成论文，直接从单帧深度观测预测一组平行夹爪抓取分布。</p>
         <div class="brief"><strong>内容介绍：</strong>它把抓取姿态锚定到可见接触点，把 6-DoF 抓取降成更可学的接触表示，在杂乱场景里兼顾了速度、覆盖率和真实机器人成功率。</div>
         <div class="meta"><label class="status-control">状态<select class="status-editor" aria-label="修改 contact-graspnet 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现" selected>待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">grasping</span><span class="pill">grasp planning</span><span class="pill">grasp detection</span><span class="pill">15.14 MB</span></div>
-        <div class="actions"><a class="btn" href="Contact-GraspNet - Efficient 6-DoF Grasp Generation in Cluttered Scenes - 2026-06-19.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#contact-graspnet">查看分析结果</a><a class="btn secondary" href="translations/contact-graspnet.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2103.14127">arXiv</a></div>
+        <div class="actions"><a class="btn" href="Contact-GraspNet - Efficient 6-DoF Grasp Generation in Cluttered Scenes - 2026-06-19.pdf">打开 PDF</a><a class="btn secondary" href="translations/contact-graspnet.html">查看分析结果</a><a class="btn secondary" href="translations/contact-graspnet.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2103.14127">arXiv</a></div>
+      </article>
+      <article class="paper" data-id="foundationpose-2026-06-20" data-status="精读中" data-topic="6d pose estimation object pose estimation foundation-model-assisted pose novel object tracking perception" data-search="FoundationPose unified 6D pose estimation tracking novel objects foundation model perception pose estimation">
+        <span class="badge">论文 11 · 2026-06-20</span>
+        <h2 class="title">FoundationPose: Unified 6D Pose Estimation and Tracking of Novel Objects</h2>
+        <p class="desc">面向新物体的 foundation-model-assisted 6D 位姿估计与跟踪系统，把模型驱动和少参考图像驱动两种设定统一到一套框架里。</p>
+        <div class="brief"><strong>内容介绍：</strong>借助神经隐式表示、LLM 辅助的大规模合成数据和统一的姿态估计/跟踪架构，在新物体上做到免微调即插即用。</div>
+        <div class="meta"><label class="status-control">状态<select class="status-editor" aria-label="修改 foundationpose 阅读状态"><option value="已导读">已导读</option><option value="精读中" selected>精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">6d pose estimation</span><span class="pill">foundation-model-assisted pose</span><span class="pill">object pose estimation</span><span class="pill">5.52 MB</span></div>
+        <div class="actions"><a class="btn" href="FoundationPose - Unified 6D Pose Estimation and Tracking of Novel Objects - 2026-06-20.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#foundationpose">查看分析结果</a><a class="btn secondary" href="translations/foundationpose.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/2312.08344">arXiv</a></div>
+      </article>
+      <article class="paper" data-id="dex-net-2-0-2026-06-20" data-status="待复现" data-topic="grasping grasp planning grasp quality prediction synthetic data parallel-jaw grasp manipulation" data-search="Dex-Net 2.0 robust grasps synthetic point clouds analytic grasp metrics GQ-CNN grasp planning">
+        <span class="badge">论文 12 · 2026-06-20</span>
+        <h2 class="title">Dex-Net 2.0: Deep Learning to Plan Robust Grasps with Synthetic Point Clouds and Analytic Grasp Metrics</h2>
+        <p class="desc">经典的抓取规划论文，用大规模合成点云、解析抓取度量和 GQ-CNN，把平行夹爪抓取从慢速匹配式规划推进到可大规模学习的范式。</p>
+        <div class="brief"><strong>内容介绍：</strong>核心思路是用解析抓取质量指标自动生成 670 万级合成训练数据，再训练网络直接预测候选抓取的成功概率。</div>
+        <div class="meta"><label class="status-control">状态<select class="status-editor" aria-label="修改 dex-net-2-0 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现" selected>待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">grasping</span><span class="pill">grasp planning</span><span class="pill">grasp quality prediction</span><span class="pill">0.98 MB</span></div>
+        <div class="actions"><a class="btn" href="Dex-Net 2.0 - Deep Learning to Plan Robust Grasps with Synthetic Point Clouds and Analytic Grasp Metrics - 2026-06-20.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#dex-net-2-0">查看分析结果</a><a class="btn secondary" href="translations/dex-net-2-0.html">论文翻译</a><a class="btn secondary" href="https://arxiv.org/abs/1703.09312">arXiv</a></div>
       </article>
     </section>
 
@@ -323,7 +341,7 @@
       pageJump.max = totalPages;
       pageJump.value = currentPage;
       pageInfo.textContent = `第 ${currentPage} / ${totalPages} 页 · 匹配 ${visiblePapers.length} 篇 · 累计 ${papers.length} 篇`;
-      libraryCount.textContent = `当前日期：2026-06-19 · 累计收录 ${papers.length} 篇`;
+      libraryCount.textContent = `当前日期：2026-06-20 · 累计收录 ${papers.length} 篇`;
       emptyState.style.display = visiblePapers.length ? "none" : "block";
     }
 

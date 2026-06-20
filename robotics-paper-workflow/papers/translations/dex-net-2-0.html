@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dex-Net-2-0 论文翻译导读</title>
+  <style>
+    :root {
+      --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583;
+      --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052);
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; min-height:100vh; color:var(--text);
+      background:
+        radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),
+        linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(0deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%);
+      background-size:auto,30px 30px,30px 30px,auto;
+      font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif;
+      line-height:1.86;
+    }
+    main {
+      width:min(920px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px;
+      background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94));
+      border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px;
+      box-shadow:var(--shadow);
+    }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    ul { margin:8px 0 16px 22px; padding:0; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px;
+      border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white;
+      border:1px solid #151b22; font-weight:700; text-decoration:none;
+    }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout {
+      margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd;
+      border-left:4px solid #a4aaa6; border-radius:8px;
+    }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文翻译导读 · 2026-06-20 · 阅读状态：待复现</p>
+    <h1><span class="en">Dex Net 2 0</span>：经典的抓取规划论文，用大规模合成点云、解析抓取度量和 GQ-CNN，把平行夹爪抓取从慢速匹配式规划推进到可大规模学习的范式。</h1>
+    <p class="note">建议第二篇读它，把 attention 放在“为什么合成数据 + 解析指标”这条路能把抓取规划做成可规模化学习的问题。</p>
+    <div class="actions">
+      <a class="btn" href="../Dex-Net 2.0 - Deep Learning to Plan Robust Grasps with Synthetic Point Clouds and Analytic Grasp Metrics - 2026-06-20.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/1703.09312">arXiv</a>
+      <a class="btn secondary" href="https://doi.org/10.15607/RSS.2017.XIII.058">DOI</a>
+    </div>
+    <div class="callout"><strong>一句话导读：</strong>Dex-Net 2.0 最值得记住的，不只是 GQ-CNN 这个模型名，而是它把抓取学习的数据瓶颈绕开了：先用解析抓取度量大规模生成可控训练数据，再让网络学会快速给候选抓取打分。</div>
+
+    <h2>英文信息</h2>
+    <p><strong>标题：</strong><span class="en">Dex-Net 2.0: Deep Learning to Plan Robust Grasps with Synthetic Point Clouds and Analytic Grasp Metrics</span></p>
+    <p><strong>作者：</strong><span class="en">Jeffrey Mahler, Jacky Liang, Sherdil Niyaz, Michael Laskey, Richard Doan, Xinyu Liu, Juan Aparicio Ojea, Ken Goldberg</span></p>
+    <p><strong>发表：</strong>Robotics: Science and Systems (RSS)，2017</p>
+    <p><strong>DOI：</strong><a href="https://doi.org/10.15607/RSS.2017.XIII.058">10.15607/RSS.2017.XIII.058</a></p>
+    <p><strong>arXiv：</strong><a href="https://arxiv.org/abs/1703.09312">1703.09312</a></p>
+    <p><strong>项目 / 代码：</strong><a href="https://berkeleyautomation.github.io/dex-net/">https://berkeleyautomation.github.io/dex-net/</a></p>
+
+    <h2>术语对照</h2>
+    <div class="terms"><div class="term"><span class="en">grasp quality convolutional neural network</span><br />抓取质量卷积网络</div><div class="term"><span class="en">analytic grasp metric</span><br />解析抓取度量</div><div class="term"><span class="en">parallel-jaw grasp</span><br />平行夹爪抓取</div><div class="term"><span class="en">synthetic point cloud</span><br />合成点云</div></div>
+
+    <h2>中文翻译导读</h2>
+    <p>Dex-Net 2.0 最值得记住的，不只是 GQ-CNN 这个模型名，而是它把抓取学习的数据瓶颈绕开了：先用解析抓取度量大规模生成可控训练数据，再让网络学会快速给候选抓取打分。</p>
+    <p>它最有代表性的地方，是把“抓取规划”从手工搜索和对象匹配，改写成“先用物理与解析模型大规模造数据，再让网络学会快速评分”的路线，这条路后来影响了很多 sim-to-real grasping 工作。</p>
+
+    <h2>推荐理由</h2>
+    <p>今天把它和 FoundationPose 配对，是因为一篇解决“新物体姿态怎么快速建起来”，一篇解决“有了深度观测后抓取质量怎么快速评估”。这组组合能把论文库补成更完整的感知到抓取链路。</p>
+
+    <h2>引用 / 影响力说明</h2>
+    <p>Semantic Scholar 页面当前显示约 1394 次引用；RSS 2017、Berkeley Automation 长期维护项目页，Dex-Net 系列后来几乎成了平行夹爪抓取学习路线的基础坐标。</p>
+
+    <h2>复现清单</h2>
+    <ul><li>用解析鲁棒抓取度量自动标注大规模合成点云与抓取样本</li><li>训练 GQ-CNN 直接从深度图评估平行夹爪抓取成功概率</li><li>在真实 ABB YuMi 上验证合成数据训练的抓取规划器能直接迁移</li></ul>
+
+    <h2>论文来源</h2>
+    <p>来源组合：RSS 2017 Proceedings PDF、arXiv 条目、Berkeley Automation 项目页、BAIR 博客说明页、Semantic Scholar 引用页。</p>
+
+    <h2>卡片元数据</h2>
+    <p><strong>方向：</strong>grasping / grasp planning / grasp quality prediction</p>
+    <p><strong>文件名：</strong><span class="en">Dex-Net 2.0 - Deep Learning to Plan Robust Grasps with Synthetic Point Clouds and Analytic Grasp Metrics - 2026-06-20.pdf</span></p>
+    <p><strong>推荐标签：</strong>经典抓取规划、高被引、合成数据驱动、平行夹爪抓取</p>
+  </main>
+</body>
+</html>

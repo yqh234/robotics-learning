@@ -33,61 +33,61 @@
 <body>
   <main class="page">
     <h1>Daily Robotics Paper Briefing</h1>
-    <p class="subtitle">Today’s innovation point: practical robot grasping stacks still need both reliable RGB-D pose estimation and strong 6-DoF grasp proposal generation. One without the other leaves the pipeline brittle.</p>
-    <p class="subtitle">Next innovation point: combine pose-aware RGB-D perception modules with grasp-distribution generators and then attach task-conditioned filtering on top.</p>
-    <div class="meta">Updated: 2026-06-19 · appended daily refresh</div>
+    <p class="subtitle">Today’s innovation point: a useful robotics stack now needs both a stronger novel-object pose layer and a scalable grasp-planning substrate. Improving only one side leaves the system uneven.</p>
+    <p class="subtitle">Next innovation point: connect FoundationPose-style novel-object pose modules with Dex-Net-style grasp-quality evaluators, then add task-conditioned filtering and real-robot feedback on top.</p>
+    <div class="meta">Updated: 2026-06-20 · appended daily refresh</div>
     <div class="top-actions"><a class="btn secondary" href="./index.html">返回中文</a></div>
     <p class="local">Paper library: <a href="./papers/index.html">./papers/index.html</a></p>
-    <div class="callout">Today’s pair is a direct perception-to-action bridge: DenseFusion estimates object pose from RGB-D, while Contact-GraspNet proposes 6-DoF grasps in clutter from depth.</div>
+    <div class="callout">Today’s pair spans two generations of the stack: FoundationPose pushes novel-object 6D pose estimation toward a unified foundation capability, while Dex-Net 2.0 anchors the classic synthetic-data route for robust grasp planning.</div>
     <section class="today-grid">
-      <div class="today-card"><strong>Read First</strong>Read DenseFusion first, then Contact-GraspNet.</div>
-      <div class="today-card"><strong>Keywords</strong>6D pose estimation, RGB-D, grasping, 6-DoF grasp, clutter.</div>
-      <div class="today-card"><strong>Impact</strong>Semantic Scholar counts are about 1146 for DenseFusion and 470 for Contact-GraspNet.</div>
-      <div class="today-card"><strong>Complement</strong>Pose-aware perception versus grasp distribution generation.</div>
+      <div class="today-card"><strong>Read First</strong>Read FoundationPose first, then Dex-Net 2.0.</div>
+      <div class="today-card"><strong>Keywords</strong>6D pose estimation, novel object, foundation model, grasp planning, GQ-CNN, synthetic data.</div>
+      <div class="today-card"><strong>Impact</strong>Semantic Scholar counts are about 563 for FoundationPose and 1394 for Dex-Net 2.0.</div>
+      <div class="today-card"><strong>Complement</strong>Novel-object pose generalization versus classic robust grasp scoring.</div>
     </section>
 
-    <h2 id="densefusion">Paper 1</h2>
-    <p class="paper-title">DenseFusion: 6D Object Pose Estimation by Iterative Dense Fusion (2026-06-19)</p>
-    <p>Links: <a href="https://arxiv.org/abs/1901.04780">arXiv</a> · DOI：<a href="https://doi.org/10.1109/CVPR.2019.00346">10.1109/CVPR.2019.00346</a></p>
+    <h2 id="foundationpose">Paper 1</h2>
+    <p class="paper-title">FoundationPose: Unified 6D Pose Estimation and Tracking of Novel Objects (2026-06-20)</p>
+    <p>Links: <a href="https://arxiv.org/abs/2312.08344">arXiv</a> · DOI：无</p>
     <div class="actions">
-      <a class="btn" href="./papers/DenseFusion - 6D Object Pose Estimation by Iterative Dense Fusion - 2026-06-19.pdf">Open PDF</a>
+      <a class="btn" href="./papers/FoundationPose - Unified 6D Pose Estimation and Tracking of Novel Objects - 2026-06-20.pdf">Open PDF</a>
       <a class="btn secondary" href="./papers/index.html">Paper Library</a>
-      <a class="btn secondary" href="./papers/translations/densefusion.html">Chinese Guide</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/1901.04780">arXiv</a>
+      <a class="btn secondary" href="./papers/translations/foundationpose.html">Chinese Guide</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2312.08344">arXiv</a>
     </div>
     <p><span class="tag">6D pose</span><span class="tag">RGB-D</span><span class="tag">perception</span><span class="tag">YCB-Video</span></p>
     <h3>Why It Was Chosen</h3>
-    <p>Chosen because the library still lacked a durable RGB-D 6D pose-estimation anchor paper.</p>
+    <p>Chosen because the library had a classic instance-level RGB-D pose paper, but still lacked a representative novel-object and foundation-assisted 6D pose system.</p>
     <h3>Core Methods</h3>
-    <ul><li>Separate RGB and point-cloud encoders with pixel-wise dense fusion</li><li>End-to-end iterative pose refinement</li><li>Instance-level 6D pose estimation on YCB-Video and LineMOD</li></ul>
+    <ul><li>One unified framework for model-based and few-reference model-free pose estimation</li><li>Neural implicit representation for novel-view synthesis across settings</li><li>LLM-assisted large-scale synthetic data generation for training pose estimation and tracking</li></ul>
     <h3>Robotics Insight</h3>
-    <p>Its real contribution is not just using RGB plus depth, but making them interact inside one dense, refinable inference loop that behaves like a deployable perception module.</p>
+    <p>Its key contribution is turning novel-object 6D pose from a bag of special-case tricks into a more unified platform capability.</p>
     <h3>Main Limitation</h3>
-    <p>It assumes known object instances and usually depends on upstream detection or segmentation.</p>
+    <p>It still depends on fairly strong 3D priors such as CAD models or a few reference views, so it is not yet a full open-world or category-level solution.</p>
 
-    <h2 id="contact-graspnet">Paper 2</h2>
-    <p class="paper-title">Contact-GraspNet: Efficient 6-DoF Grasp Generation in Cluttered Scenes (2026-06-19)</p>
-    <p>Links: <a href="https://arxiv.org/abs/2103.14127">arXiv</a> · DOI：<a href="https://doi.org/10.1109/ICRA48506.2021.9561877">10.1109/ICRA48506.2021.9561877</a></p>
+    <h2 id="dex-net-2-0">Paper 2</h2>
+    <p class="paper-title">Dex-Net 2.0: Deep Learning to Plan Robust Grasps with Synthetic Point Clouds and Analytic Grasp Metrics (2026-06-20)</p>
+    <p>Links: <a href="https://arxiv.org/abs/1703.09312">arXiv</a> · DOI：<a href="https://doi.org/10.15607/RSS.2017.XIII.058">10.15607/RSS.2017.XIII.058</a></p>
     <div class="actions">
-      <a class="btn" href="./papers/Contact-GraspNet - Efficient 6-DoF Grasp Generation in Cluttered Scenes - 2026-06-19.pdf">Open PDF</a>
+      <a class="btn" href="./papers/Dex-Net 2.0 - Deep Learning to Plan Robust Grasps with Synthetic Point Clouds and Analytic Grasp Metrics - 2026-06-20.pdf">Open PDF</a>
       <a class="btn secondary" href="./papers/index.html">Paper Library</a>
-      <a class="btn secondary" href="./papers/translations/contact-graspnet.html">Chinese Guide</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/2103.14127">arXiv</a>
+      <a class="btn secondary" href="./papers/translations/dex-net-2-0.html">Chinese Guide</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/1703.09312">arXiv</a>
     </div>
     <p><span class="tag">grasping</span><span class="tag">6-DoF grasp</span><span class="tag">clutter</span><span class="tag">depth</span></p>
     <h3>Why It Was Chosen</h3>
-    <p>Paired with DenseFusion because together they form a practical chain from pose-aware perception to grasp proposal generation.</p>
+    <p>Paired with FoundationPose because one tackles novel-object pose estimation while the other anchors robust grasp scoring from depth, forming a clearer perception-to-grasp chain.</p>
     <h3>Core Methods</h3>
-    <ul><li>Treats scene points as potential contacts</li><li>Reduces 6-DoF grasping to a learnable contact-based parameterization</li><li>Predicts grasp distributions directly instead of a long sequential pipeline</li></ul>
+    <ul><li>Analytically labels large synthetic point-cloud grasp datasets with robust grasp metrics</li><li>Trains a GQ-CNN to predict parallel-jaw grasp success directly from depth images</li><li>Validates that synthetic-only training transfers to a real ABB YuMi grasp planner</li></ul>
     <h3>Robotics Insight</h3>
-    <p>Its lasting effect is shifting grasping from discrete grasp search toward directly learned grasp distributions grounded in visible contact geometry.</p>
+    <p>Its enduring contribution is reframing grasp planning as large-scale synthetic-data generation plus learned grasp scoring, a template that influenced much of later sim-to-real grasping.</p>
     <h3>Main Limitation</h3>
-    <p>It depends heavily on depth quality and often needs object filtering for target-driven grasping.</p>
+    <p>It is mainly a parallel-jaw grasp scorer for simpler settings and does not cover the full complexity of cluttered 6-DoF or multi-finger task-aware grasping.</p>
 
     <h2>Comparison</h2>
-    <p><strong>DenseFusion</strong> is about estimating object pose reliably from RGB-D.</p>
-    <p><strong>Contact-GraspNet</strong> is about generating feasible 6-DoF grasp proposals from cluttered depth observations.</p>
-    <p>Read them in that order to connect object-centric perception with clutter-aware grasp execution.</p>
+    <p><strong>FoundationPose</strong> is about making novel-object 6D pose estimation and tracking more unified and reusable.</p>
+    <p><strong>Dex-Net 2.0</strong> is about making grasp planning fast and scalable through synthetic data and learned grasp scoring.</p>
+    <p>Read them in that order to connect generalized pose perception with a classic grasp-planning backbone.</p>
   </main>
 </body>
 </html>
