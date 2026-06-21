@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>nocs 论文导读</title>
+  <style>
+    :root {
+      --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583;
+      --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052);
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; min-height:100vh; color:var(--text);
+      background:
+        radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),
+        linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(0deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%);
+      background-size:auto,30px 30px,30px 30px,auto;
+      font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif;
+      line-height:1.86;
+    }
+    main {
+      width:min(920px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px;
+      background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94));
+      border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px;
+      box-shadow:var(--shadow);
+    }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    ul { margin:8px 0 16px 22px; padding:0; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px;
+      border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white;
+      border:1px solid #151b22; font-weight:700; text-decoration:none;
+    }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout {
+      margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd;
+      border-left:4px solid #a4aaa6; border-radius:8px;
+    }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文导读 · 2026-06-21 · 阅读状态：精读中</p>
+    <h1><span class="en">Normalized Object Coordinate Space for Category-Level 6D Object Pose and Size Estimation</span>：类别级 6D 位姿估计的奠基论文，把未知实例的位姿与尺寸估计统一到共享 canonical coordinate space。</h1>
+    <p class="note">建议把它和今天另一篇论文对照着读，重点看它补的是哪一层机器人能力。</p>
+    <div class="actions">
+      <a class="btn" href="../Normalized Object Coordinate Space for Category-Level 6D Object Pose and Size Estimation - 2026-06-21.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/1901.02970">arXiv</a>
+      <a class="btn secondary" href="https://doi.org/10.1109/CVPR.2019.00275">DOI</a>
+    </div>
+    <div class="callout"><strong>一句话导读：</strong>如果你已经熟悉 DenseFusion 这类实例级方法，NOCS 值得读的地方就在于：它把输入从“某个已知物体”抬升成了“某一类未知物体”，让 6D 位姿估计开始真正讨论泛化。</div>
+    <h2>英文信息</h2>
+    <p><strong>标题：</strong><span class="en">Normalized Object Coordinate Space for Category-Level 6D Object Pose and Size Estimation</span></p>
+    <p><strong>作者：</strong><span class="en">He Wang, Srinath Sridhar, Jingwei Huang, Julien Valentin, Shuran Song, Leonidas J. Guibas</span></p>
+    <p><strong>发表：</strong>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)，2019</p>
+    <p><strong>DOI：</strong><a href="https://doi.org/10.1109/CVPR.2019.00275">10.1109/CVPR.2019.00275</a></p>
+    <p><strong>arXiv：</strong><a href="https://arxiv.org/abs/1901.02970">1901.02970</a></p>
+    <p><strong>项目 / 代码：</strong><a href="https://geometry.stanford.edu/projects/NOCS_CVPR2019/">https://geometry.stanford.edu/projects/NOCS_CVPR2019/</a> · <a href="https://github.com/hughw19/NOCS_CVPR2019">https://github.com/hughw19/NOCS_CVPR2019</a></p>
+    <p><strong>原文页面：</strong><a href="https://openaccess.thecvf.com/content_CVPR_2019/html/Wang_Normalized_Object_Coordinate_Space_for_Category-Level_6D_Object_Pose_and_CVPR_2019_paper.html">https://openaccess.thecvf.com/content_CVPR_2019/html/Wang_Normalized_Object_Coordinate_Space_for_Category-Level_6D_Object_Pose_and_CVPR_2019_paper.html</a></p>
+    <h2>术语对照</h2>
+    <div class="terms"><div class="term"><span class="en">category-level pose estimation</span><br />类别级位姿估计</div><div class="term"><span class="en">NOCS</span><br />归一化物体坐标空间</div><div class="term"><span class="en">canonical space</span><br />规范坐标空间</div><div class="term"><span class="en">mixed reality synthesis</span><br />混合现实数据合成</div></div>
+    <h2>中文导读</h2>
+    <p>它最关键的突破，不是把某个 benchmark 再提一点，而是把“同一类别里没见过的物体也能估位姿”变成了一个明确、可训练、可扩展的问题设定。</p>
+    <p>当前库里已有 DenseFusion 和 FoundationPose，但还缺一篇真正代表“类别级位姿泛化”的奠基论文。NOCS 正好把实例级 pose 估计往 unseen instance、shared canonical space 和 mixed-reality data synthesis 这条线上补齐。</p>
+    <h2>推荐理由</h2>
+    <p>当前库里已有 DenseFusion 和 FoundationPose，但还缺一篇真正代表“类别级位姿泛化”的奠基论文。NOCS 正好把实例级 pose 估计往 unseen instance、shared canonical space 和 mixed-reality data synthesis 这条线上补齐。</p>
+    <h2>引用 / 影响力说明</h2>
+    <p>Semantic Scholar 检索页显示约 881 次引用；CVPR 2019 oral 级代表作，基本奠定了 category-level 6D pose estimation 的 NOCS 表达路线。</p>
+    <h2>复现清单</h2>
+    <ul><li>先理解 NOCS map 与 instance-level CAD template 的区别，明确它为什么能支持 unseen instance。</li><li>复查 Mask R-CNN 分支如何联合输出 mask、class 和 NOCS coordinate。</li><li>重点看 mixed-reality data synthesis 与 REAL275 / CAMERA25 数据构成，它们后来成了很多类别级 pose 工作的默认起点。</li></ul>
+    <h2>论文来源</h2>
+    <p>来源组合：CVPR 2019 Open Access 页面与 PDF、arXiv 条目、Stanford 项目页、官方 GitHub、Semantic Scholar 引用页。</p>
+    <h2>卡片元数据</h2>
+    <p><strong>方向：</strong>6d / pose / estimation / category-level / pose / estimation / object / pose / estimation / rgb-d / pose / perception / manipulation</p>
+    <p><strong>文件名：</strong><span class="en">Normalized Object Coordinate Space for Category-Level 6D Object Pose and Size Estimation - 2026-06-21.pdf</span></p>
+    <p><strong>推荐标签：</strong>6d pose estimation、category-level pose estimation、object pose estimation、rgb-d pose</p>
+  </main>
+</body>
+</html>

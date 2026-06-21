@@ -5,8 +5,8 @@ $pagePath = "C:\Users\86136\Documents\Codex\2026-06-15\codex-codex\outputs\robot
 $utf8 = [System.Text.Encoding]::UTF8
 $libraryRoot = $utf8.GetString([Convert]::FromBase64String("QzpcVXNlcnNcODYxMzZcRGVza3RvcFzmnLrlmajkurrorrrmlocgUERGcw=="))
 $libraryPath = Join-Path $libraryRoot "index.html"
-$dexTranslationPath = Join-Path $libraryRoot "translations\dexsim2real.html"
-$roboTranslationPath = Join-Path $libraryRoot "translations\robowm-bench.html"
+$firstAnalysisPath = Join-Path $libraryRoot "translations\nocs.html"
+$secondAnalysisPath = Join-Path $libraryRoot "translations\graspnet-1billion.html"
 $refreshScript = "C:\Users\86136\Documents\Codex\2026-06-15\codex-codex\work\refresh-daily-robotics-papers.ps1"
 $refreshLog = Join-Path $libraryRoot "refresh.log"
 
@@ -88,15 +88,15 @@ $menu = New-Object System.Windows.Forms.ContextMenuStrip
 $openBriefing = New-Object System.Windows.Forms.ToolStripMenuItem("Open briefing")
 $openLibrary = New-Object System.Windows.Forms.ToolStripMenuItem("Open paper library")
 $openFolder = New-Object System.Windows.Forms.ToolStripMenuItem("Open PDF folder")
-$openDexTranslation = New-Object System.Windows.Forms.ToolStripMenuItem("Open DexSim2Real translation")
-$openRoboTranslation = New-Object System.Windows.Forms.ToolStripMenuItem("Open RoboWM-Bench translation")
+$openDexTranslation = New-Object System.Windows.Forms.ToolStripMenuItem("Open NOCS analysis")
+$openRoboTranslation = New-Object System.Windows.Forms.ToolStripMenuItem("Open GraspNet-1Billion analysis")
 $refreshNow = New-Object System.Windows.Forms.ToolStripMenuItem("Refresh now")
 $exitItem = New-Object System.Windows.Forms.ToolStripMenuItem("Exit")
 $openBriefing.Add_Click({ Start-Process -FilePath $pagePath })
 $openLibrary.Add_Click({ Start-Process -FilePath $libraryPath })
 $openFolder.Add_Click({ Start-Process -FilePath $libraryRoot })
-$openDexTranslation.Add_Click({ if (Test-Path $dexTranslationPath) { Start-Process -FilePath $dexTranslationPath } })
-$openRoboTranslation.Add_Click({ if (Test-Path $roboTranslationPath) { Start-Process -FilePath $roboTranslationPath } })
+$openDexTranslation.Add_Click({ if (Test-Path $firstAnalysisPath) { Start-Process -FilePath $firstAnalysisPath } })
+$openRoboTranslation.Add_Click({ if (Test-Path $secondAnalysisPath) { Start-Process -FilePath $secondAnalysisPath } })
 $refreshNow.Add_Click({
     if (Test-Path $refreshScript) {
         Start-Process -FilePath powershell.exe -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $refreshScript) -WindowStyle Hidden

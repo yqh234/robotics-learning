@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>graspnet-1billion 论文导读</title>
+  <style>
+    :root {
+      --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583;
+      --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052);
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; min-height:100vh; color:var(--text);
+      background:
+        radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),
+        linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(0deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%);
+      background-size:auto,30px 30px,30px 30px,auto;
+      font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif;
+      line-height:1.86;
+    }
+    main {
+      width:min(920px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px;
+      background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94));
+      border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px;
+      box-shadow:var(--shadow);
+    }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    ul { margin:8px 0 16px 22px; padding:0; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px;
+      border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white;
+      border:1px solid #151b22; font-weight:700; text-decoration:none;
+    }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout {
+      margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd;
+      border-left:4px solid #a4aaa6; border-radius:8px;
+    }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文导读 · 2026-06-21 · 阅读状态：待复现</p>
+    <h1><span class="en">GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping</span>：抓取方向最有代表性的公开 benchmark 之一，把真实 RGB-D clutter、密集抓取标注和统一评测正式结合起来。</h1>
+    <p class="note">建议把它和今天另一篇论文对照着读，重点看它补的是哪一层机器人能力。</p>
+    <div class="actions">
+      <a class="btn" href="../GraspNet-1Billion - A Large-Scale Benchmark for General Object Grasping - 2026-06-21.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/1912.13470">arXiv</a>
+      <a class="btn secondary" href="https://doi.org/10.1109/CVPR42600.2020.01146">DOI</a>
+    </div>
+    <div class="callout"><strong>一句话导读：</strong>如果 Dex-Net 代表“怎样学会抓”，GraspNet-1Billion 代表“怎样把抓取研究放到同一张公开考卷上做”。</div>
+    <h2>英文信息</h2>
+    <p><strong>标题：</strong><span class="en">GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping</span></p>
+    <p><strong>作者：</strong><span class="en">Hao-Shu Fang, Chenxi Wang, Minghao Gou, Cewu Lu</span></p>
+    <p><strong>发表：</strong>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)，2020</p>
+    <p><strong>DOI：</strong><a href="https://doi.org/10.1109/CVPR42600.2020.01146">10.1109/CVPR42600.2020.01146</a></p>
+    <p><strong>arXiv：</strong><a href="https://arxiv.org/abs/1912.13470">1912.13470</a></p>
+    <p><strong>项目 / 代码：</strong><a href="https://graspnet.net/">https://graspnet.net/</a> · <a href="https://github.com/graspnet/graspnet-baseline">https://github.com/graspnet/graspnet-baseline</a></p>
+    <p><strong>原文页面：</strong><a href="https://openaccess.thecvf.com/content_CVPR_2020/html/Fang_GraspNet-1Billion_A_Large-Scale_Benchmark_for_General_Object_Grasping_CVPR_2020_paper.html">https://openaccess.thecvf.com/content_CVPR_2020/html/Fang_GraspNet-1Billion_A_Large-Scale_Benchmark_for_General_Object_Grasping_CVPR_2020_paper.html</a></p>
+    <h2>术语对照</h2>
+    <div class="terms"><div class="term"><span class="en">grasp pose detection</span><br />抓取位姿检测</div><div class="term"><span class="en">cluttered scene</span><br />杂乱场景</div><div class="term"><span class="en">grasp affinity field</span><br />抓取亲和场</div><div class="term"><span class="en">benchmark protocol</span><br />评测协议</div></div>
+    <h2>中文导读</h2>
+    <p>它最有价值的地方不是“又多一个数据集”，而是把抓取研究从各做各的私有设定，推进到能在统一协议下比较 general object grasping。</p>
+    <p>当前库里已经有 Dex-Net 2.0 和 Contact-GraspNet，但还缺“为什么后来的 6-DoF grasp detection 能大规模比较、训练和迭代”的公共 benchmark 基座。GraspNet-1Billion 正好补这个结构位。</p>
+    <h2>推荐理由</h2>
+    <p>当前库里已经有 Dex-Net 2.0 和 Contact-GraspNet，但还缺“为什么后来的 6-DoF grasp detection 能大规模比较、训练和迭代”的公共 benchmark 基座。GraspNet-1Billion 正好补这个结构位。</p>
+    <h2>引用 / 影响力说明</h2>
+    <p>Semantic Scholar 页面显示约 753 次引用；它不是单篇方法小改，而是把 general object grasping 的公开数据、评测协议和 baseline 一次性搭了起来。</p>
+    <h2>复现清单</h2>
+    <ul><li>先看数据采集和 object pose annotation 流程，理解它为什么能大规模生成 scene-level grasp labels。</li><li>读清 evaluation metric、pose-NMS 和 analytic success computation 的设计，不然很难正确比较后续方法。</li><li>如果要做复现，优先从官方 baseline 和 graspnetAPI 入手，再看它与 Contact-GraspNet、AnyGrasp 系的接口差异。</li></ul>
+    <h2>论文来源</h2>
+    <p>来源组合：CVPR 2020 Open Access 页面与 PDF、GraspNet 官方项目页、baseline GitHub、Semantic Scholar 引用页。</p>
+    <h2>卡片元数据</h2>
+    <p><strong>方向：</strong>grasping / grasp / planning / grasp / detection / 6-dof / grasp / benchmark / rgb-d / manipulation</p>
+    <p><strong>文件名：</strong><span class="en">GraspNet-1Billion - A Large-Scale Benchmark for General Object Grasping - 2026-06-21.pdf</span></p>
+    <p><strong>推荐标签：</strong>grasping、grasp planning、grasp detection、benchmark</p>
+  </main>
+</body>
+</html>

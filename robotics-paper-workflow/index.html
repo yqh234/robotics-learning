@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>每日机器人论文对比</title>
+  <title>每日机器人论文对照</title>
   <style>
     :root {
       --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --bg:#f3f1eb; --page:#fffdf8;
@@ -28,16 +28,6 @@
       background:linear-gradient(180deg,rgba(255,253,248,.97) 0%,rgba(251,247,239,.94) 100%);
       border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px;
       box-shadow:var(--shadow); overflow:hidden;
-    }
-    .page::before {
-      content:""; position:absolute; right:26px; top:24px; width:180px; height:68px; opacity:.22;
-      background:
-        radial-gradient(circle at 14px 14px,#5f6872 0 5px,transparent 6px),
-        radial-gradient(circle at 86px 28px,#5f6872 0 7px,transparent 8px),
-        radial-gradient(circle at 148px 45px,#5f6872 0 5px,transparent 6px),
-        linear-gradient(#5f6872,#5f6872) 18px 14px/62px 2px no-repeat,
-        linear-gradient(#5f6872,#5f6872) 90px 28px/52px 2px no-repeat;
-      pointer-events:none;
     }
     h1 { margin:0 0 12px; font-size:36px; line-height:1.22; }
     h2 { margin:42px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line); font-size:24px; }
@@ -75,71 +65,70 @@
 </head>
 <body>
   <main class="page">
-    <h1>每日机器人论文对比</h1>
-    <p class="subtitle">今日创新点：机器人操作这条线，已经不能只看“经典位姿估计”或“新大模型感知”其中一头。真正有价值的，是把新物体 6D 位姿感知能力和可规模化的抓取规划底座同时补齐。</p>
-    <p class="subtitle">未来创新点：下一步最值得做的，是把 FoundationPose 这类新物体 pose 模块，和 Dex-Net 2.0 这类抓取质量评估模块接进同一条闭环操作栈里，再往上叠加目标级任务约束、类别级泛化和真实机器人验证。</p>
-    <div class="meta">更新时间：2026-06-20 · 今日论文：2026-06-20 追加刷新</div>
-    <div class="top-actions"><a class="btn secondary" href="./index-en.html">English Translation</a></div>
-    <p class="local">论文库地址：<a href="./papers/index.html">./papers/index.html</a></p>
+    <h1>每日机器人论文对照</h1>
+    <p class="subtitle">今日创新点：今天这组更像是在补机器人操作里最容易被割裂的两层能力。一层是“同类但没见过的物体，位姿到底怎么稳健估出来”；另一层是“有了感知之后，抓取研究怎样在统一公开协议下做规模化比较和训练”。</p>
+    <p class="subtitle">未来创新点：下一步最值得追的是把 NOCS 这类 category-level pose 表达，与 GraspNet 这类 clutter grasp benchmark 结合起来，再往上接语言条件抓取、foundation-model-assisted grasping 和任务级执行闭环。</p>
+    <div class="meta">更新时间：2026-06-21 · 今日论文：2026-06-21 追加刷新</div>
+    <div class="top-actions"><a class="btn secondary" href="./robotics-paper-feishu-page-en.html">English Translation</a></div>
+    <p class="local">论文库地址：<a href="./paper-folder-index.html">./paper-folder-index.html</a></p>
 
     <div class="callout">
-      今日主题：用一篇 foundation-model-assisted 新物体 6D 位姿估计代表作，对照一篇合成数据驱动抓取规划经典论文，补足当前论文库在“新感知能力 / 抓取规划底座 / 感知到操作链路”上的结构空位。
+      今日主题：用一篇 category-level 6D pose 奠基论文，对照一篇通用抓取 benchmark 奠基论文，补足当前论文库在“类别泛化感知 / 抓取公共基座 / 感知到操作接口”上的结构空位。
     </div>
 
     <section class="today-grid" aria-label="今日重点总览">
-      <div class="today-card"><strong>先读顺序</strong>先读 FoundationPose，把“新物体姿态怎么估准”吃透；再读 Dex-Net 2.0，看“抓取质量怎么从深度里快速评估”。</div>
-      <div class="today-card"><strong>关键词</strong>6D pose estimation、novel object、foundation model、grasp planning、GQ-CNN、synthetic data</div>
-      <div class="today-card"><strong>今日追问</strong>如果新物体 pose 已经更泛化了，真实抓取系统接下来的主要瓶颈，会落在抓取候选生成、抓取质量评估，还是任务约束建模？</div>
-      <div class="today-card"><strong>影响力依据</strong>FoundationPose 在 Semantic Scholar 约 563 引用；Dex-Net 2.0 约 1394 引用；前者代表新一代新物体 pose，后者是经典抓取学习底座。</div>
-      <div class="today-card"><strong>互补性</strong>一篇负责“把新物体看准并跟稳”，一篇负责“把抓取评估做快做稳”，形成从新感知到底层抓取规划的连续链路。</div>
+      <div class="today-card"><strong>先读顺序</strong>先读 NOCS，先把“未知实例的类别级位姿估计”想清楚；再读 GraspNet-1Billion，看抓取研究为什么需要统一 benchmark。</div>
+      <div class="today-card"><strong>关键词</strong>category-level pose estimation、NOCS、RGB-D pose、general object grasping、6-DoF grasp、benchmark</div>
+      <div class="today-card"><strong>今日追问</strong>如果未来要做 foundation-model-assisted grasping，底层到底更缺“更强的类别级 pose 表达”，还是“更强的公开 grasp 评测与数据闭环”？</div>
+      <div class="today-card"><strong>影响力依据</strong>NOCS 在 Semantic Scholar 约 881 次引用；GraspNet-1Billion 约 753 次引用，都是各自子方向的代表底座。</div>
+      <div class="today-card"><strong>互补性</strong>前者解决“同类未知物体怎么看准”，后者解决“抓取方法如何在真实 clutter 里标准化比较”。</div>
     </section>
 
-    <h2 id="foundationpose">论文 1</h2>
-    <p class="paper-title en">FoundationPose: Unified 6D Pose Estimation and Tracking of Novel Objects（2026-06-20）</p>
-    <p>论文链接：<a href="https://arxiv.org/abs/2312.08344">https://arxiv.org/abs/2312.08344</a> · DOI：无</p>
+    <h2 id="nocs">论文 1</h2>
+    <p class="paper-title en">Normalized Object Coordinate Space for Category-Level 6D Object Pose and Size Estimation（2026-06-21）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/1901.02970">https://arxiv.org/abs/1901.02970</a> · DOI：<a href="https://doi.org/10.1109/CVPR.2019.00275">10.1109/CVPR.2019.00275</a></p>
     <div class="actions">
-      <a class="btn" href="./papers/FoundationPose - Unified 6D Pose Estimation and Tracking of Novel Objects - 2026-06-20.pdf">打开 PDF</a>
-      <a class="btn secondary" href="./papers/index.html">论文库</a>
-      <a class="btn secondary" href="./papers/translations/foundationpose.html">查看分析结果</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/2312.08344">arXiv</a>
+      <a class="btn" href="./papers/Normalized Object Coordinate Space for Category-Level 6D Object Pose and Size Estimation - 2026-06-21.pdf">打开 PDF</a>
+      <a class="btn secondary" href="./paper-folder-index.html">论文库</a>
+      <a class="btn secondary" href="./translations/nocs.html">查看分析结果</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/1901.02970">arXiv</a>
     </div>
-    <p><span class="tag">6D pose estimation</span><span class="tag">novel object</span><span class="tag">foundation model</span><span class="tag">tracking</span></p>
+    <p><span class="tag">category-level pose estimation</span><span class="tag">6D pose estimation</span><span class="tag">RGB-D pose</span><span class="tag">canonical space</span></p>
     <h3>两篇论文介绍</h3>
-    <p>面向新物体的 foundation-model-assisted 6D 位姿估计与跟踪系统，把模型驱动和少参考图像驱动两种设定统一到一套框架里。</p>
+    <p>类别级 6D 位姿估计的奠基论文，把未知实例的位姿与尺寸估计统一到共享 canonical coordinate space。</p>
     <h3>核心方法</h3>
-    <ul><li>用统一框架同时覆盖 model-based 与少参考图像的 model-free 设定</li><li>引入神经隐式表示做 novel view synthesis，缩小两种设定之间的差距</li><li>用 LLM 辅助的大规模合成数据训练姿态估计与跟踪模块</li></ul>
+    <ul><li>提出 NOCS 作为同类别物体共享的 normalized object coordinate representation。</li><li>在 Mask R-CNN 框架上同时预测类别、实例 mask 与像素级 NOCS correspondence。</li><li>结合 RGB-D 深度信息恢复物体的 metric 6D pose 与尺寸，并引入 mixed-reality data synthesis 扩充训练集。</li></ul>
     <h3>我认为的机器人创新点</h3>
-    <p>它真正有价值的地方，不只是把指标再往上推一点，而是把“新物体也能直接上手做 6D pose”这件事，从分散的技巧堆叠，收敛成了一套更像平台能力的统一框架。</p>
+    <p>它把机器人感知里的一个长期难点讲清楚了：很多抓取和操作系统并不缺 pose solver，而是缺“遇到没见过的杯子、瓶子、碗，还能给出稳定位姿”的统一表示。NOCS 给了这个问题第一套真正站得住的标准答案。</p>
     <h3>局限</h3>
-    <p>它仍然依赖较强的 3D 先验，例如 CAD 模型或少量参考图；如果要进一步走向完全开放世界和类别级位姿，仍有明显边界。</p>
+    <p>它仍依赖类别内共享几何先验，遇到类内形状差异很大、遮挡严重或 RGB-D 质量不足时会明显吃力；同时它更偏感知前端，不直接解决抓取质量与任务约束。</p>
 
-    <h2 id="dex-net-2-0">论文 2</h2>
-    <p class="paper-title en">Dex-Net 2.0: Deep Learning to Plan Robust Grasps with Synthetic Point Clouds and Analytic Grasp Metrics（2026-06-20）</p>
-    <p>论文链接：<a href="https://arxiv.org/abs/1703.09312">https://arxiv.org/abs/1703.09312</a> · DOI：<a href="https://doi.org/10.15607/RSS.2017.XIII.058">10.15607/RSS.2017.XIII.058</a></p>
+    <h2 id="graspnet-1billion">论文 2</h2>
+    <p class="paper-title en">GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping（2026-06-21）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/1912.13470">https://arxiv.org/abs/1912.13470</a> · DOI：<a href="https://doi.org/10.1109/CVPR42600.2020.01146">10.1109/CVPR42600.2020.01146</a></p>
     <div class="actions">
-      <a class="btn" href="./papers/Dex-Net 2.0 - Deep Learning to Plan Robust Grasps with Synthetic Point Clouds and Analytic Grasp Metrics - 2026-06-20.pdf">打开 PDF</a>
-      <a class="btn secondary" href="./papers/index.html">论文库</a>
-      <a class="btn secondary" href="./papers/translations/dex-net-2-0.html">查看分析结果</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/1703.09312">arXiv</a>
+      <a class="btn" href="./papers/GraspNet-1Billion - A Large-Scale Benchmark for General Object Grasping - 2026-06-21.pdf">打开 PDF</a>
+      <a class="btn secondary" href="./paper-folder-index.html">论文库</a>
+      <a class="btn secondary" href="./translations/graspnet-1billion.html">查看分析结果</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/1912.13470">arXiv</a>
     </div>
-    <p><span class="tag">grasping</span><span class="tag">grasp planning</span><span class="tag">GQ-CNN</span><span class="tag">synthetic data</span></p>
+    <p><span class="tag">grasping</span><span class="tag">benchmark</span><span class="tag">grasp detection</span><span class="tag">RGB-D clutter</span></p>
     <h3>两篇论文介绍</h3>
-    <p>经典的抓取规划论文，用大规模合成点云、解析抓取度量和 GQ-CNN，把平行夹爪抓取从慢速匹配式规划推进到可大规模学习的范式。</p>
+    <p>抓取方向最有代表性的公开 benchmark 之一，把真实 RGB-D clutter、密集抓取标注和统一评测正式结合起来。</p>
     <h3>核心方法</h3>
-    <ul><li>用解析鲁棒抓取度量自动标注大规模合成点云与抓取样本</li><li>训练 GQ-CNN 直接从深度图评估平行夹爪抓取成功概率</li><li>在真实 ABB YuMi 上验证合成数据训练的抓取规划器能直接迁移</li></ul>
+    <ul><li>构建 97,280 张真实 RGB-D 图像、190 个 clutter scene、88 个物体和超过 10 亿抓取姿态的公开 benchmark。</li><li>通过物体 6D pose 标注与解析抓取计算，把 object-level grasp pose 投影到 scene coordinate，降低密集抓取标注成本。</li><li>提出统一评测协议与 baseline 网络，使不同 grasp pose 预测方法能在同一标准下比较。</li></ul>
     <h3>我认为的机器人创新点</h3>
-    <p>它最有代表性的地方，是把“抓取规划”从手工搜索和对象匹配，改写成“先用物理与解析模型大规模造数据，再让网络学会快速评分”的路线，这条路后来影响了很多 sim-to-real grasping 工作。</p>
+    <p>这篇论文最值得机器人实践者重视的一点，是它把“抓取 benchmark”从玩具级闭门评测，变成了真实 RGB-D clutter 场景里的公共基础设施。后续很多 grasp detection、graspness、foundation-assisted grasping 工作，本质上都在这个底座上往前推。</p>
     <h3>局限</h3>
-    <p>它主要面向平行夹爪和单物体抓取评分，离今天更复杂的杂乱场景 6-DoF 抓取、任务约束抓取和多指手操作还有距离。</p>
+    <p>它主要聚焦双指抓取与数据/评测底座，本身不是任务级 grasping system；对多指灵巧手、语义条件抓取和复杂接触动力学的覆盖仍有限。</p>
 
     <h2>对比结论</h2>
-    <p><strong>FoundationPose</strong> 更偏“先把新物体的姿态估准并跟稳”，它决定后续操作有没有泛化能力更强的几何参考。</p>
-    <p><strong>Dex-Net 2.0</strong> 更偏“再从深度观测里快速筛出高成功率抓法”，它决定系统能否把抓取规划做得足够快、足够稳。</p>
-    <p>一起看，正好把当前论文库里的“新物体位姿估计 + 经典抓取规划底座”这条链路补完整。</p>
+    <p><strong>NOCS</strong> 更偏“把物体看准”，而且是把 pose estimation 从实例级推向类别级泛化。</p>
+    <p><strong>GraspNet-1Billion</strong> 更偏“把抓取研究放到统一公开底座上比较”，它不直接替你抓，但决定了后续很多 grasp detection 方法怎么被训练、评测和迭代。</p>
+    <p>这组一起看，能把当前论文库里“位姿感知”和“抓取 benchmark”之间缺掉的那一段补上。</p>
 
     <h3>阅读顺序</h3>
-    <p>先读 <span class="en">FoundationPose</span>，再读 <span class="en">Dex-Net 2.0</span>。</p>
-
+    <p>先读 <span class="en">NOCS</span>，再读 <span class="en">GraspNet-1Billion</span>。</p>
   </main>
 </body>
 </html>
