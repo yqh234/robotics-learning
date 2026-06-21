@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>anygrasp 论文导读</title>
+  <style>
+    :root {
+      --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583;
+      --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052);
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; min-height:100vh; color:var(--text);
+      background:
+        radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),
+        linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(0deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%);
+      background-size:auto,30px 30px,30px 30px,auto;
+      font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif;
+      line-height:1.86;
+    }
+    main {
+      width:min(920px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px;
+      background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94));
+      border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px;
+      box-shadow:var(--shadow);
+    }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    ul { margin:8px 0 16px 22px; padding:0; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px;
+      border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white;
+      border:1px solid #151b22; font-weight:700; text-decoration:none;
+    }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout {
+      margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd;
+      border-left:4px solid #a4aaa6; border-radius:8px;
+    }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文导读 · 2026-06-22 · 阅读状态：待复现</p>
+    <h1><span class="en">AnyGrasp: Robust and Efficient Grasp Perception in Spatial and Temporal Domains</span>：面向真实抓取系统落地的高性能抓取感知论文，强调 7-DoF、密集、连续、抗噪声和真实机器人吞吐，而不是只在静态单帧上报一个好看的抓取点。</h1>
+    <p class="note">建议把它和今天另一篇论文对照着读，重点看它补的是机器人感知链路、抓取链路还是系统链路的哪一层。</p>
+    <div class="actions">
+      <a class="btn" href="../AnyGrasp - Robust and Efficient Grasp Perception in Spatial and Temporal Domains - 2026-06-22.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2212.08333">arXiv</a>
+      <a class="btn secondary" href="https://doi.org/10.1109/TRO.2023.3281153">DOI</a>
+    </div>
+    <div class="callout"><strong>一句话导读：</strong>如果 GraspNet-1Billion 回答的是“怎样把抓取研究放到统一赛道”，那 AnyGrasp 回答的就是“在这条赛道上，什么样的系统才真的像一套能落地的抓取感知引擎”。</div>
+    <h2>英文信息</h2>
+    <p><strong>标题：</strong><span class="en">AnyGrasp: Robust and Efficient Grasp Perception in Spatial and Temporal Domains</span></p>
+    <p><strong>作者：</strong><span class="en">Hao-Shu Fang, Chenxi Wang, Hongjie Fang, Minghao Gou, Jirong Liu, Hengxu Yan, Wenhai Liu, Yichen Xie, Cewu Lu</span></p>
+    <p><strong>发表：</strong>IEEE Transactions on Robotics (T-RO)，2023</p>
+    <p><strong>DOI：</strong><a href="https://doi.org/10.1109/TRO.2023.3281153">10.1109/TRO.2023.3281153</a></p>
+    <p><strong>arXiv：</strong><a href="https://arxiv.org/abs/2212.08333">2212.08333</a></p>
+    <p><strong>项目 / 代码：</strong><a href="https://graspnet.net/anygrasp.html">https://graspnet.net/anygrasp.html</a> · <a href="https://github.com/graspnet/anygrasp_sdk">https://github.com/graspnet/anygrasp_sdk</a></p>
+    <p><strong>补充资源：</strong><a href="https://graspnet.net/">https://graspnet.net/</a></p>
+    <p><strong>原文页面：</strong><a href="https://graspnet.net/anygrasp.html">https://graspnet.net/anygrasp.html</a></p>
+    <h2>术语对照</h2>
+    <div class="terms"><div class="term"><span class="en">grasp perception</span><br />抓取感知</div><div class="term"><span class="en">temporal grasp tracking</span><br />时序抓取跟踪</div><div class="term"><span class="en">center-of-mass awareness</span><br />质心感知</div><div class="term"><span class="en">bin clearing throughput</span><br />清箱吞吐率</div></div>
+    <h2>中文导读</h2>
+    <p>AnyGrasp 值得补进来，不是因为它“又是一个抓取模型”，而是因为它代表了 GraspNet 之后那条更工程化、更接近真实产线的路线：抓取感知不只是单次检测，而是要兼顾稳定性、速度、噪声鲁棒性和跨观测连续性。</p>
+    <p>当前论文库里已经有 Dex-Net 2.0、Contact-GraspNet、GraspNet-1Billion 这些经典节点，但还缺一篇能把 benchmark 规模、真实部署速度、动态追踪和大批量未见物体抓取成功率串起来的系统论文。AnyGrasp 正好补上这段从 benchmark 走向真实系统的桥。</p>
+    <h2>推荐理由</h2>
+    <p>当前论文库里已经有 Dex-Net 2.0、Contact-GraspNet、GraspNet-1Billion 这些经典节点，但还缺一篇能把 benchmark 规模、真实部署速度、动态追踪和大批量未见物体抓取成功率串起来的系统论文。AnyGrasp 正好补上这段从 benchmark 走向真实系统的桥。</p>
+    <h2>引用 / 影响力说明</h2>
+    <p>影响力依据：OpenAlex 被引数约 210，Crossref referenced-by 约 227；发表在 T-RO 2023，并且项目页、SDK 和 GraspNet 生态一起推动了它在真实抓取系统里的扩散。</p>
+    <h2>复现清单</h2>
+    <ul><li>先把它和 Contact-GraspNet 对着读：前者更强调系统级稳定、时序和吞吐，后者更像高质量 6-DoF grasp generation 基座。</li><li>重点看 dense supervision、质心约束和 grasp correspondence 这三块，它们解释了它为什么在真实系统里更稳。</li><li>如果要复现，优先沿项目页和 SDK 跑通接口，再回看它与 GraspNet benchmark、动态抓取 demo 的衔接。</li></ul>
+    <h2>论文来源</h2>
+    <p>来源组合：T-RO DOI 页面、arXiv PDF、GraspNet AnyGrasp 项目页、AnyGrasp SDK、OpenAlex、Crossref。</p>
+    <h2>卡片元数据</h2>
+    <p><strong>方向：</strong>grasping / grasp / detection / grasp / tracking / 7-dof / grasp / manipulation / perception / real-robot / deployment / foundation-model-assisted / grasping / ecosystem</p>
+    <p><strong>文件名：</strong><span class="en">AnyGrasp - Robust and Efficient Grasp Perception in Spatial and Temporal Domains - 2026-06-22.pdf</span></p>
+    <p><strong>推荐标签：</strong>grasping、grasp detection、grasp tracking、real deployment</p>
+  </main>
+</body>
+</html>

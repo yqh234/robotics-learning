@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>posecnn 论文导读</title>
+  <style>
+    :root {
+      --bg:#f3f1eb; --text:#2f373b; --muted:#6f787e; --line:#dce2e4; --steel:#7a8583;
+      --blue:#2f5f9f; --shadow:0 18px 50px rgba(34,42,46,.08); --grid:rgba(94,104,106,.052);
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; min-height:100vh; color:var(--text);
+      background:
+        radial-gradient(circle at 8% 6%,rgba(255,255,255,.9),transparent 28%),
+        linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(0deg,var(--grid) 1px,transparent 1px),
+        linear-gradient(180deg,#f8f6f0 0%,var(--bg) 48%,#eeece6 100%);
+      background-size:auto,30px 30px,30px 30px,auto;
+      font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif;
+      line-height:1.86;
+    }
+    main {
+      width:min(920px,calc(100% - 36px)); margin:34px auto 54px; padding:48px 60px 64px;
+      background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(251,247,239,.94));
+      border:1px solid var(--line); border-top:5px solid var(--steel); border-radius:10px;
+      box-shadow:var(--shadow);
+    }
+    h1 { margin:0 0 10px; font-size:32px; line-height:1.25; }
+    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line); font-size:24px; }
+    p { margin:8px 0 16px; }
+    ul { margin:8px 0 16px 22px; padding:0; }
+    a { color:var(--blue); text-decoration:none; border-bottom:1px solid rgba(47,95,159,.25); }
+    .en { font-family:"Times New Roman",Times,serif; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 20px; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; min-height:38px; padding:8px 14px;
+      border-radius:7px; background:linear-gradient(180deg,#202a33,#151b22); color:white;
+      border:1px solid #151b22; font-weight:700; text-decoration:none;
+    }
+    .btn.secondary { background:rgba(255,255,255,.76); color:var(--text); border-color:var(--line); }
+    .callout {
+      margin:20px 0; padding:16px 17px; background:rgba(255,250,242,.82); border:1px solid #ece8dd;
+      border-left:4px solid #a4aaa6; border-radius:8px;
+    }
+    .terms { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .term { padding:12px 13px; background:rgba(255,255,255,.74); border:1px solid var(--line); border-radius:8px; }
+    @media (max-width:760px) { main { padding:28px 22px 40px; } .terms { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="meta">论文导读 · 2026-06-22 · 阅读状态：精读中</p>
+    <h1><span class="en">PoseCNN: A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes</span>：经典 6D 位姿估计代表作，用 RGB 图像先把物体中心、距离和旋转拆开估，再在遮挡和对称物体场景里稳住结果。</h1>
+    <p class="note">建议把它和今天另一篇论文对照着读，重点看它补的是机器人感知链路、抓取链路还是系统链路的哪一层。</p>
+    <div class="actions">
+      <a class="btn" href="../PoseCNN - A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes - 2026-06-22.pdf">打开原文 PDF</a>
+      <a class="btn secondary" href="../index.html">返回论文库</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/1711.00199">arXiv</a>
+      <a class="btn secondary" href="https://doi.org/10.15607/RSS.2018.XIV.019">DOI</a>
+    </div>
+    <div class="callout"><strong>一句话导读：</strong>如果说 DenseFusion 把 RGB-D 融合推进到了一个更强阶段，那 PoseCNN 值得先读，因为很多后来的对比、数据集和误差口径，都是从它这里真正立住的。</div>
+    <h2>英文信息</h2>
+    <p><strong>标题：</strong><span class="en">PoseCNN: A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes</span></p>
+    <p><strong>作者：</strong><span class="en">Yu Xiang, Tanner Schmidt, Venkatraman Narayanan, Dieter Fox</span></p>
+    <p><strong>发表：</strong>Robotics: Science and Systems (RSS)，2018</p>
+    <p><strong>DOI：</strong><a href="https://doi.org/10.15607/RSS.2018.XIV.019">10.15607/RSS.2018.XIV.019</a></p>
+    <p><strong>arXiv：</strong><a href="https://arxiv.org/abs/1711.00199">1711.00199</a></p>
+    <p><strong>项目 / 代码：</strong><a href="https://rse-lab.cs.washington.edu/projects/posecnn/">https://rse-lab.cs.washington.edu/projects/posecnn/</a> · <a href="https://github.com/yuxng/PoseCNN">https://github.com/yuxng/PoseCNN</a></p>
+    <p><strong>补充资源：</strong><a href="https://github.com/yuxng/YCB_Video_toolbox">https://github.com/yuxng/YCB_Video_toolbox</a></p>
+    <p><strong>原文页面：</strong><a href="https://www.roboticsproceedings.org/rss14/p19.html">https://www.roboticsproceedings.org/rss14/p19.html</a></p>
+    <h2>术语对照</h2>
+    <div class="terms"><div class="term"><span class="en">known-object pose estimation</span><br />已知物体位姿估计</div><div class="term"><span class="en">ShapeMatch-Loss</span><br />形状匹配损失</div><div class="term"><span class="en">YCB-Video</span><br />YCB-Video 数据集</div><div class="term"><span class="en">occluded object pose</span><br />遮挡场景位姿估计</div></div>
+    <h2>中文导读</h2>
+    <p>这篇论文的历史价值不只是“早期深度学习位姿估计”。它真正留下来的，是一套后来很多方法都绕不开的问题定义：在杂乱、遮挡、对称物体条件下，怎样把已知物体的 6D 位姿估计做成可训练、可复现、可比较的视觉模块。</p>
+    <p>当前论文库已经有 DenseFusion、FoundationPose、NOCS 这几类更后续的工作，但还缺一篇真正奠定“已知物体、RGB 主导、遮挡鲁棒、对称处理、YCB-Video 数据集”这一整条路线的基准论文。PoseCNN 正好把这块历史底座补上。</p>
+    <h2>推荐理由</h2>
+    <p>当前论文库已经有 DenseFusion、FoundationPose、NOCS 这几类更后续的工作，但还缺一篇真正奠定“已知物体、RGB 主导、遮挡鲁棒、对称处理、YCB-Video 数据集”这一整条路线的基准论文。PoseCNN 正好把这块历史底座补上。</p>
+    <h2>引用 / 影响力说明</h2>
+    <p>影响力依据：OpenAlex 记录的被引数约 2099，Crossref 记录的 referenced-by 约 1486；发表在 RSS 2018，并伴随 YCB-Video 数据集一起成为 6D 位姿估计领域的常驻参照系。</p>
+    <h2>复现清单</h2>
+    <ul><li>先把 PoseCNN 的问题设定和 NOCS、FoundationPose 区分清楚：它解决的是已知物体实例，不是类别泛化。</li><li>重点复看平移与旋转分头预测的设计，以及对称物体损失怎么避开标签多解。</li><li>顺手把 YCB-Video toolbox 一起看掉，因为后面很多 6D pose 论文的训练和评测接口都沿用了这条线。</li></ul>
+    <h2>论文来源</h2>
+    <p>来源组合：RSS 2018 论文 PDF、arXiv 页面、Washington 项目页、PoseCNN GitHub、YCB-Video toolbox、OpenAlex、Crossref。</p>
+    <h2>卡片元数据</h2>
+    <p><strong>方向：</strong>6d / pose / estimation / object / pose / estimation / rgb / pose / perception / clutter / known-object / pose / robotic / manipulation</p>
+    <p><strong>文件名：</strong><span class="en">PoseCNN - A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes - 2026-06-22.pdf</span></p>
+    <p><strong>推荐标签：</strong>6d pose estimation、object pose estimation、rgb pose、perception</p>
+  </main>
+</body>
+</html>

@@ -66,69 +66,69 @@
 <body>
   <main class="page">
     <h1>每日机器人论文对照</h1>
-    <p class="subtitle">今日创新点：今天这组更像是在补机器人操作里最容易被割裂的两层能力。一层是“同类但没见过的物体，位姿到底怎么稳健估出来”；另一层是“有了感知之后，抓取研究怎样在统一公开协议下做规模化比较和训练”。</p>
-    <p class="subtitle">未来创新点：下一步最值得追的是把 NOCS 这类 category-level pose 表达，与 GraspNet 这类 clutter grasp benchmark 结合起来，再往上接语言条件抓取、foundation-model-assisted grasping 和任务级执行闭环。</p>
-    <div class="meta">更新时间：2026-06-21 · 今日论文：2026-06-21 追加刷新</div>
+    <p class="subtitle">今日创新点：今天这组更像是在补“感知到抓取执行”中间最容易断掉的一段。PoseCNN 把已知物体在杂乱场景里的 6D 位姿估计做成了可训练、可比较的视觉前端；AnyGrasp 则把抓取感知进一步推成一套真正面向速度、稳定性和连续性的真实系统能力。</p>
+    <p class="subtitle">未来创新点：下一步最值得追的是把这两条线接起来：前端用更强的位姿/几何理解稳住目标状态，中间用 foundation-model-assisted reasoning 做目标筛选和抓取约束，后端用 AnyGrasp 这一类高吞吐抓取感知系统完成真实落地。</p>
+    <div class="meta">更新时间：2026-06-22 · 今日论文：2026-06-22 追加刷新</div>
     <div class="top-actions"><a class="btn secondary" href="./robotics-paper-feishu-page-en.html">English Translation</a></div>
     <p class="local">论文库地址：<a href="./paper-folder-index.html">./paper-folder-index.html</a></p>
 
     <div class="callout">
-      今日主题：用一篇 category-level 6D pose 奠基论文，对照一篇通用抓取 benchmark 奠基论文，补足当前论文库在“类别泛化感知 / 抓取公共基座 / 感知到操作接口”上的结构空位。
+      今日主题：用一篇经典 6D 位姿估计奠基论文，对照一篇更接近真实抓取部署的 T-RO 系统论文，补足当前论文库在“已知物体感知底座 / 抓取系统落地 / benchmark 之后怎么变成工程能力”上的结构空位。
     </div>
 
     <section class="today-grid" aria-label="今日重点总览">
-      <div class="today-card"><strong>先读顺序</strong>先读 NOCS，先把“未知实例的类别级位姿估计”想清楚；再读 GraspNet-1Billion，看抓取研究为什么需要统一 benchmark。</div>
-      <div class="today-card"><strong>关键词</strong>category-level pose estimation、NOCS、RGB-D pose、general object grasping、6-DoF grasp、benchmark</div>
-      <div class="today-card"><strong>今日追问</strong>如果未来要做 foundation-model-assisted grasping，底层到底更缺“更强的类别级 pose 表达”，还是“更强的公开 grasp 评测与数据闭环”？</div>
-      <div class="today-card"><strong>影响力依据</strong>NOCS 在 Semantic Scholar 约 881 次引用；GraspNet-1Billion 约 753 次引用，都是各自子方向的代表底座。</div>
-      <div class="today-card"><strong>互补性</strong>前者解决“同类未知物体怎么看准”，后者解决“抓取方法如何在真实 clutter 里标准化比较”。</div>
+      <div class="today-card"><strong>先读顺序</strong>先读 PoseCNN，把 YCB-Video、对称物体、遮挡鲁棒这条底线想清楚；再读 AnyGrasp，看 benchmark 之后怎样把抓取真正做成高吞吐系统。</div>
+      <div class="today-card"><strong>关键词</strong>6D pose estimation、YCB-Video、RGB pose、grasp perception、temporal grasp tracking、bin picking。</div>
+      <div class="today-card"><strong>今日追问</strong>如果以后要做 foundation-model-assisted grasping，真正短板更可能出在位姿前端、抓取分布建模，还是系统时序稳定性？</div>
+      <div class="today-card"><strong>影响力依据</strong>PoseCNN 在 OpenAlex 上约 2099 次引用，AnyGrasp 约 210 次；前者是经典底座，后者是近年的高质量系统代表。</div>
+      <div class="today-card"><strong>互补性</strong>前者解决“目标怎么看准”，后者解决“看准之后怎样又稳又快地持续抓”。</div>
     </section>
 
-    <h2 id="nocs">论文 1</h2>
-    <p class="paper-title en">Normalized Object Coordinate Space for Category-Level 6D Object Pose and Size Estimation（2026-06-21）</p>
-    <p>论文链接：<a href="https://arxiv.org/abs/1901.02970">https://arxiv.org/abs/1901.02970</a> · DOI：<a href="https://doi.org/10.1109/CVPR.2019.00275">10.1109/CVPR.2019.00275</a></p>
+    <h2 id="posecnn">论文 1</h2>
+    <p class="paper-title en">PoseCNN: A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes（2026-06-22）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/1711.00199">https://arxiv.org/abs/1711.00199</a> · DOI：<a href="https://doi.org/10.15607/RSS.2018.XIV.019">10.15607/RSS.2018.XIV.019</a></p>
     <div class="actions">
-      <a class="btn" href="./papers/Normalized Object Coordinate Space for Category-Level 6D Object Pose and Size Estimation - 2026-06-21.pdf">打开 PDF</a>
+      <a class="btn" href="./papers/PoseCNN - A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes - 2026-06-22.pdf">打开 PDF</a>
       <a class="btn secondary" href="./paper-folder-index.html">论文库</a>
-      <a class="btn secondary" href="./translations/nocs.html">查看分析结果</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/1901.02970">arXiv</a>
+      <a class="btn secondary" href="./translations/posecnn.html">论文翻译</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/1711.00199">arXiv</a>
     </div>
-    <p><span class="tag">category-level pose estimation</span><span class="tag">6D pose estimation</span><span class="tag">RGB-D pose</span><span class="tag">canonical space</span></p>
+    <p><span class="tag">6D 位姿估计</span><span class="tag">YCB-Video</span><span class="tag">遮挡鲁棒</span><span class="tag">RGB 感知</span></p>
     <h3>两篇论文介绍</h3>
-    <p>类别级 6D 位姿估计的奠基论文，把未知实例的位姿与尺寸估计统一到共享 canonical coordinate space。</p>
+    <p>经典 6D 位姿估计代表作，用 RGB 图像先把物体中心、距离和旋转拆开估，再在遮挡和对称物体场景里稳住结果。</p>
     <h3>核心方法</h3>
-    <ul><li>提出 NOCS 作为同类别物体共享的 normalized object coordinate representation。</li><li>在 Mask R-CNN 框架上同时预测类别、实例 mask 与像素级 NOCS correspondence。</li><li>结合 RGB-D 深度信息恢复物体的 metric 6D pose 与尺寸，并引入 mixed-reality data synthesis 扩充训练集。</li></ul>
+    <ul><li>把 3D 平移拆成 2D 物体中心定位加距离回归，再用四元数回归旋转，降低直接回归完整 6D pose 的难度。</li><li>提出面向对称物体的 ShapeMatch-Loss，减少姿态标签多解导致的训练不稳定。</li><li>同步发布 YCB-Video 数据集，提供 21 个 YCB 物体、92 段视频和 133,827 帧精确位姿标注，成为后续大量 6D pose 论文的共同评测底座。</li></ul>
     <h3>我认为的机器人创新点</h3>
-    <p>它把机器人感知里的一个长期难点讲清楚了：很多抓取和操作系统并不缺 pose solver，而是缺“遇到没见过的杯子、瓶子、碗，还能给出稳定位姿”的统一表示。NOCS 给了这个问题第一套真正站得住的标准答案。</p>
+    <p>它最重要的机器人创新点，是把“抓取前的目标感知”从特征工程和模板匹配，推进到端到端可训练的 6D pose 网络，并且明确处理了遮挡、对称物体和真实台面杂乱场景这些机器人真正会遇到的问题。</p>
     <h3>局限</h3>
-    <p>它仍依赖类别内共享几何先验，遇到类内形状差异很大、遮挡严重或 RGB-D 质量不足时会明显吃力；同时它更偏感知前端，不直接解决抓取质量与任务约束。</p>
+    <p>它的设定仍然是已知物体实例，不解决 category-level 泛化，也不直接解决 novel object pose；同时主体输入还是 RGB，深度更多用于后处理 refinement，这也是后来 DenseFusion、NOCS、FoundationPose 继续往前推的地方。</p>
 
-    <h2 id="graspnet-1billion">论文 2</h2>
-    <p class="paper-title en">GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping（2026-06-21）</p>
-    <p>论文链接：<a href="https://arxiv.org/abs/1912.13470">https://arxiv.org/abs/1912.13470</a> · DOI：<a href="https://doi.org/10.1109/CVPR42600.2020.01146">10.1109/CVPR42600.2020.01146</a></p>
+    <h2 id="anygrasp">论文 2</h2>
+    <p class="paper-title en">AnyGrasp: Robust and Efficient Grasp Perception in Spatial and Temporal Domains（2026-06-22）</p>
+    <p>论文链接：<a href="https://arxiv.org/abs/2212.08333">https://arxiv.org/abs/2212.08333</a> · DOI：<a href="https://doi.org/10.1109/TRO.2023.3281153">10.1109/TRO.2023.3281153</a></p>
     <div class="actions">
-      <a class="btn" href="./papers/GraspNet-1Billion - A Large-Scale Benchmark for General Object Grasping - 2026-06-21.pdf">打开 PDF</a>
+      <a class="btn" href="./papers/AnyGrasp - Robust and Efficient Grasp Perception in Spatial and Temporal Domains - 2026-06-22.pdf">打开 PDF</a>
       <a class="btn secondary" href="./paper-folder-index.html">论文库</a>
-      <a class="btn secondary" href="./translations/graspnet-1billion.html">查看分析结果</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/1912.13470">arXiv</a>
+      <a class="btn secondary" href="./translations/anygrasp.html">论文翻译</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2212.08333">arXiv</a>
     </div>
-    <p><span class="tag">grasping</span><span class="tag">benchmark</span><span class="tag">grasp detection</span><span class="tag">RGB-D clutter</span></p>
+    <p><span class="tag">抓取感知</span><span class="tag">时序连续性</span><span class="tag">真实部署</span><span class="tag">高吞吐</span></p>
     <h3>两篇论文介绍</h3>
-    <p>抓取方向最有代表性的公开 benchmark 之一，把真实 RGB-D clutter、密集抓取标注和统一评测正式结合起来。</p>
+    <p>面向真实抓取系统落地的高性能抓取感知论文，强调 7-DoF、密集、连续、抗噪声和真实机器人吞吐，而不是只在静态单帧上报一个好看的抓取点。</p>
     <h3>核心方法</h3>
-    <ul><li>构建 97,280 张真实 RGB-D 图像、190 个 clutter scene、88 个物体和超过 10 亿抓取姿态的公开 benchmark。</li><li>通过物体 6D pose 标注与解析抓取计算，把 object-level grasp pose 投影到 scene coordinate，降低密集抓取标注成本。</li><li>提出统一评测协议与 baseline 网络，使不同 grasp pose 预测方法能在同一标准下比较。</li></ul>
+    <ul><li>在空间和时间两个维度上做密集监督，把真实感知与解析标注结合起来，提升抓取分布质量。</li><li>显式引入物体质心相关信息，提升抓取稳定性而不只是可接近性。</li><li>利用跨观测抓取对应关系做动态抓取追踪，在真实系统里兼顾 93.3% 未见物体 bin clearing 成功率和每小时 900+ picks 的吞吐表现。</li></ul>
     <h3>我认为的机器人创新点</h3>
-    <p>这篇论文最值得机器人实践者重视的一点，是它把“抓取 benchmark”从玩具级闭门评测，变成了真实 RGB-D clutter 场景里的公共基础设施。后续很多 grasp detection、graspness、foundation-assisted grasping 工作，本质上都在这个底座上往前推。</p>
+    <p>它最值得机器人实践者重视的点，是把抓取感知从“单帧候选抓取生成”推进到“跨时序连续、考虑质心稳定性、兼顾噪声鲁棒和吞吐率”的系统能力，明显更接近真实 bin picking 和动态抓取部署要求。</p>
     <h3>局限</h3>
-    <p>它主要聚焦双指抓取与数据/评测底座，本身不是任务级 grasping system；对多指灵巧手、语义条件抓取和复杂接触动力学的覆盖仍有限。</p>
+    <p>它虽然非常强，但主设定仍然围绕平行夹爪和特定抓取执行链路；对于多指灵巧手、任务语义约束抓取、复杂接触动力学，覆盖仍然有限。</p>
 
     <h2>对比结论</h2>
-    <p><strong>NOCS</strong> 更偏“把物体看准”，而且是把 pose estimation 从实例级推向类别级泛化。</p>
-    <p><strong>GraspNet-1Billion</strong> 更偏“把抓取研究放到统一公开底座上比较”，它不直接替你抓，但决定了后续很多 grasp detection 方法怎么被训练、评测和迭代。</p>
-    <p>这组一起看，能把当前论文库里“位姿感知”和“抓取 benchmark”之间缺掉的那一段补上。</p>
+    <p><strong>PoseCNN</strong> 更偏“把感知底座做稳”，尤其是已知物体、RGB 输入、遮挡和对称物体这些抓取前最容易掉链子的环节。</p>
+    <p><strong>AnyGrasp</strong> 更偏“把抓取系统做成真实能力”，强调连续、稳定、抗噪和吞吐，而不是只在静态评测里给一个候选抓取。</p>
+    <p>这两篇连着读，能把论文库里“6D pose / benchmark / 6-DoF grasp generation”之间缺掉的那一段桥补上。</p>
 
     <h3>阅读顺序</h3>
-    <p>先读 <span class="en">NOCS</span>，再读 <span class="en">GraspNet-1Billion</span>。</p>
+    <p>先读 <span class="en">PoseCNN</span>，再读 <span class="en">AnyGrasp</span>。</p>
   </main>
 </body>
 </html>

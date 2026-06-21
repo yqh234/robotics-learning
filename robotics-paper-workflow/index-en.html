@@ -33,60 +33,60 @@
 <body>
   <main class="page">
     <h1>Daily Robotics Paper Briefing</h1>
-    <p class="subtitle">Today’s innovation point: this pair repairs a common split in robotics manipulation stacks. One paper asks how to estimate pose for unseen instances within a category; the other asks how grasping research becomes comparable and scalable under a public benchmark.</p>
-    <p class="subtitle">Next innovation point: connect category-level pose representations such as NOCS with GraspNet-style clutter grasp benchmarks, then push upward toward language-conditioned and foundation-assisted grasping loops.</p>
-    <div class="meta">Updated: 2026-06-21 · appended daily refresh</div>
+    <p class="subtitle">Today's innovation point: this pair repairs a missing bridge in the current library. PoseCNN establishes a durable known-object 6D pose front-end for cluttered manipulation scenes, while AnyGrasp shows what it takes to turn grasp perception into a fast, stable, real-robot system.</p>
+    <p class="subtitle">Next innovation point: combine stronger pose understanding with foundation-assisted target reasoning, then hand off to deployment-grade grasp perception for robust closed-loop manipulation.</p>
+    <div class="meta">Updated: 2026-06-22 · appended daily refresh</div>
     <div class="top-actions"><a class="btn secondary" href="robotics-paper-feishu-page.html">返回中文</a></div>
     <p class="local">Paper library: <a href="file:///C:/Users/86136/Desktop/机器人论文 PDFs/index.html">file:///C:/Users/86136/Desktop/机器人论文 PDFs/index.html</a></p>
-    <div class="callout">Today’s pair is intentionally complementary: NOCS expands 6D pose estimation from instance-level recognition to category-level generalization, while GraspNet-1Billion provides the public grasp benchmark substrate that later clutter-grasping systems build on.</div>
+    <div class="callout">Today's pair is intentionally complementary: PoseCNN stabilizes the pre-grasp pose front-end under clutter and symmetry, while AnyGrasp pushes grasp perception toward deployment-grade continuity, throughput, and stability.</div>
     <section class="today-grid">
-      <div class="today-card"><strong>Read First</strong>Read NOCS first, then GraspNet-1Billion.</div>
-      <div class="today-card"><strong>Keywords</strong>category-level pose, NOCS, RGB-D pose, grasp benchmark, grasp detection, clutter.</div>
-      <div class="today-card"><strong>Impact</strong>Semantic Scholar counts are about 881 for NOCS and 753 for GraspNet-1Billion.</div>
-      <div class="today-card"><strong>Complement</strong>Generalized pose perception versus benchmark infrastructure for grasping.</div>
+      <div class="today-card"><strong>Read First</strong>Read PoseCNN first, then AnyGrasp.</div>
+      <div class="today-card"><strong>Keywords</strong>6D pose, YCB-Video, RGB pose, grasp perception, temporal tracking, bin picking.</div>
+      <div class="today-card"><strong>Impact</strong>OpenAlex counts are about 2099 for PoseCNN and 210 for AnyGrasp.</div>
+      <div class="today-card"><strong>Complement</strong>Perception foundation versus real-system grasp execution readiness.</div>
     </section>
-    <h2 id="nocs">Paper 1</h2>
-    <p class="paper-title">Normalized Object Coordinate Space for Category-Level 6D Object Pose and Size Estimation (2026-06-21)</p>
-    <p>Links: <a href="https://arxiv.org/abs/1901.02970">arXiv</a> · DOI: <a href="https://doi.org/10.1109/CVPR.2019.00275">10.1109/CVPR.2019.00275</a></p>
+    <h2 id="posecnn">Paper 1</h2>
+    <p class="paper-title">PoseCNN: A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes (2026-06-22)</p>
+    <p>Links: <a href="https://arxiv.org/abs/1711.00199">arXiv</a> · DOI: <a href="https://doi.org/10.15607/RSS.2018.XIV.019">10.15607/RSS.2018.XIV.019</a></p>
     <div class="actions">
-      <a class="btn" href="file:///C:/Users/86136/Desktop/机器人论文 PDFs/Normalized Object Coordinate Space for Category-Level 6D Object Pose and Size Estimation - 2026-06-21.pdf">Open PDF</a>
+      <a class="btn" href="file:///C:/Users/86136/Desktop/机器人论文 PDFs/PoseCNN - A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes - 2026-06-22.pdf">Open PDF</a>
       <a class="btn secondary" href="file:///C:/Users/86136/Desktop/机器人论文 PDFs/index.html">Paper Library</a>
-      <a class="btn secondary" href="file:///C:/Users/86136/Desktop/机器人论文 PDFs/translations/nocs.html">View Analysis</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/1901.02970">arXiv</a>
+      <a class="btn secondary" href="file:///C:/Users/86136/Desktop/机器人论文 PDFs/translations/posecnn.html">View Analysis</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/1711.00199">arXiv</a>
     </div>
-    <p><span class="tag">category-level pose</span><span class="tag">RGB-D</span><span class="tag">perception</span><span class="tag">canonical space</span></p>
+    <p><span class="tag">6D pose</span><span class="tag">RGB</span><span class="tag">YCB-Video</span><span class="tag">clutter</span></p>
     <h3>Why It Was Chosen</h3>
-    <p>The library already had instance-level and novel-object pose papers, but still lacked the foundational category-level pose generalization paper. NOCS fills that gap directly.</p>
+    <p>The library already had stronger later pose systems, but it still lacked the milestone paper that defined the known-object RGB pose pipeline and introduced YCB-Video.</p>
     <h3>Core Methods</h3>
-    <ul><li>Introduces NOCS as a shared normalized object coordinate representation across unseen instances in the same category.</li><li>Builds on a region-based network that predicts category, mask, and pixel-wise NOCS correspondences jointly.</li><li>Uses RGB-D depth to recover metric 6D pose and size, supported by context-aware mixed-reality data synthesis.</li></ul>
+    <ul><li>Decouples translation into image-center localization plus depth prediction, and regresses rotation with quaternions.</li><li>Introduces a symmetry-aware loss to stabilize training on objects with ambiguous orientations.</li><li>Releases the YCB-Video dataset, which became a standard benchmark substrate for later 6D pose research.</li></ul>
     <h3>Robotics Insight</h3>
-    <p>Its robotics value is giving manipulation systems a reusable way to reason about unseen object instances at the category level instead of assuming exact CAD identities.</p>
+    <p>Its robotics contribution is turning pre-grasp object pose estimation into a trainable end-to-end perception module that explicitly handles clutter, occlusion, and symmetry.</p>
     <h3>Main Limitation</h3>
-    <p>It still struggles when within-category shape variation or occlusion becomes too large, and it only addresses the perception front-end rather than grasp quality or task constraints.</p>
+    <p>It assumes known object instances, not category-level or open-world pose, and depth mainly enters as refinement rather than an integrated representation.</p>
 
-    <h2 id="graspnet-1billion">Paper 2</h2>
-    <p class="paper-title">GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping (2026-06-21)</p>
-    <p>Links: <a href="https://arxiv.org/abs/1912.13470">arXiv</a> · DOI: <a href="https://doi.org/10.1109/CVPR42600.2020.01146">10.1109/CVPR42600.2020.01146</a></p>
+    <h2 id="anygrasp">Paper 2</h2>
+    <p class="paper-title">AnyGrasp: Robust and Efficient Grasp Perception in Spatial and Temporal Domains (2026-06-22)</p>
+    <p>Links: <a href="https://arxiv.org/abs/2212.08333">arXiv</a> · DOI: <a href="https://doi.org/10.1109/TRO.2023.3281153">10.1109/TRO.2023.3281153</a></p>
     <div class="actions">
-      <a class="btn" href="file:///C:/Users/86136/Desktop/机器人论文 PDFs/GraspNet-1Billion - A Large-Scale Benchmark for General Object Grasping - 2026-06-21.pdf">Open PDF</a>
+      <a class="btn" href="file:///C:/Users/86136/Desktop/机器人论文 PDFs/AnyGrasp - Robust and Efficient Grasp Perception in Spatial and Temporal Domains - 2026-06-22.pdf">Open PDF</a>
       <a class="btn secondary" href="file:///C:/Users/86136/Desktop/机器人论文 PDFs/index.html">Paper Library</a>
-      <a class="btn secondary" href="file:///C:/Users/86136/Desktop/机器人论文 PDFs/translations/graspnet-1billion.html">View Analysis</a>
-      <a class="btn secondary" href="https://arxiv.org/abs/1912.13470">arXiv</a>
+      <a class="btn secondary" href="file:///C:/Users/86136/Desktop/机器人论文 PDFs/translations/anygrasp.html">View Analysis</a>
+      <a class="btn secondary" href="https://arxiv.org/abs/2212.08333">arXiv</a>
     </div>
-    <p><span class="tag">grasping</span><span class="tag">benchmark</span><span class="tag">6-DoF grasp</span><span class="tag">RGB-D clutter</span></p>
+    <p><span class="tag">grasping</span><span class="tag">temporal</span><span class="tag">real robot</span><span class="tag">throughput</span></p>
     <h3>Why It Was Chosen</h3>
-    <p>The library already had classic grasp planning and 6-DoF grasp generation, but it still lacked the benchmark substrate that made large-scale grasp comparison and training practical.</p>
+    <p>The library already had grasp planning, grasp generation, and the GraspNet benchmark, but it still lacked the paper that best bridges those ideas into a high-throughput deployed grasping system.</p>
     <h3>Core Methods</h3>
-    <ul><li>Builds a public benchmark with 97,280 real RGB-D images, 190 cluttered scenes, 88 objects, and over one billion grasp poses.</li><li>Projects object-level grasp poses into scene coordinates using annotated object poses and analytic grasp computation.</li><li>Provides a unified evaluation protocol and a baseline network for comparable grasp-pose prediction research.</li></ul>
+    <ul><li>Uses dense supervision across both spatial and temporal domains, mixing real perception with analytic labels.</li><li>Adds center-of-mass awareness to favor stable grasps rather than merely reachable ones.</li><li>Tracks grasp correspondences across observations to support dynamic grasping with strong real-system throughput.</li></ul>
     <h3>Robotics Insight</h3>
-    <p>Its robotics contribution is making cluttered-scene RGB-D grasping a shared public infrastructure problem instead of a collection of isolated private setups.</p>
+    <p>Its key robotics value is reframing grasp perception as a temporally consistent, stability-aware, deployment-minded system rather than a one-shot detector.</p>
     <h3>Main Limitation</h3>
-    <p>It is mainly a two-finger grasp benchmark and evaluation substrate, not a full task-level manipulation system or a multi-finger dexterous benchmark.</p>
+    <p>It is still centered on parallel-jaw grasping and does not fully solve dexterous-hand, semantic, or contact-rich grasp execution.</p>
 
     <h2>Comparison</h2>
-    <p><strong>NOCS</strong> is about expanding pose estimation from known instances to unseen objects within a category.</p>
-    <p><strong>GraspNet-1Billion</strong> is about making grasp research comparable, reproducible, and scalable under one public clutter benchmark.</p>
-    <p>Read them in that order to connect generalized pose perception with the benchmark substrate that later grasping systems stand on.</p>
+    <p><strong>PoseCNN</strong> is about making known-object pose estimation in clutter trainable, standard, and useful to downstream manipulation.</p>
+    <p><strong>AnyGrasp</strong> is about making grasp perception continuous, stable, and fast enough for real deployment rather than isolated evaluation.</p>
+    <p>Read them in that order to connect perception infrastructure with deployment-minded grasp execution.</p>
   </main>
 </body>
 </html>

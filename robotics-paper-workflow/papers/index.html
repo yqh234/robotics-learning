@@ -77,7 +77,7 @@
       <h1>机器人论文 PDFs</h1>
       <p class="subtitle">每日追加更新的机器人论文阅读库。保留历史论文、历史 PDF、历史分析页与历史翻译页，只向库里追加新论文。</p>
       <div class="toolbar">
-        <span class="muted" id="libraryCount">当前日期：2026-06-21 · 累计收录 14 篇</span>
+        <span class="muted" id="libraryCount">当前日期：2026-06-22 · 累计收录 16 篇</span>
         <a href="./">打开系统文件夹</a>
       </div>
       <div class="top-actions"><a class="btn secondary" href="index-en.html">English Translation</a></div>
@@ -86,14 +86,16 @@
     
     
     
+    
+    
     <section class="panel">
       <h2>今日重点</h2>
       <div class="overview">
-        <div class="overview-card"><strong>先读建议：</strong>先看 NOCS，把“同类未知实例为什么还能估位姿”想清楚；再读 GraspNet-1Billion，看抓取研究为什么必须有统一公开 benchmark。</div>
-        <div class="overview-card"><strong>研究抓手：</strong>今天补的是“category-level 6D pose + general object grasp benchmark”这段底座。它把当前论文库从实例级 pose、novel-object pose 和 grasp method，继续往更底层的公共基础设施补全。</div>
+        <div class="overview-card"><strong>先读建议：</strong>先读 PoseCNN，把“已知物体在杂乱场景里怎样稳定位姿”这条线补齐；再读 AnyGrasp，看抓取感知怎样从 benchmark 走到真实高吞吐系统。</div>
+        <div class="overview-card"><strong>研究抓手：</strong>今天补的是“位姿底座 + 系统级抓取感知”这一段。它能把论文库里已有的 NOCS、DenseFusion、Contact-GraspNet、GraspNet-1Billion 串成一条更完整的感知到执行链。</div>
       </div>
       <div class="controls" aria-label="搜索与筛选">
-        <input id="searchBox" type="search" placeholder="搜索标题、标签、方向，例如 grasp / pose / category-level / clutter / RGB-D" />
+        <input id="searchBox" type="search" placeholder="搜索标题、标签、方向，例如 pose / YCB / grasp / temporal / clutter / bin picking" />
         <select id="statusFilter">
           <option value="all">全部状态</option>
           <option value="精读中">精读中</option>
@@ -118,11 +120,13 @@
           <option value="category-level pose estimation">category-level pose estimation</option>
           <option value="object pose estimation">object pose estimation</option>
           <option value="rgb-d pose">rgb-d pose</option>
+          <option value="rgb pose">rgb pose</option>
           <option value="foundation-model-assisted pose">foundation-model-assisted pose</option>
           <option value="grasping">grasping</option>
           <option value="grasp planning">grasp planning</option>
           <option value="grasp detection">grasp detection</option>
-          <option value="grasp quality prediction">grasp quality prediction</option>
+          <option value="grasp tracking">grasp tracking</option>
+          <option value="real deployment">real deployment</option>
         </select>
         <select id="pageSize">
           <option value="2">每页 2 篇</option>
@@ -131,7 +135,6 @@
         </select>
       </div>
     </section>
-
 
     <section class="grid" id="paperGrid">
 <article class="paper" data-id="dexsim2real-2026-06-15" data-status="精读中" data-topic="sim-to-real robot dynamics tactile dexterous manipulation" data-search="DexSim2Real foundation model sim-to-real tactile visual fusion dexterous manipulation robot dynamics">
@@ -250,6 +253,26 @@
         <div class="actions"><a class="btn" href="GraspNet-1Billion - A Large-Scale Benchmark for General Object Grasping - 2026-06-21.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#graspnet-1billion">查看分析结果</a><a class="btn secondary" href="https://arxiv.org/abs/1912.13470">arXiv</a></div>
       </article>
 
+    
+      <article class="paper" data-id="posecnn-2026-06-22" data-status="精读中" data-topic="6d pose estimation object pose estimation rgb pose perception clutter known-object pose robotic manipulation" data-search="PoseCNN 6D object pose estimation cluttered scenes YCB-Video symmetric object occlusion RGB robotic manipulation">
+        <span class="badge">论文 15 · 2026-06-22</span>
+        <h2 class="title">PoseCNN: A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes</h2>
+        <p class="desc">经典 6D 位姿估计代表作，用 RGB 图像先把物体中心、距离和旋转拆开估，再在遮挡和对称物体场景里稳住结果。</p>
+        <div class="brief"><strong>内容介绍：</strong>这篇论文的历史价值不只是“早期深度学习位姿估计”。它真正留下来的，是一套后来很多方法都绕不开的问题定义：在杂乱、遮挡、对称物体条件下，怎样把已知物体的 6D 位姿估计做成可训练、可复现、可比较的视觉模块。</div>
+        <div class="meta"><label class="status-control">状态：<select class="status-editor" aria-label="修改 posecnn 阅读状态"><option value="已导读">已导读</option><option value="精读中" selected>精读中</option><option value="待复现">待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">6d pose estimation</span><span class="pill">object pose estimation</span><span class="pill">rgb pose</span><span class="pill">perception</span><span class="pill">3.98 MB</span></div>
+        <div class="actions"><a class="btn" href="PoseCNN - A Convolutional Neural Network for 6D Object Pose Estimation in Cluttered Scenes - 2026-06-22.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#posecnn">查看分析结果</a><a class="btn secondary" href="https://arxiv.org/abs/1711.00199">arXiv</a></div>
+      </article>
+
+    
+      <article class="paper" data-id="anygrasp-2026-06-22" data-status="待复现" data-topic="grasping grasp detection grasp tracking 7-dof grasp manipulation perception real-robot deployment foundation-model-assisted grasping ecosystem" data-search="AnyGrasp robust efficient grasp perception spatial temporal domains grasp tracking bin picking unseen objects T-RO real robot">
+        <span class="badge">论文 16 · 2026-06-22</span>
+        <h2 class="title">AnyGrasp: Robust and Efficient Grasp Perception in Spatial and Temporal Domains</h2>
+        <p class="desc">面向真实抓取系统落地的高性能抓取感知论文，强调 7-DoF、密集、连续、抗噪声和真实机器人吞吐，而不是只在静态单帧上报一个好看的抓取点。</p>
+        <div class="brief"><strong>内容介绍：</strong>AnyGrasp 值得补进来，不是因为它“又是一个抓取模型”，而是因为它代表了 GraspNet 之后那条更工程化、更接近真实产线的路线：抓取感知不只是单次检测，而是要兼顾稳定性、速度、噪声鲁棒性和跨观测连续性。</div>
+        <div class="meta"><label class="status-control">状态：<select class="status-editor" aria-label="修改 anygrasp 阅读状态"><option value="已导读">已导读</option><option value="精读中">精读中</option><option value="待复现" selected>待复现</option><option value="已复现">已复现</option><option value="暂存">暂存</option></select></label><span class="pill">grasping</span><span class="pill">grasp detection</span><span class="pill">grasp tracking</span><span class="pill">real deployment</span><span class="pill">5.57 MB</span></div>
+        <div class="actions"><a class="btn" href="AnyGrasp - Robust and Efficient Grasp Perception in Spatial and Temporal Domains - 2026-06-22.pdf">打开 PDF</a><a class="btn secondary" href="../index.html#anygrasp">查看分析结果</a><a class="btn secondary" href="https://arxiv.org/abs/2212.08333">arXiv</a></div>
+      </article>
+
     </section>
 
     <nav class="pagination" aria-label="论文分页">
@@ -366,7 +389,7 @@
       pageJump.max = totalPages;
       pageJump.value = currentPage;
       pageInfo.textContent = `第 ${currentPage} / ${totalPages} 页 · 匹配 ${visiblePapers.length} 篇 · 累计 ${papers.length} 篇`;
-      libraryCount.textContent = `当前日期：2026-06-21 · 累计收录 ${papers.length} 篇`;
+      libraryCount.textContent = `当前日期：2026-06-22 · 累计收录 ${papers.length} 篇`;
       emptyState.style.display = visiblePapers.length ? "none" : "block";
     }
 
